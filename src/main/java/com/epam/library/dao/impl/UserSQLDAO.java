@@ -45,6 +45,7 @@ public class UserSQLDAO implements UserDAO {
 			user.setLogin(rs.getString(USER_LOGIN));
 			user.setPassword(rs.getString(USER_PASSWORD));
 			user.setAccessLevel(rs.getInt(USER_ACCESS_LEVEL));
+			System.out.println(user.getLogin());
 			return user;
 		} catch (SQLException e) {
 			throw new DAOException("Wrong login to database", e);

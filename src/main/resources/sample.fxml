@@ -14,11 +14,11 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity"
-	minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
+	minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0"
 	prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
 	fx:controller="com.epam.library.guicontroller.GuiController">
 	<children>
-		<SplitPane dividerPositions="0.3694581280788177" layoutX="113.0"
+		<SplitPane dividerPositions="0.5066889632107023" layoutX="113.0"
 			layoutY="120.0" prefHeight="400.0" prefWidth="400.0"
 			AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
 			AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -27,99 +27,29 @@
 					minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
 					prefWidth="300.0">
 					<children>
-						<TextArea fx:id="textArea1" editable="false" layoutX="-15.0"
-							layoutY="42.0" maxHeight="-Infinity" maxWidth="-Infinity"
-							minHeight="-Infinity" minWidth="-Infinity" prefHeight="360.0"
-							prefWidth="150.0" AnchorPane.bottomAnchor="0.0"
-							AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-							AnchorPane.topAnchor="42.0" />
 						<Label layoutX="99.0" layoutY="14.0" text="Список процессов" />
 					</children>
 				</AnchorPane>
-				<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity"
-					minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
-					prefWidth="300.0">
+				<AnchorPane prefHeight="598.0" prefWidth="142.0">
 					<children>
-						<SplitPane dividerPositions="0.27889447236180903"
-							layoutX="45.0" layoutY="100.0" orientation="VERTICAL" prefHeight="400.0"
-							prefWidth="300.0" AnchorPane.bottomAnchor="0.0"
-							AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-							AnchorPane.topAnchor="0.0">
-							<items>
-								<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity"
-									minHeight="-Infinity" minWidth="-Infinity" prefHeight="120.0"
-									prefWidth="300.0">
-									<children>
-										<Button fx:id="button2" layoutX="36.0" layoutY="10.0"
-											mnemonicParsing="false" prefHeight="25.0" prefWidth="74.0"
-											text="Загрузить">
-											<font>
-												<Font size="9.0" />
-											</font>
-										</Button>
-										<Button fx:id="button4" disable="true" layoutX="36.0"
-											layoutY="85.0" mnemonicParsing="false" prefHeight="25.0"
-											prefWidth="74.0" text="Запустить">
-											<font>
-												<Font size="9.0" />
-											</font>
-										</Button>
-										<Button fx:id="button3" layoutX="36.0" layoutY="35.0"
-											mnemonicParsing="false" prefHeight="25.0" prefWidth="74.0"
-											text="Сохранить">
-											<font>
-												<Font size="9.0" />
-											</font>
-										</Button>
-										<ComboBox fx:id="comboBox1" disable="true" layoutX="184.0"
-											layoutY="35.0" prefHeight="25.0" prefWidth="81.0" />
-										<ComboBox fx:id="comboBox2" layoutX="36.0" layoutY="60.0"
-											prefHeight="25.0" prefWidth="74.0" promptText="Ядра" />
-										<TextField fx:id="textField1" disable="true"
-											layoutX="184.0" layoutY="10.0" prefHeight="25.0" prefWidth="81.0"
-											promptText="Имя процесса">
-											<font>
-												<Font size="9.0" />
-											</font>
-										</TextField>
-										<TextField fx:id="textField2" disable="true"
-											layoutX="184.0" layoutY="60.0" prefHeight="25.0" prefWidth="81.0"
-											promptText="Значение">
-											<font>
-												<Font size="9.0" />
-											</font>
-										</TextField>
-										<Button fx:id="button1" disable="true" layoutX="110.0"
-											layoutY="10.0" mnemonicParsing="false" prefHeight="25.0"
-											prefWidth="74.0" text="Добавить">
-											<font>
-												<Font size="9.0" />
-											</font>
-										</Button>
-										<Button fx:id="button5" disable="true" layoutX="184.0"
-											layoutY="85.0" mnemonicParsing="false" prefHeight="25.0"
-											prefWidth="81.0" text="Подтвердить">
-											<font>
-												<Font size="9.0" />
-											</font>
-										</Button>
-									</children>
-								</AnchorPane>
-								<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity"
-									minHeight="-Infinity" minWidth="-Infinity" prefHeight="280.0"
-									prefWidth="300.0">
-									<children>
-										<TextArea fx:id="textArea2" editable="false" layoutX="1.0"
-											layoutY="39.0" maxHeight="-Infinity" maxWidth="-Infinity"
-											minHeight="-Infinity" minWidth="-Infinity" prefHeight="241.0"
-											prefWidth="300.0" AnchorPane.bottomAnchor="0.0"
-											AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="-1.0"
-											AnchorPane.topAnchor="39.0" />
-										<Label layoutX="85.0" layoutY="14.0" text="Выполнение процессов" />
-									</children>
-								</AnchorPane>
-							</items>
-						</SplitPane>
+						<HBox layoutX="57.0" layoutY="2.0" prefHeight="25.0"
+							prefWidth="235.0">
+							<children>
+								<TextField fx:id="loginField" prefHeight="25.0"
+									prefWidth="95.0" promptText="login" />
+								<PasswordField fx:id="passwordField" prefHeight="25.0"
+									prefWidth="95.0" promptText="password" />
+								<Button fx:id="logButton" mnemonicParsing="false"
+									onAction="#pressLogButton" prefHeight="25.0" prefWidth="55.0"
+									text="Login">
+									<font>
+										<Font size="9.0" />
+									</font>
+								</Button>
+							</children>
+						</HBox>
+						<Label fx:id="exceprtionLabel" layoutX="57.0" layoutY="27.0"
+							prefHeight="17.0" prefWidth="235.0" />
 					</children>
 				</AnchorPane>
 			</items>

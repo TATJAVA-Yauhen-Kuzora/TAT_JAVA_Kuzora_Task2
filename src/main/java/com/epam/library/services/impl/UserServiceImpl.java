@@ -5,6 +5,7 @@ package com.epam.library.services.impl;
 
 import com.epam.library.beans.User;
 import com.epam.library.dao.DAOFactory;
+import com.epam.library.dao.exception.DAOException;
 import com.epam.library.dao.interfaces.UserDAO;
 import com.epam.library.services.exception.ServiceException;
 import com.epam.library.services.interfaces.UserService;
@@ -22,12 +23,17 @@ public class UserServiceImpl implements UserService {
 		UserDAO dao = daoFactory.getUserDAO();
 		User user = null;
 		try {
+			System.out.println(login);
+			System.out.println(password);
 			user = dao.signIn(login, password);
 			if (user == null) {
-				throw new ServiceException("Wrong login or password");
+				throw new ServiceException("Wrong login or password.");
 			}
-		} catch (Exception e) {
-			// TODO: handle exception
+			if (user.getAccessLevel() == 1) {
+				// эксепшн на запрет доступа к
+			}
+		} catch (DAOException e) {
+			throw new ServiceException(e);
 		}
 
 		return user;
