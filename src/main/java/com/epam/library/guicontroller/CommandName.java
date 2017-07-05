@@ -8,5 +8,5 @@ package com.epam.library.guicontroller;
  *
  */
 public enum CommandName {
-	LOGIN;
+	LOGIN, LOGOUT, WRONGCCOMMAND;
 }

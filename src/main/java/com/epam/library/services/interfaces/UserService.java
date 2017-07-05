@@ -12,4 +12,8 @@ import com.epam.library.services.exception.ServiceException;
  */
 public interface UserService {
 	User singIn(String login, String password) throws ServiceException;
+
+	User logout() throws ServiceException;
+	
+	User register() throws ServiceException;
 }

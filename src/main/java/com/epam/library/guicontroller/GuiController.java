@@ -13,8 +13,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.text.Font;
 
 public class GuiController {
-	User user;
-
 	@FXML
 	Button logButton;
 	@FXML
@@ -23,37 +21,38 @@ public class GuiController {
 	PasswordField passwordField;
 	@FXML
 	Label exceprtionLabel;
+	private static User user;
 
 	public void pressLogButton(ActionEvent event) {
-
 		if (user == null) {
 			Command command = CommandProvider.getInstance().getCommand(1, "Login");
-
 			try {
-
 				user = (User) command.execute(loginField.getText(), passwordField.getText());
-
-				System.out.println(user.getName());
-
+				System.out.println(user.getName());// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 				loginField.setEditable(false);
 				passwordField.setVisible(false);
 				logButton.setText("Logout");
-				exceprtionLabel.setText("");
-
+				exceprtionLabel.setText("Access level: " + user.getAccessLevel().getName());
 			} catch (CommandException e) {
 				exceprtionLabel.setText(e.getMessage());
 			}
-
 		} else {
-			loginField.setText("");
-			loginField.setEditable(true);
-			passwordField.setText("");
-			passwordField.setVisible(true);
-			logButton.setText("Login");
-			exceprtionLabel.setText("");
-			user = null;
-
+			System.out.println(user.getAccessLevel());// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+			Command command = CommandProvider.getInstance().getCommand(user.getAccessLevel().getAccessLevelId(),
+					"Logout");
+			try {
+				System.out.println(user.getLogin());// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+				user = (User) command.execute("");
+				loginField.setText("");
+				loginField.setEditable(true);
+				passwordField.setText("");
+				passwordField.setVisible(true);
+				logButton.setText("Login");
+				exceprtionLabel.setText("");
+			} catch (CommandException e) {
+			}
 		}
-
 	}
+	
+	
 }

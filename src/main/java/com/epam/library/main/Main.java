@@ -3,10 +3,6 @@
  */
 package com.epam.library.main;
 
-import com.epam.library.beans.User;
-import com.epam.library.services.ServiceFactory;
-import com.epam.library.services.exception.ServiceException;
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -23,14 +19,6 @@ public class Main extends Application {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-//		ServiceFactory serviceFactory = new ServiceFactory();
-//		try {
-//			User user = serviceFactory.getUserService().singIn("user", "12345");
-//			System.out.println(user.getName());
-//		} catch (ServiceException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
 		launch(args);
 	}
 

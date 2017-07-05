@@ -12,7 +12,8 @@ import com.epam.library.dao.interfaces.UserDAO;
  */
 public class DAOFactory {
 	private static final DAOFactory instance = new DAOFactory();
-	private final UserDAO sqlUserImpl = new UserSQLDAO();
+
+	private final UserDAO sqlUserImpl = UserSQLDAO.getInstance();
 
 	private DAOFactory() {
 	}

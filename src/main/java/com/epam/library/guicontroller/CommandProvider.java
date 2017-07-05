@@ -8,6 +8,9 @@ import java.util.Map;
 
 import com.epam.library.beans.AccessLevel;
 import com.epam.library.command.impl.guest.*;
+import com.epam.library.command.impl.user.*;
+import com.epam.library.command.impl.admin.*;
+import com.epam.library.command.impl.superAdmin.*;
 import com.epam.library.command.interfaces.Command;
 
 /**
@@ -23,7 +26,14 @@ public class CommandProvider {
 	private static final CommandProvider instance = new CommandProvider();
 
 	private CommandProvider() {
+		// гость
 		guestCommands.put(CommandName.LOGIN, new Login());
+		// пользователь
+		userCommands.put(CommandName.LOGOUT, new Logout());
+		// admin
+		adminCommands.putAll(userCommands);
+		// superadmin
+		superAdminCommands.putAll(adminCommands);
 	}
 
 	static CommandProvider getInstance() {
@@ -38,7 +48,6 @@ public class CommandProvider {
 			name = CommandName.valueOf(com);
 			switch (level) {
 			case 1:
-				System.out.println("1");
 				return guestCommands.get(name);
 			case 2:
 				return userCommands.get(name);
@@ -49,8 +58,8 @@ public class CommandProvider {
 			default:
 				return guestCommands.get(name);
 			}
-		} catch (Exception e) {
-			command = null;
+		} catch (IllegalArgumentException | NullPointerException e) {
+			command = new WrongCommand();
 		}
 		return command;
 	}

@@ -13,7 +13,7 @@ public class User {
 	private String secondName;
 	private String login;
 	private String password;
-	private int accessLevel;
+	private AccessLevel accessLevel;
 
 	public int getUserId() {
 		return userId;
@@ -55,11 +55,11 @@ public class User {
 		this.password = password;
 	}
 
-	public int getAccessLevel() {
+	public AccessLevel getAccessLevel() {
 		return accessLevel;
 	}
 
-	public void setAccessLevel(int accessLevel) {
+	public void setAccessLevel(AccessLevel accessLevel) {
 		this.accessLevel = accessLevel;
 	}
 }

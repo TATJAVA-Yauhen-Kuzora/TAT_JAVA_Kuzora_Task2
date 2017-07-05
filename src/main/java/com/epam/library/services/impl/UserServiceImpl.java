@@ -23,20 +23,29 @@ public class UserServiceImpl implements UserService {
 		UserDAO dao = daoFactory.getUserDAO();
 		User user = null;
 		try {
-			System.out.println(login);
-			System.out.println(password);
 			user = dao.signIn(login, password);
 			if (user == null) {
 				throw new ServiceException("Wrong login or password.");
 			}
-			if (user.getAccessLevel() == 1) {
-				// эксепшн на запрет доступа к
+			if (user.getAccessLevel().getAccessLevelId() == 1) {
+				throw new ServiceException("Accaunt has been banned.");
 			}
 		} catch (DAOException e) {
 			throw new ServiceException(e);
 		}
-
 		return user;
+	}
+
+	@Override
+	public User logout() throws ServiceException {
+		return null;
+	}
+
+	@Override
+	public User register() throws ServiceException {
+		// validator logina и пароля
+		DAOFactory daoFactory = DAOFactory.getInstance();
+		return null;
 	}
 
 }
