@@ -3,7 +3,9 @@
  */
 package com.epam.library.services;
 
+import com.epam.library.services.impl.BookServiceImpl;
 import com.epam.library.services.impl.UserServiceImpl;
+import com.epam.library.services.interfaces.BookService;
 import com.epam.library.services.interfaces.UserService;
 
 /**
@@ -11,16 +13,23 @@ import com.epam.library.services.interfaces.UserService;
  *
  */
 public class ServiceFactory {
-	public static final ServiceFactory INSTANCE = new ServiceFactory();
+	private static final ServiceFactory instance = new ServiceFactory();
 
 	public static ServiceFactory getInstance() {
-		return INSTANCE;
+		return instance;
 	}
 
 	private UserService userService = new UserServiceImpl();
+	private BookService bookService = new BookServiceImpl();
 
 	public UserService getUserService() {
 		return userService;
 	}
 
+	/**
+	 * @return the bookService
+	 */
+	public BookService getBookService() {
+		return bookService;
+	}
 }

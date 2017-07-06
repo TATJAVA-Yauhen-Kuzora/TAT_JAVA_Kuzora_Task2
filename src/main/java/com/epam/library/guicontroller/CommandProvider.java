@@ -26,21 +26,29 @@ public class CommandProvider {
 	private static final CommandProvider instance = new CommandProvider();
 
 	private CommandProvider() {
+		//
 		// гость
 		guestCommands.put(CommandName.LOGIN, new Login());
+		guestCommands.put(CommandName.REGISTRATION, new Registration());
+		guestCommands.put(CommandName.VIEW_ALL_BOOKS, new ViewAllBooks());
+		//
 		// пользователь
 		userCommands.put(CommandName.LOGOUT, new Logout());
+		userCommands.put(CommandName.UPDATE_USER_INFO, new UpdateInfo());
+		userCommands.put(CommandName.VIEW_ALL_BOOKS, new ViewAllBooks());
+		//
 		// admin
 		adminCommands.putAll(userCommands);
+		//
 		// superadmin
 		superAdminCommands.putAll(adminCommands);
 	}
 
-	static CommandProvider getInstance() {
+	public static CommandProvider getInstance() {
 		return instance;
 	}
 
-	Command getCommand(int level, String stringCommand) {
+	public Command getCommand(int level, String stringCommand) {
 		String com = stringCommand.replace("-", "_").toUpperCase();
 		Command command;
 		CommandName name = null;

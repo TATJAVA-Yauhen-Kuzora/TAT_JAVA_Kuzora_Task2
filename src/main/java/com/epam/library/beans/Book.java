@@ -12,7 +12,7 @@ public class Book {
 	private String bookName;
 	private String author;
 	private String description;
-	private int bookStatusId;
+	private BookStatus bookStatus;
 
 	public int getBookId() {
 		return bookId;
@@ -46,12 +46,25 @@ public class Book {
 		this.description = description;
 	}
 
-	public int getBookStatusId() {
-		return bookStatusId;
+	/**
+	 * @return the bookStatus
+	 */
+	public BookStatus getBookStatus() {
+		return bookStatus;
 	}
 
-	public void setBookStatusId(int bookStatusId) {
-		this.bookStatusId = bookStatusId;
+	/**
+	 * @param bookStatus
+	 *            the bookStatus to set
+	 */
+	public void setBookStatus(BookStatus bookStatus) {
+		this.bookStatus = bookStatus;
 	}
 
+	@Override
+	public String toString() {
+		String allInfoAboultBook = String.format("%s  /  %s  /  %s", this.bookName, this.author,
+				this.bookStatus.getBookStatus());
+		return allInfoAboultBook;
+	}
 }

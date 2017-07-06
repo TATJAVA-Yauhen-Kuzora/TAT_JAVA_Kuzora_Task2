@@ -19,7 +19,7 @@ public class Login implements Command {
 	@Override
 	public Object execute(String... request) throws CommandException {
 		if (request.length != 2)
-			throw new CommandException("Wrong count of arguments.");
+			throw new CommandException("Wrong count of arguments for logging.");
 		User user = null;
 		UserService userService = ServiceFactory.getInstance().getUserService();
 		String login = request[0];

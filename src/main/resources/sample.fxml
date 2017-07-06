@@ -13,44 +13,81 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity"
-	minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0"
-	prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-	fx:controller="com.epam.library.guicontroller.GuiController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.epam.library.guicontroller.GuiController">
 	<children>
-		<SplitPane dividerPositions="0.5066889632107023" layoutX="113.0"
-			layoutY="120.0" prefHeight="400.0" prefWidth="400.0"
-			AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-			AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+		<SplitPane dividerPositions="0.5066889632107023" layoutX="113.0" layoutY="120.0" prefHeight="400.0" prefWidth="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 			<items>
-				<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity"
-					minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
-					prefWidth="300.0" />
-				<AnchorPane prefHeight="598.0" prefWidth="142.0">
+				<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="300.0">
+               <children>
+                  <ListView fx:id="listView" disable="true" layoutY="6.0" prefHeight="200.0" prefWidth="300.0" />
+                  <Button layoutY="206.0" mnemonicParsing="false" onAction="#uploadLibrary" prefWidth="100.0" text="Upload library" />
+                  <Button fx:id="orderButton" layoutX="100.0" layoutY="206.0" mnemonicParsing="false" prefWidth="100.0" text="Order book" visible="false" />
+                  <ListView fx:id="listView1" disable="true" layoutY="231.0" prefHeight="100.0" prefWidth="300.0" visible="false" />
+                  <Button fx:id="changeBookStatusButtonForAdmins" layoutX="200.0" layoutY="206.0" mnemonicParsing="false" prefWidth="100.0" text="Change bStatus" visible="false" />
+                  <ListView fx:id="listViewUsers" layoutY="373.0" prefHeight="100.0" prefWidth="300.0" visible="false" />
+                  <Button fx:id="uploadUsersButton" layoutY="473.0" mnemonicParsing="false" prefWidth="100.0" text="Upload users" visible="false" />
+                  <Label fx:id="adminLabel" layoutX="7.0" layoutY="356.0" prefHeight="17.0" prefWidth="274.0" visible="false" />
+               </children></AnchorPane>
+				<AnchorPane prefHeight="600.0" prefWidth="300.0">
 					<children>
-						<HBox layoutX="55.0" prefHeight="25.0" prefWidth="235.0">
+						<Label fx:id="exceprtionLabel" layoutX="1.0" layoutY="27.0" prefHeight="17.0" prefWidth="300.0" />
+						<AnchorPane layoutY="1.0" prefHeight="25.0" prefWidth="300.0">
 							<children>
-								<TextField fx:id="loginField" prefHeight="25.0"
-									prefWidth="95.0" promptText="login" />
-								<PasswordField fx:id="passwordField" prefHeight="25.0"
-									prefWidth="95.0" promptText="password" />
-								<Button fx:id="logButton" mnemonicParsing="false"
-									onAction="#pressLogButton" prefHeight="25.0" prefWidth="55.0"
-									text="Login">
+								<TextField fx:id="loginField" prefHeight="25.0" prefWidth="95.0" promptText="login" />
+								<PasswordField fx:id="passwordField" layoutX="95.0" prefHeight="25.0" prefWidth="95.0" promptText="password" />
+								<Button fx:id="logButton" layoutX="190.0" mnemonicParsing="false" onAction="#pressLogButton" prefHeight="25.0" prefWidth="45.0" text="Login">
+									<font>
+										<Font size="9.0" />
+									</font>
+								</Button>
+								<Button fx:id="registrationButton" layoutX="234.0" mnemonicParsing="false" onAction="#openRegistrationPanel" prefHeight="25.0" prefWidth="60.0" text="Registration">
+									<font>
+										<Font size="9.0" />
+									</font>
+								</Button>
+								<Button fx:id="editButton" layoutX="95.0" mnemonicParsing="false" onAction="#openEditPanel" prefHeight="25.0" prefWidth="45.0" text="Edit" visible="false">
 									<font>
 										<Font size="9.0" />
 									</font>
 								</Button>
 							</children>
-						</HBox>
-						<Label fx:id="exceprtionLabel" layoutX="57.0" layoutY="27.0"
-							prefHeight="17.0" prefWidth="235.0" />
-						<Button layoutX="216.0" layoutY="66.0" mnemonicParsing="false"
-							prefHeight="25.0" prefWidth="55.0" text="Button">
-							<font>
-								<Font size="9.0" />
-							</font>
-						</Button>
+						</AnchorPane>
+						<AnchorPane fx:id="editAnchorPane" layoutY="44.0" prefHeight="178.0" prefWidth="164.0" visible="false">
+							<children>
+								<Button fx:id="confirmButton" layoutX="104.0" layoutY="79.0" mnemonicParsing="false" onAction="#pressConfirmRegButton" prefHeight="25.0" prefWidth="60.0" text="Save">
+									<font>
+										<Font size="10.0" />
+									</font>
+								</Button>
+								<TextField fx:id="editNameField" layoutX="4.0" layoutY="4.0" prefHeight="25.0" prefWidth="100.0" promptText="name">
+									<font>
+										<Font size="10.0" />
+									</font>
+								</TextField>
+								<TextField fx:id="editSecondNameField" layoutX="4.0" layoutY="29.0" prefHeight="25.0" prefWidth="100.0" promptText="second name">
+									<font>
+										<Font size="10.0" />
+									</font>
+								</TextField>
+								<TextField fx:id="editLoginField" layoutX="4.0" layoutY="54.0" prefHeight="25.0" prefWidth="100.0" promptText="login">
+									<font>
+										<Font size="10.0" />
+									</font>
+								</TextField>
+								<TextField fx:id="editAccessLevel" editable="false" layoutX="4.0" layoutY="79.0" prefHeight="25.0" prefWidth="100.0" />
+								<PasswordField fx:id="editPasswordFieldOld" layoutX="4.0" layoutY="104.0" prefHeight="25.0" prefWidth="100.0" promptText="password">
+									<font>
+										<Font size="10.0" />
+									</font>
+								</PasswordField>
+								<PasswordField fx:id="editPasswordField1" layoutX="4.0" layoutY="129.0" prefHeight="25.0" prefWidth="100.0" promptText="confirm password">
+									<font>
+										<Font size="10.0" />
+									</font>
+								</PasswordField>
+							</children>
+						</AnchorPane>
+                  <ListView fx:id="listView2" layoutY="299.0" prefHeight="100.0" prefWidth="300.0" visible="false" />
 					</children>
 				</AnchorPane>
 			</items>

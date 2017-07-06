@@ -4,6 +4,7 @@
 package com.epam.library.dao.impl;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.epam.library.beans.AccessLevel;
@@ -19,7 +20,10 @@ import com.epam.library.dao.interfaces.UserDAO;
  */
 public class UserSQLDAO implements UserDAO {
 	private final static String SIGN_IN = "SELECT user_id, name, second_name, login, password, acc_level, access_level FROM user LEFT JOIN access_level ON user.acc_level = access_level.access_level_id WHERE login=? and password=?";
+	private final static String SIGN_UPDATE = "SELECT user_id, name, second_name, login, password, acc_level, access_level FROM user LEFT JOIN access_level ON user.acc_level = access_level.access_level_id WHERE user_id=?";
 	private final static String REGISTER = "INSERT INTO user (`name`, `second_name`, `login`, `password`, `acc_level`) VALUES(?,?,?,?,2)";
+	private final static String GET_ALL_USERS = "SELECT user_id, name, second_name, login, password, acc_level, access_level FROM user LEFT JOIN access_level ON user.acc_level = access_level.access_level_id";
+	private final static String UPDATE_USER_INFO = "UPDATE user SET name = ?, second_name= ?, login= ? WHERE user_id= ?;";
 
 	private final static String USER_ID = "user_id";
 	private final static String USER_NAME = "name";
@@ -93,5 +97,76 @@ public class UserSQLDAO implements UserDAO {
 			throw new DAOException(e);
 		}
 		return null;
+	}
+
+	@Override
+	public List<User> getAllUsers() throws DAOException {
+		Connection connection = null;
+		PreparedStatement pSt = null;
+		ResultSet rs = null;
+		try {
+			connection = ConnectionSQLDAO.getInstance().takeConnection();
+			pSt = connection.prepareStatement(GET_ALL_USERS);
+			rs = pSt.executeQuery();
+			User localUser;
+			ArrayList<User> users = new ArrayList<>();
+			while (rs.next()) {
+				localUser = new User();
+				localUser.setUserId(rs.getInt(USER_ID));
+				localUser.setName(rs.getString(USER_NAME));
+				localUser.setSecondName(rs.getString(USER_SECOND_NAME));
+				localUser.setLogin(rs.getString(USER_LOGIN));
+				localUser.setPassword(rs.getString(USER_PASSWORD));
+				AccessLevel accessLevel = new AccessLevel();
+				accessLevel.setAccessLevelId(rs.getInt(USER_ACCESS_LEVEL_ID));
+				accessLevel.setName(rs.getString(USER_ACCESS_LEVEL_NAME));
+				localUser.setAccessLevel(accessLevel);
+				users.add(localUser);
+			}
+			return users;
+		} catch (SQLException e) {
+			throw new DAOException("Get list of users sql exception.", e);
+		} catch (ConnectionSQLException e) {
+			throw new DAOException("Smthg wrong with connection.", e);
+		}
+	}
+
+	@Override
+	public User updateUserInfo(String name, String secondName, String login, int userId) throws DAOException {
+		ResultSet rs = null;
+		Connection connection = null;
+		PreparedStatement pSt = null;
+		try {
+			connection = ConnectionSQLDAO.getInstance().takeConnection();
+			pSt = connection.prepareStatement(UPDATE_USER_INFO);
+			pSt.setString(1, name);
+			pSt.setString(2, secondName);
+			pSt.setString(3, login);
+			pSt.setInt(4, userId);
+			int access = pSt.executeUpdate();
+			if (access > 0) {
+				pSt = connection.prepareStatement(SIGN_UPDATE);
+				pSt.setInt(1, userId);
+				rs = pSt.executeQuery();
+				if (!rs.next()) {
+					return null;
+				}
+			}
+			User user = new User();
+			user.setUserId(rs.getInt(USER_ID));
+			user.setName(rs.getString(USER_NAME));
+			user.setSecondName(rs.getString(USER_SECOND_NAME));
+			user.setLogin(rs.getString(USER_LOGIN));
+			user.setPassword(rs.getString(USER_PASSWORD));
+			AccessLevel accessLevel = new AccessLevel();
+			accessLevel.setAccessLevelId(rs.getInt(USER_ACCESS_LEVEL_ID));
+			accessLevel.setName(rs.getString(USER_ACCESS_LEVEL_NAME));
+			user.setAccessLevel(accessLevel);
+			return user;
+		} catch (SQLException e) {
+			throw new DAOException("Update user sql exception.", e);
+		} catch (ConnectionSQLException e) {
+			throw new DAOException("Smthg wrong with connection.", e);
+		}
 	}
 }
