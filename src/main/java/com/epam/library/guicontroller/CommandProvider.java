@@ -9,6 +9,7 @@ import java.util.Map;
 import com.epam.library.beans.AccessLevel;
 import com.epam.library.command.impl.guest.*;
 import com.epam.library.command.impl.user.*;
+import com.epam.library.command.exception.CommandException;
 import com.epam.library.command.impl.admin.*;
 import com.epam.library.command.impl.superAdmin.*;
 import com.epam.library.command.interfaces.Command;
@@ -59,7 +60,7 @@ public class CommandProvider {
 		return instance;
 	}
 
-	public Command getCommand(int level, String stringCommand) {
+	public Command getCommand(int level, String stringCommand) throws CommandException {
 		String com = stringCommand.replace("-", "_").toUpperCase();
 		Command command;
 		CommandName name = null;
@@ -82,10 +83,10 @@ public class CommandProvider {
 				command = guestCommands.get(name);
 			}
 		} catch (IllegalArgumentException | NullPointerException e) {
-			command = new WrongCommand();
+			throw new CommandException(e.getMessage(), e);
 		}
 		if (command == null)
-			command = new WrongCommand();
+			throw new CommandException("Illigal command for curent user.");
 		return command;
 	}
 }

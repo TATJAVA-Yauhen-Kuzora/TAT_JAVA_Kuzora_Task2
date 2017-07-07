@@ -26,13 +26,14 @@ public final class GuiController {
 	private Button logButton, editButton, registrationButton, changeBookStatusButtonForAdmins, uploadUsersButton,
 			orderButton, confirmOrderButton, confirmReturn, bunButton, promoteButton;
 	@FXML
-	private TextField loginField, editNameField, editSecondNameField, editLoginField, editAccessLevel;
+	private TextField loginField, editNameField, editSecondNameField, editLoginField, editAccessLevel, bookNameField,
+			bookAuthorField;
 	@FXML
 	private PasswordField passwordField, editPasswordFieldOld, editPasswordField1;
 	@FXML
-	private Label exceprtionLabel, adminLabel;
+	private Label exceprtionLabel, adminLabel, addInfoBookLabel;
 	@FXML
-	private AnchorPane editAnchorPane, adminButtons;
+	private AnchorPane editAnchorPane, adminButtons, addBooksPanel;
 	@FXML
 	private ListView<Book> listView = new ListView<>();
 	@FXML
@@ -58,20 +59,20 @@ public final class GuiController {
 						adminLabel.setText("Admin users control panel");
 						confirmOrderButton.setVisible(true);
 						confirmReturn.setVisible(true);
-						listView1.setDisable(false);
 						adminLabel.setVisible(true);
 						listViewUsers.setVisible(true);
 						adminButtons.setVisible(true);
+						addBooksPanel.setVisible(true);
 						changeBookStatusButtonForAdmins.setVisible(true);
 						uploadUsersList(event);
 					} else if (sessionUser.getAccessLevel().getAccessLevelId() == 4) {
 						adminLabel.setText("SuperAdmin users control panel");
-						listView1.setDisable(false);
 						adminLabel.setVisible(true);
 						confirmOrderButton.setVisible(true);
 						confirmReturn.setVisible(true);
 						listViewUsers.setVisible(true);
 						adminButtons.setVisible(true);
+						addBooksPanel.setVisible(true);
 						changeBookStatusButtonForAdmins.setVisible(true);
 						uploadUsersList(event);
 					}
@@ -100,11 +101,10 @@ public final class GuiController {
 				adminLabel.setVisible(false);
 				listViewUsers.setVisible(false);
 				adminButtons.setVisible(false);
+				addBooksPanel.setVisible(false);
 				orderButton.setVisible(false);
-				listView1.setDisable(true);
 				confirmOrderButton.setVisible(false);
 				confirmReturn.setVisible(false);
-
 			} catch (CommandException e) {
 				exceprtionLabel.setText(e.getMessage());
 			}
@@ -189,9 +189,9 @@ public final class GuiController {
 				editLoginField.setText(sessionUser.getLogin());
 				exceprtionLabel.setText("Changes have saved.");
 				loginField.setText(sessionUser.getLogin());
-
 				if (sessionUser.getAccessLevel().getAccessLevelId() > 2)
 					uploadUsersList(event);
+				uploadOrdersList(event);
 			} catch (CommandException e) {
 				exceprtionLabel.setText(e.getMessage());
 			}
@@ -319,7 +319,17 @@ public final class GuiController {
 	}
 
 	public void pressAddBook(ActionEvent event) {
-
+		try {
+			if ((Boolean) executeTask("Add_book" + " " + bookNameField.getText() + " " + bookAuthorField.getText())) {
+				bookNameField.clear();
+				bookAuthorField.clear();
+				uploadBooks();
+			}
+		} catch (CommandException e) {
+			addInfoBookLabel.setText(e.getMessage());
+			bookNameField.clear();
+			bookAuthorField.clear();
+		}
 	}
 
 	@SuppressWarnings("unchecked")

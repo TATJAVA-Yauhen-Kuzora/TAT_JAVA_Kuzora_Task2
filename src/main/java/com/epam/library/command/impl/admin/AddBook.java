@@ -17,8 +17,8 @@ public class AddBook implements Command {
 
 	@Override
 	public Object execute(String... request) throws CommandException {
-		if (request.length != 4)
-			throw new CommandException("Wrong count of arguments for logging.");
+		if (request.length != 3)
+			throw new CommandException("Wrong count of arguments for adding book.");
 		BookService bookService = ServiceFactory.getInstance().getBookService();
 		try {
 			String bookName = request[0];
