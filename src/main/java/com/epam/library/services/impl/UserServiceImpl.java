@@ -93,12 +93,35 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void banUser(int userId) throws ServiceException {
-		// validator logina и пароля
+		// validator userId
 		DAOFactory daoFactory = DAOFactory.getInstance();
 		UserDAO dao = daoFactory.getUserDAO();
-		User user = null;
 		try {
 			dao.banUser(userId);
+		} catch (DAOException e) {
+			throw new ServiceException(e.getMessage(), e);
+		}
+	}
+
+	@Override
+	public void unBanUser(int userId) throws ServiceException {
+		// validator userId
+		DAOFactory daoFactory = DAOFactory.getInstance();
+		UserDAO dao = daoFactory.getUserDAO();
+		try {
+			dao.unBanUser(userId);
+		} catch (DAOException e) {
+			throw new ServiceException(e.getMessage(), e);
+		}
+	}
+
+	@Override
+	public void giveAdminForUser(int userId) throws ServiceException {
+		// validator userId
+		DAOFactory daoFactory = DAOFactory.getInstance();
+		UserDAO dao = daoFactory.getUserDAO();
+		try {
+			dao.giveAdminForUser(userId);
 		} catch (DAOException e) {
 			throw new ServiceException(e.getMessage(), e);
 		}

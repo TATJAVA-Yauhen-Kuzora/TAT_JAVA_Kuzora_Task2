@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.epam.library.command.impl.admin;
+package com.epam.library.command.impl.superAdmin;
 
 import com.epam.library.command.exception.CommandException;
 import com.epam.library.command.interfaces.Command;
@@ -13,7 +13,7 @@ import com.epam.library.services.interfaces.UserService;
  * @author Eugene13
  *
  */
-public class BanUser implements Command {
+public class GiveAdminForUser implements Command {
 
 	@Override
 	public Object execute(String... request) throws CommandException {
@@ -22,7 +22,7 @@ public class BanUser implements Command {
 		UserService userService = ServiceFactory.getInstance().getUserService();
 		try {
 			int userId = Integer.parseInt(request[0]);
-			userService.banUser(userId);
+			userService.giveAdminForUser(userId);
 			return true;
 		} catch (ServiceException e) {
 			throw new CommandException(e.getMessage(), e);
@@ -30,4 +30,5 @@ public class BanUser implements Command {
 			throw new CommandException("Invalid parameters for ban user command.");
 		}
 	}
+
 }

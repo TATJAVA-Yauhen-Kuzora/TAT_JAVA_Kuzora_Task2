@@ -24,9 +24,9 @@ public class UserSQLDAO implements UserDAO {
 	private final static String REGISTER = "INSERT INTO user (`name`, `second_name`, `login`, `password`, `acc_level`) VALUES(?,?,?,?,2)";
 	private final static String GET_ALL_USERS = "SELECT user_id, name, second_name, login, password, acc_level, access_level FROM user LEFT JOIN access_level ON user.acc_level = access_level.access_level_id";
 	private final static String UPDATE_USER_INFO = "UPDATE user SET name = ?, second_name= ?, login= ? WHERE user_id= ?;";
-
 	private final static String BAN_USER = "UPDATE user SET acc_level= 1 WHERE user_id= ?;";
-
+	private final static String UNBAN_USER = "UPDATE user SET acc_level= 2 WHERE user_id= ?;";
+	private final static String GIVE_ADMIN_ACCESS_FOR_USER = "UPDATE user SET acc_level= 3 WHERE user_id= ?;";
 	private final static String USER_ID = "user_id";
 	private final static String USER_NAME = "name";
 	private final static String USER_SECOND_NAME = "second_name";
@@ -191,8 +191,38 @@ public class UserSQLDAO implements UserDAO {
 	}
 
 	@Override
-	public void promoteUser(int UserId) throws DAOException {
-		// TODO Auto-generated method stub
+	public void unBanUser(int UserId) throws DAOException {
+		Connection connection = null;
+		PreparedStatement pSt = null;
+		try {
+			connection = ConnectionSQLDAO.getInstance().takeConnection();
+			pSt = connection.prepareStatement(UNBAN_USER);
+			pSt.setInt(1, UserId);
+			int access = pSt.executeUpdate();
+			if (access > 0) {
+			}
+		} catch (SQLException e) {
+			throw new DAOException("Unban user sql exception.", e);
+		} catch (ConnectionSQLException e) {
+			throw new DAOException("Smthg wrong with connection.", e);
+		}
+	}
 
+	@Override
+	public void giveAdminForUser(int UserId) throws DAOException {
+		Connection connection = null;
+		PreparedStatement pSt = null;
+		try {
+			connection = ConnectionSQLDAO.getInstance().takeConnection();
+			pSt = connection.prepareStatement(GIVE_ADMIN_ACCESS_FOR_USER);
+			pSt.setInt(1, UserId);
+			int access = pSt.executeUpdate();
+			if (access > 0) {
+			}
+		} catch (SQLException e) {
+			throw new DAOException("GiveAdmin user sql exception.", e);
+		} catch (ConnectionSQLException e) {
+			throw new DAOException("Smthg wrong with connection.", e);
+		}
 	}
 }

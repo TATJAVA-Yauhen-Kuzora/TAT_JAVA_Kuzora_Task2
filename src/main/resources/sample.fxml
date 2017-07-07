@@ -56,8 +56,9 @@
 						<Button fx:id="bunButton" layoutX="100.0" layoutY="423.0"
 							mnemonicParsing="false" onAction="#pressBanButton" prefHeight="25.0"
 							prefWidth="100.0" text="Ban" visible="false" />
-						<Button layoutX="200.0" layoutY="423.0" mnemonicParsing="false"
-							prefHeight="25.0" prefWidth="100.0" text="Promote" />
+						<Button fx:id="promoteButton" layoutX="200.0" layoutY="423.0"
+							mnemonicParsing="false" onAction="#pressPromoteButton"
+							prefHeight="25.0" prefWidth="100.0" text="Promote" visible="false" />
 					</children>
 				</AnchorPane>
 				<AnchorPane prefHeight="600.0" prefWidth="300.0">

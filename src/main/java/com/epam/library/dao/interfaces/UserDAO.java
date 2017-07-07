@@ -17,5 +17,7 @@ public interface UserDAO {
 
 	void banUser(int UserId) throws DAOException;
 
-	void promoteUser(int UserId) throws DAOException;
+	void unBanUser(int UserId) throws DAOException;
+
+	void giveAdminForUser(int UserId) throws DAOException;
 }

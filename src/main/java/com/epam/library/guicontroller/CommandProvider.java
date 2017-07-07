@@ -47,9 +47,11 @@ public class CommandProvider {
 		adminCommands.put(CommandName.CONFIRM_ORDER, new SendOrder());
 		adminCommands.put(CommandName.RETURN_ORDER, new ReturnOrder());
 		adminCommands.put(CommandName.BAN_USER, new BanUser());
+		adminCommands.put(CommandName.UNBAN_USER, new UnBanUser());
 		//
 		// superadmin
 		superAdminCommands.putAll(adminCommands);
+		superAdminCommands.put(CommandName.GIVE_ADMIN, new GiveAdminForUser());
 	}
 
 	public static CommandProvider getInstance() {

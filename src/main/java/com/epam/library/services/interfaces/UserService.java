@@ -24,4 +24,8 @@ public interface UserService {
 	User updateUserInfo(String name, String secondName, String login, int userId) throws ServiceException;
 
 	void banUser(int userId) throws ServiceException;
+
+	void unBanUser(int userId) throws ServiceException;
+
+	void giveAdminForUser(int userId) throws ServiceException;
 }

@@ -13,16 +13,16 @@ import com.epam.library.services.interfaces.UserService;
  * @author Eugene13
  *
  */
-public class BanUser implements Command {
+public class UnBanUser implements Command {
 
 	@Override
 	public Object execute(String... request) throws CommandException {
 		if (request.length != 1)
-			throw new CommandException("Wrong count of arguments for banning user.");
+			throw new CommandException("Wrong count of arguments for unbanning user.");
 		UserService userService = ServiceFactory.getInstance().getUserService();
 		try {
 			int userId = Integer.parseInt(request[0]);
-			userService.banUser(userId);
+			userService.unBanUser(userId);
 			return true;
 		} catch (ServiceException e) {
 			throw new CommandException(e.getMessage(), e);

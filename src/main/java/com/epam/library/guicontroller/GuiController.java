@@ -24,7 +24,7 @@ public final class GuiController {
 	private final CommandProvider commandProvider = CommandProvider.getInstance();
 	@FXML
 	private Button logButton, editButton, registrationButton, changeBookStatusButtonForAdmins, uploadUsersButton,
-			orderButton, confirmOrderButton, confirmReturn, bunButton;
+			orderButton, confirmOrderButton, confirmReturn, bunButton, promoteButton;
 	@FXML
 	private TextField loginField, editNameField, editSecondNameField, editLoginField, editAccessLevel;
 	@FXML
@@ -63,6 +63,7 @@ public final class GuiController {
 						listViewUsers.setVisible(true);
 						uploadUsersButton.setVisible(true);
 						bunButton.setVisible(true);
+						promoteButton.setVisible(true);
 						changeBookStatusButtonForAdmins.setVisible(true);
 						uploadUsersList(event);
 					} else if (sessionUser.getAccessLevel().getAccessLevelId() == 4) {
@@ -74,6 +75,7 @@ public final class GuiController {
 						listViewUsers.setVisible(true);
 						uploadUsersButton.setVisible(true);
 						bunButton.setVisible(true);
+						promoteButton.setVisible(true);
 						changeBookStatusButtonForAdmins.setVisible(true);
 						uploadUsersList(event);
 					}
@@ -107,6 +109,7 @@ public final class GuiController {
 				confirmOrderButton.setVisible(false);
 				confirmReturn.setVisible(false);
 				bunButton.setVisible(false);
+				promoteButton.setVisible(false);
 			} catch (CommandException e) {
 				exceprtionLabel.setText(e.getMessage());
 			}
@@ -290,8 +293,31 @@ public final class GuiController {
 					& (sessionUser.getAccessLevel().getAccessLevelId() > user.getAccessLevel().getAccessLevelId()))) {
 				try {
 					executeTask("Ban_user" + " " + user.getUserId());
-					uploadUsersList(event);
 				} catch (CommandException e) {
+				} finally {
+					uploadUsersList(event);
+				}
+			}
+		}
+	}
+
+	public void pressPromoteButton(ActionEvent event) {
+		ObservableList<User> choosenUser;
+		choosenUser = listViewUsers.getSelectionModel().getSelectedItems();
+		User user = choosenUser.get(0);
+		if (user != null) {
+			if (((sessionUser.getAccessLevel().getAccessLevelId() > 2)
+					& (sessionUser.getAccessLevel().getAccessLevelId() > user.getAccessLevel().getAccessLevelId()))) {
+				try {
+					if (user.getAccessLevel().getAccessLevelId() == 1) {
+						executeTask("UNBAN_USER" + " " + user.getUserId());
+					} else if ((user.getAccessLevel().getAccessLevelId() == 2)
+							& (sessionUser.getAccessLevel().getAccessLevelId() > 3)) {
+						executeTask("GIVE_ADMIN" + " " + user.getUserId());
+					}
+				} catch (CommandException e) {
+				} finally {
+					uploadUsersList(event);
 				}
 			}
 		}
