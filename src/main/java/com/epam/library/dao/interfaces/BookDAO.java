@@ -8,4 +8,8 @@ import com.epam.library.dao.exception.DAOException;
 
 public interface BookDAO {
 	ArrayList<Book> getAllbooks() throws DAOException;
+
+	void setAvailiableStatus(int bookId) throws DAOException;
+
+	void setNotAvailiableStatus(int bookId) throws DAOException;
 }

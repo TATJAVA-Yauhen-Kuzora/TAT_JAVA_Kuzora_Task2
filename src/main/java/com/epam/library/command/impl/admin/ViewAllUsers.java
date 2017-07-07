@@ -1,7 +1,9 @@
 /**
  * 
  */
-package com.epam.library.command.impl.user;
+package com.epam.library.command.impl.admin;
+
+import java.util.ArrayList;
 
 import com.epam.library.beans.User;
 import com.epam.library.command.exception.CommandException;
@@ -14,22 +16,16 @@ import com.epam.library.services.interfaces.UserService;
  * @author Eugene13
  *
  */
-public class UpdateInfo implements Command {
-
+public class ViewAllUsers implements Command {
 	@Override
 	public Object execute(String... request) throws CommandException {
-		if (request.length != 4)
-			throw new CommandException("Wrong count of arguments for logging.");
-		User user = null;
 		UserService userService = ServiceFactory.getInstance().getUserService();
+		ArrayList<User> users = null;
 		try {
-			user = userService.updateUserInfo(request[0], request[1], request[2], Integer.parseInt(request[3]));
+			users = userService.viewAllUsers();
 		} catch (ServiceException e) {
 			throw new CommandException(e.getMessage(), e);
-		} catch (NumberFormatException e) {
-			throw new CommandException("Invalid parameters for update user info command.", e);
 		}
-		return user;
+		return users;
 	}
-
 }

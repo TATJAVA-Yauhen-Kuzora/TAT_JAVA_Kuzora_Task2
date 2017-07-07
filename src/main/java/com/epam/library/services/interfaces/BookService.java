@@ -15,4 +15,6 @@ import com.epam.library.services.exception.ServiceException;
  */
 public interface BookService {
 	ArrayList<Book> getAllBooks() throws ServiceException;
+
+	void changeBookStatus(int bookStatusAvailiable, int bookId) throws ServiceException;
 }

@@ -24,6 +24,7 @@ import com.epam.library.dao.interfaces.BookDAO;
  */
 public class BookSQLDAO implements BookDAO {
 	private final static String GET_LIST_OF_BOOKS = "SELECT book_id, book_name, author, description, book.book_status_id,  book_status FROM book LEFT JOIN book_status ON book.book_status_id = book_status.book_status_id";
+	private final static String SET_STATUS = "UPDATE book SET book_status_id = ? WHERE book_id = ?;";
 
 	private final static String BOOK_ID = "book_id";
 	private final static String BOOK_NAME = "book_name";
@@ -61,13 +62,52 @@ public class BookSQLDAO implements BookDAO {
 				BookStatus status = new BookStatus();
 				status.setBookStatusId(rs.getInt(BOOK_STATUS_ID));
 				status.setBookStatus(rs.getString(BOOK_STATUS_NAME));
-
 				book.setBookStatus(status);
 				books.add(book);
 			}
 			return books;
 		} catch (SQLException e) {
 			throw new DAOException("Get list of book sql exception.", e);
+		} catch (ConnectionSQLException e) {
+			throw new DAOException("Smthg wrong with connection.", e);
+		}
+	}
+
+	@Override
+	public void setAvailiableStatus(int bookId) throws DAOException {
+		Connection connection = null;
+		PreparedStatement pSt = null;
+		try {
+			connection = ConnectionSQLDAO.getInstance().takeConnection();
+			pSt = connection.prepareStatement(SET_STATUS);
+			pSt.setInt(1, 1);
+			pSt.setInt(2, bookId);
+			int access = pSt.executeUpdate();
+			if (access > 0) {
+				return;
+			}
+		} catch (SQLException e) {
+			throw new DAOException("Update book status sql exception.", e);
+		} catch (ConnectionSQLException e) {
+			throw new DAOException("Smthg wrong with connection.", e);
+		}
+	}
+
+	@Override
+	public void setNotAvailiableStatus(int bookId) throws DAOException {
+		Connection connection = null;
+		PreparedStatement pSt = null;
+		try {
+			connection = ConnectionSQLDAO.getInstance().takeConnection();
+			pSt = connection.prepareStatement(SET_STATUS);
+			pSt.setInt(1, 2);
+			pSt.setInt(2, bookId);
+			int access = pSt.executeUpdate();
+			if (access > 0) {
+				return;
+			}
+		} catch (SQLException e) {
+			throw new DAOException("Update book status sql exception.", e);
 		} catch (ConnectionSQLException e) {
 			throw new DAOException("Smthg wrong with connection.", e);
 		}

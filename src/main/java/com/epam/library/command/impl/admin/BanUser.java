@@ -1,9 +1,8 @@
 /**
  * 
  */
-package com.epam.library.command.impl.user;
+package com.epam.library.command.impl.admin;
 
-import com.epam.library.beans.User;
 import com.epam.library.command.exception.CommandException;
 import com.epam.library.command.interfaces.Command;
 import com.epam.library.services.ServiceFactory;
@@ -14,22 +13,22 @@ import com.epam.library.services.interfaces.UserService;
  * @author Eugene13
  *
  */
-public class UpdateInfo implements Command {
+public class BanUser implements Command {
 
 	@Override
 	public Object execute(String... request) throws CommandException {
-		if (request.length != 4)
-			throw new CommandException("Wrong count of arguments for logging.");
-		User user = null;
+		if (request.length != 1)
+			throw new CommandException("Wrong count of arguments for confirm order.");
 		UserService userService = ServiceFactory.getInstance().getUserService();
 		try {
-			user = userService.updateUserInfo(request[0], request[1], request[2], Integer.parseInt(request[3]));
+			int userId = Integer.parseInt(request[0]);
+			userService.banUser(userId);
+			return true;
 		} catch (ServiceException e) {
 			throw new CommandException(e.getMessage(), e);
 		} catch (NumberFormatException e) {
-			throw new CommandException("Invalid parameters for update user info command.", e);
+			throw new CommandException("Invalid parameters for ban user command.");
 		}
-		return user;
 	}
 
 }

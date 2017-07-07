@@ -32,4 +32,20 @@ public class BookServiceImpl implements BookService {
 			throw new ServiceException(e.getMessage(), e);
 		}
 	}
+
+	@Override
+	public void changeBookStatus(int bookStatusAvailiable, int bookId) throws ServiceException {
+		// validator
+		DAOFactory daoFactory = DAOFactory.getInstance();
+		BookDAO dao = daoFactory.getBookDAO();
+		try {
+			if (bookStatusAvailiable == 1) {
+				dao.setNotAvailiableStatus(bookId);
+			} else {
+				dao.setAvailiableStatus(bookId);
+			}
+		} catch (DAOException e) {
+			throw new ServiceException(e.getMessage(), e);
+		}
+	}
 }

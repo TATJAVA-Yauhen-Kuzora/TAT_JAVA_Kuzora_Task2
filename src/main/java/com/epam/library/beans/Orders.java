@@ -9,9 +9,9 @@ package com.epam.library.beans;
  */
 public class Orders {
 	private int orderId;
-	private int bookId;
-	private int userId;
-	private int orderStatusId;
+	private Book book;
+	private User user;
+	private OrderStatus orderStatus;
 
 	public int getOrderId() {
 		return orderId;
@@ -21,27 +21,34 @@ public class Orders {
 		this.orderId = orderId;
 	}
 
-	public int getBookId() {
-		return bookId;
+	public Book getBook() {
+		return book;
 	}
 
-	public void setBookId(int bookId) {
-		this.bookId = bookId;
+	public void setBook(Book book) {
+		this.book = book;
 	}
 
-	public int getUserId() {
-		return userId;
+	public User getUser() {
+		return user;
 	}
 
-	public void setUserId(int userId) {
-		this.userId = userId;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
-	public int getOrderStatusId() {
-		return orderStatusId;
+	public OrderStatus getOrderStatus() {
+		return orderStatus;
 	}
 
-	public void setOrderStatusId(int orderStatusId) {
-		this.orderStatusId = orderStatusId;
+	public void setOrderStatus(OrderStatus orderStatus) {
+		this.orderStatus = orderStatus;
+	}
+
+	@Override
+	public String toString() {
+		String infoAboutOrder = String.format("%s  /  %s  /  %s", this.book.getBookName(), this.user.getName(),
+				orderStatus.getOrderStatus());
+		return infoAboutOrder;
 	}
 }

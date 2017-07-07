@@ -4,8 +4,10 @@
 package com.epam.library.services;
 
 import com.epam.library.services.impl.BookServiceImpl;
+import com.epam.library.services.impl.OrdersServiceImpl;
 import com.epam.library.services.impl.UserServiceImpl;
 import com.epam.library.services.interfaces.BookService;
+import com.epam.library.services.interfaces.OrdersService;
 import com.epam.library.services.interfaces.UserService;
 
 /**
@@ -21,6 +23,7 @@ public class ServiceFactory {
 
 	private UserService userService = new UserServiceImpl();
 	private BookService bookService = new BookServiceImpl();
+	private OrdersService ordersService = new OrdersServiceImpl();
 
 	public UserService getUserService() {
 		return userService;
@@ -31,5 +34,12 @@ public class ServiceFactory {
 	 */
 	public BookService getBookService() {
 		return bookService;
+	}
+
+	/**
+	 * @return the ordersService
+	 */
+	public OrdersService getOrdersService() {
+		return ordersService;
 	}
 }

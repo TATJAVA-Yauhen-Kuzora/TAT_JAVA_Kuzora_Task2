@@ -36,9 +36,17 @@ public class CommandProvider {
 		userCommands.put(CommandName.LOGOUT, new Logout());
 		userCommands.put(CommandName.UPDATE_USER_INFO, new UpdateInfo());
 		userCommands.put(CommandName.VIEW_ALL_BOOKS, new ViewAllBooks());
+		userCommands.put(CommandName.VIEW_ALL_ORDERS, new ViewAllOrders());
+		userCommands.put(CommandName.CHANGE_STATUS_BOOK_FOR_BOOKING, new ChangeBookStatus());
+		userCommands.put(CommandName.ORDER_BOOK, new OrderBook());
 		//
 		// admin
 		adminCommands.putAll(userCommands);
+		adminCommands.put(CommandName.VIEW_ALL_USERS, new ViewAllUsers());
+		adminCommands.put(CommandName.CHANGE_BOOK_STATUS, new ChangeBookStatus());
+		adminCommands.put(CommandName.CONFIRM_ORDER, new SendOrder());
+		adminCommands.put(CommandName.RETURN_ORDER, new ReturnOrder());
+		adminCommands.put(CommandName.BAN_USER, new BanUser());
 		//
 		// superadmin
 		superAdminCommands.putAll(adminCommands);
@@ -56,15 +64,19 @@ public class CommandProvider {
 			name = CommandName.valueOf(com);
 			switch (level) {
 			case 1:
-				return guestCommands.get(name);
+				command = guestCommands.get(name);
+				break;
 			case 2:
-				return userCommands.get(name);
+				command = userCommands.get(name);
+				break;
 			case 3:
-				return adminCommands.get(name);
+				command = adminCommands.get(name);
+				break;
 			case 4:
-				return superAdminCommands.get(name);
+				command = superAdminCommands.get(name);
+				break;
 			default:
-				return guestCommands.get(name);
+				command = guestCommands.get(name);
 			}
 		} catch (IllegalArgumentException | NullPointerException e) {
 			command = new WrongCommand();

@@ -25,6 +25,8 @@ public class UserSQLDAO implements UserDAO {
 	private final static String GET_ALL_USERS = "SELECT user_id, name, second_name, login, password, acc_level, access_level FROM user LEFT JOIN access_level ON user.acc_level = access_level.access_level_id";
 	private final static String UPDATE_USER_INFO = "UPDATE user SET name = ?, second_name= ?, login= ? WHERE user_id= ?;";
 
+	private final static String BAN_USER = "UPDATE user SET acc_level= 1 WHERE user_id= ?;";
+
 	private final static String USER_ID = "user_id";
 	private final static String USER_NAME = "name";
 	private final static String USER_SECOND_NAME = "second_name";
@@ -94,13 +96,13 @@ public class UserSQLDAO implements UserDAO {
 		} catch (ConnectionSQLException e) {
 			throw new DAOException("Smthg wrong with connection.", e);
 		} catch (DAOException e) {
-			throw new DAOException(e);
+			throw e;
 		}
 		return null;
 	}
 
 	@Override
-	public List<User> getAllUsers() throws DAOException {
+	public ArrayList<User> getAllUsers() throws DAOException {
 		Connection connection = null;
 		PreparedStatement pSt = null;
 		ResultSet rs = null;
@@ -168,5 +170,29 @@ public class UserSQLDAO implements UserDAO {
 		} catch (ConnectionSQLException e) {
 			throw new DAOException("Smthg wrong with connection.", e);
 		}
+	}
+
+	@Override
+	public void banUser(int UserId) throws DAOException {
+		Connection connection = null;
+		PreparedStatement pSt = null;
+		try {
+			connection = ConnectionSQLDAO.getInstance().takeConnection();
+			pSt = connection.prepareStatement(BAN_USER);
+			pSt.setInt(1, UserId);
+			int access = pSt.executeUpdate();
+			if (access > 0) {
+			}
+		} catch (SQLException e) {
+			throw new DAOException("Ban user sql exception.", e);
+		} catch (ConnectionSQLException e) {
+			throw new DAOException("Smthg wrong with connection.", e);
+		}
+	}
+
+	@Override
+	public void promoteUser(int UserId) throws DAOException {
+		// TODO Auto-generated method stub
+
 	}
 }

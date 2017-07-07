@@ -62,4 +62,11 @@ public class User {
 	public void setAccessLevel(AccessLevel accessLevel) {
 		this.accessLevel = accessLevel;
 	}
+
+	@Override
+	public String toString() {
+		String infoAboutUser = String.format("%-10s  %-10s  /  %-10s  /  %-10s", this.name, this.secondName, this.login,
+				this.accessLevel.getName());
+		return infoAboutUser;
+	}
 }
