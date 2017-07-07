@@ -23,13 +23,13 @@ import com.epam.library.dao.interfaces.BookDAO;
  *
  */
 public class BookSQLDAO implements BookDAO {
-	private final static String GET_LIST_OF_BOOKS = "SELECT book_id, book_name, author, description, book.book_status_id,  book_status FROM book LEFT JOIN book_status ON book.book_status_id = book_status.book_status_id";
+	private final static String GET_LIST_OF_BOOKS = "SELECT book_id, book_name, author, book.book_status_id,  book_status FROM book LEFT JOIN book_status ON book.book_status_id = book_status.book_status_id";
 	private final static String SET_STATUS = "UPDATE book SET book_status_id = ? WHERE book_id = ?;";
+	private final static String ADD_BOOK = "INSERT INTO book (book_name, author, book_status_id) VALUES(?,?,?)";
 
 	private final static String BOOK_ID = "book_id";
 	private final static String BOOK_NAME = "book_name";
 	private final static String BOOK_AUTHOR = "author";
-	private final static String BOOK_DESCRIPTION = "description";
 	private final static String BOOK_STATUS_ID = "book.book_status_id";
 	private final static String BOOK_STATUS_NAME = "book_status";
 
@@ -58,7 +58,6 @@ public class BookSQLDAO implements BookDAO {
 				book.setBookId(rs.getInt(BOOK_ID));
 				book.setBookName(rs.getString(BOOK_NAME));
 				book.setAuthor(rs.getString(BOOK_AUTHOR));
-				book.setDescription(rs.getString(BOOK_DESCRIPTION));
 				BookStatus status = new BookStatus();
 				status.setBookStatusId(rs.getInt(BOOK_STATUS_ID));
 				status.setBookStatus(rs.getString(BOOK_STATUS_NAME));
@@ -108,6 +107,27 @@ public class BookSQLDAO implements BookDAO {
 			}
 		} catch (SQLException e) {
 			throw new DAOException("Update book status sql exception.", e);
+		} catch (ConnectionSQLException e) {
+			throw new DAOException("Smthg wrong with connection.", e);
+		}
+	}
+
+	@Override
+	public void addBookToLibrary(String bookName, String author, int bookStatusId) throws DAOException {
+		Connection connection = null;
+		PreparedStatement pSt = null;
+		try {
+			connection = ConnectionSQLDAO.getInstance().takeConnection();
+			pSt = connection.prepareStatement(ADD_BOOK);
+			pSt.setString(1, bookName);
+			pSt.setString(2, author);
+			pSt.setInt(3, bookStatusId);
+			int access = pSt.executeUpdate();
+			if (access > 0) {
+				return;
+			}
+		} catch (SQLException e) {
+			throw new DAOException("Add book sql exception.", e);
 		} catch (ConnectionSQLException e) {
 			throw new DAOException("Smthg wrong with connection.", e);
 		}

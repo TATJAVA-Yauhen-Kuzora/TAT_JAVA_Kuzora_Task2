@@ -48,4 +48,16 @@ public class BookServiceImpl implements BookService {
 			throw new ServiceException(e.getMessage(), e);
 		}
 	}
+
+	@Override
+	public void addBookToLibrary(String bookName, String author, int bookStatusId) throws ServiceException {
+		// validator
+		DAOFactory daoFactory = DAOFactory.getInstance();
+		BookDAO dao = daoFactory.getBookDAO();
+		try {
+			dao.addBookToLibrary(bookName, author, bookStatusId);
+		} catch (DAOException e) {
+			throw new ServiceException(e.getMessage(), e);
+		}
+	}
 }

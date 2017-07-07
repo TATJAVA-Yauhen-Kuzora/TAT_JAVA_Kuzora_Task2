@@ -25,12 +25,16 @@
 						<ListView fx:id="listView1" disable="true" layoutY="181.0" prefHeight="100.0" prefWidth="300.0" visible="false" />
 						<Button fx:id="changeBookStatusButtonForAdmins" layoutX="200.0" layoutY="156.0" mnemonicParsing="false" onAction="#pressChangeBookStatusButton" prefHeight="25.0" prefWidth="100.0" text="Change bStatus" visible="false" />
 						<ListView fx:id="listViewUsers" layoutY="323.0" prefHeight="100.0" prefWidth="300.0" visible="false" />
-						<Button fx:id="uploadUsersButton" layoutY="423.0" mnemonicParsing="false" onAction="#uploadUsersList" prefWidth="100.0" text="Upload users" visible="false" />
 						<Label fx:id="adminLabel" layoutX="13.0" layoutY="306.0" prefHeight="17.0" prefWidth="274.0" visible="false" />
 						<Button fx:id="confirmOrderButton" layoutY="281.0" mnemonicParsing="false" onAction="#pressConfirmOrderButton" prefHeight="25.0" prefWidth="100.0" text="Send book" visible="false" />
 						<Button fx:id="confirmReturn" layoutX="100.0" layoutY="281.0" mnemonicParsing="false" onAction="#pressConfirmReturnButton" prefHeight="25.0" prefWidth="100.0" text="Return book" visible="false" />
-						<Button fx:id="bunButton" layoutX="100.0" layoutY="423.0" mnemonicParsing="false" onAction="#pressBanButton" prefHeight="25.0" prefWidth="100.0" text="Ban" visible="false" />
-						<Button fx:id="promoteButton" layoutX="200.0" layoutY="423.0" mnemonicParsing="false" onAction="#pressPromoteButton" prefHeight="25.0" prefWidth="100.0" text="Promote" visible="false" />
+						<AnchorPane fx:id="adminButtons" layoutY="423.0" prefHeight="25.0" prefWidth="300.0" visible="false">
+							<children>
+								<Button fx:id="bunButton" layoutX="100.0" mnemonicParsing="false" onAction="#pressBanButton" prefHeight="25.0" prefWidth="100.0" text="Ban" />
+								<Button fx:id="promoteButton" layoutX="200.0" mnemonicParsing="false" onAction="#pressPromoteButton" prefHeight="25.0" prefWidth="100.0" text="Promote" />
+								<Button fx:id="uploadUsersButton" mnemonicParsing="false" onAction="#uploadUsersList" prefWidth="100.0" text="Upload users" />
+							</children>
+						</AnchorPane>
 					</children>
 				</AnchorPane>
 				<AnchorPane prefHeight="600.0" prefWidth="300.0">

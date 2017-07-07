@@ -48,6 +48,7 @@ public class CommandProvider {
 		adminCommands.put(CommandName.RETURN_ORDER, new ReturnOrder());
 		adminCommands.put(CommandName.BAN_USER, new BanUser());
 		adminCommands.put(CommandName.UNBAN_USER, new UnBanUser());
+		adminCommands.put(CommandName.ADD_BOOK, new AddBook());
 		//
 		// superadmin
 		superAdminCommands.putAll(adminCommands);
@@ -83,6 +84,8 @@ public class CommandProvider {
 		} catch (IllegalArgumentException | NullPointerException e) {
 			command = new WrongCommand();
 		}
+		if (command == null)
+			command = new WrongCommand();
 		return command;
 	}
 }

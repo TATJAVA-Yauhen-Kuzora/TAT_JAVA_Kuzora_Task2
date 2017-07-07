@@ -27,7 +27,7 @@ import com.epam.library.dao.interfaces.OrdersDAO;
 public class OrdersSQLDAO implements OrdersDAO {
 	private final static String GET_ALL_ORDERS = "SELECT " + "order_id, order_status.order_status_id, order_status, "
 			+ "user.user_id, name, second_name, login, acc_level, "
-			+ "book.book_id, book_name, author, description, book_status_id " + "FROM " + "orders " + "LEFT JOIN "
+			+ "book.book_id, book_name, author, book_status_id " + "FROM " + "orders " + "LEFT JOIN "
 			+ "order_status ON orders.order_status_id = order_status.order_status_id " + "LEFT JOIN "
 			+ "user ON orders.user_id=user.user_id " + "LEFT JOIN " + "book ON orders.book_id=book.book_id;";
 	private final static String ORDER_ADD = "INSERT INTO orders (`book_id`, `user_id`, `order_status_id`) VALUES(?,?,1)";
@@ -45,7 +45,6 @@ public class OrdersSQLDAO implements OrdersDAO {
 	private final static String ORDER_BOOK_ID = "book_id";
 	private final static String ORDER_BOOK_NAME = "book_name";
 	private final static String ORDER_BOOK_AUTHOR = "author";
-	private final static String ORDER_BOOK_DESCRIPTION = "description";
 	private final static String ORDER_BOOK_STATUS_ID = "book_status_id";
 
 	private static final OrdersDAO instance = new OrdersSQLDAO();
@@ -88,7 +87,6 @@ public class OrdersSQLDAO implements OrdersDAO {
 				orderBook.setBookId(rs.getInt(ORDER_BOOK_ID));
 				orderBook.setBookName(rs.getString(ORDER_BOOK_NAME));
 				orderBook.setAuthor(rs.getString(ORDER_BOOK_AUTHOR));
-				orderBook.setDescription(rs.getString(ORDER_BOOK_DESCRIPTION));
 				BookStatus bookStatus = new BookStatus();
 				bookStatus.setBookStatusId(rs.getInt(ORDER_BOOK_STATUS_ID));
 				orderBook.setBookStatus(bookStatus);

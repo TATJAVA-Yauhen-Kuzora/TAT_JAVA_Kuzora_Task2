@@ -11,7 +11,6 @@ public class Book {
 	private int bookId;
 	private String bookName;
 	private String author;
-	private String description;
 	private BookStatus bookStatus;
 
 	public int getBookId() {
@@ -36,14 +35,6 @@ public class Book {
 
 	public void setAuthor(String author) {
 		this.author = author;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
 	}
 
 	/**
