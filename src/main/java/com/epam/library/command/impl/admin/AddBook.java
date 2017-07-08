@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.epam.library.command.impl.admin;
 
 import com.epam.library.command.exception.CommandException;
@@ -10,11 +7,21 @@ import com.epam.library.services.exception.ServiceException;
 import com.epam.library.services.interfaces.BookService;
 
 /**
- * @author Eugene13
- *
+ * Class {@link AddBook}.
+ * <P>
+ * Class AddBook implements {@link Command} interface for add book process logic
+ * from {@link BookService}.
+ * <P>
+ * <i>This Class is a member of the {@link com.epam.library.command.impl.admin}
+ * package.</i>
  */
 public class AddBook implements Command {
-
+	/**
+	 * Method execute for adding book logic.
+	 * 
+	 * @return only true as boolean value (of course packed in Object Class), if
+	 *         book has been added in data base successfully
+	 */
 	@Override
 	public Object execute(String... request) throws CommandException {
 		if (request.length != 3)

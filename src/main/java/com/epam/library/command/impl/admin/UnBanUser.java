@@ -10,11 +10,21 @@ import com.epam.library.services.exception.ServiceException;
 import com.epam.library.services.interfaces.UserService;
 
 /**
- * @author Eugene13
- *
+ * Class {@link UnBanUser}.
+ * <P>
+ * Class UnBanUser implements {@link Command} interface for calling unBanUser
+ * logic from {@link UserService}.
+ * <P>
+ * <i>This Class is a member of the {@link com.epam.library.command.impl.admin}
+ * package.</i>
  */
 public class UnBanUser implements Command {
-
+	/**
+	 * Method execute for changing user status on User.
+	 * 
+	 * @return only true as boolean value (of course packed in Object Class), if
+	 *         user status has been changed from Banned on User successfully
+	 */
 	@Override
 	public Object execute(String... request) throws CommandException {
 		if (request.length != 1)

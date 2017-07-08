@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.epam.library.command.impl.admin;
 
 import java.util.ArrayList;
@@ -13,10 +10,20 @@ import com.epam.library.services.exception.ServiceException;
 import com.epam.library.services.interfaces.UserService;
 
 /**
- * @author Eugene13
- *
+ * Class {@link ViewAllUsers}.
+ * <P>
+ * Class ViewAllUsers implements {@link Command} interface for calling unBanUser
+ * logic from {@link UserService}.
+ * <P>
+ * <i>This Class is a member of the {@link com.epam.library.command.impl.admin}
+ * package.</i>
  */
 public class ViewAllUsers implements Command {
+	/**
+	 * Method execute for viewing list of all users.
+	 * 
+	 * @return ArrayList<{@link User}> object packed in Object Class
+	 */
 	@Override
 	public Object execute(String... request) throws CommandException {
 		UserService userService = ServiceFactory.getInstance().getUserService();

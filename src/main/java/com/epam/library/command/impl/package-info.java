@@ -11,5 +11,8 @@
  * 3) {@link com.epam.library.command.impl.admin} - admin rights;
  * <p>
  * 4) {@link com.epam.library.command.impl.superAdmin} - super admin rights.
+ * <p>
+ * <i>This package is a member of the {@link com.epam.library.command}
+ * package.</i>
  */
 package com.epam.library.command.impl;

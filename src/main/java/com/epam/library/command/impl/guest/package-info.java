@@ -12,5 +12,8 @@
  * <p>
  * 4) {@link com.epam.library.command.impl.guest.WrongCommand} - additional
  * command as reflection on wrong request.
+ * <p>
+ * <i>This package is a member of the {@link com.epam.library.command.impl}
+ * package.</i>
  */
 package com.epam.library.command.impl.guest;
