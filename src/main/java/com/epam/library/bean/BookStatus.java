@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * Beans Class {@link BookStatus}.
  * <P>
- * Class BookStatus includes 3 fields ({@link #serialVersionUID},
+ * Class BookStatus includes 2 fields ({@link #serialVersionUID},
  * {@link #bookStatusId}, ), getters and setters for changeable fields, methods
  * hashCode and equals.
  * </p>

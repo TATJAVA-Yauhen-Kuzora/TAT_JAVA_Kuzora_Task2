@@ -5,9 +5,10 @@ import java.io.Serializable;
 /**
  * Beans Class {@link User}.
  * <P>
- * Class User includes 7 fields (serialVersionUID, userId, name, secondName,
- * login, password, accessLevel), getters and setters for changeable fields,
- * methods hashCode and equals.
+ * Class User includes 7 fields ({@link #serialVersionUID}, {@link #userId},
+ * {@link #name}, {@link #secondName}, {@link #secondName}, {@link #password},
+ * {@link #accessLevel}), getters and setters for changeable fields, methods
+ * {@link #hashCode()} and {@link #equals(Object)}.
  * <P>
  * <i>This Class is a member of the {@link com.epam.library.bean} package.</i>
  */

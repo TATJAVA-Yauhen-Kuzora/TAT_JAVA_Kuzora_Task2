@@ -5,9 +5,9 @@ import java.io.Serializable;
 /**
  * Beans Class {@link Order}.
  * <P>
- * Class Order includes 5 fields (serialVersionUID, orderId, book, user,
- * orderStatus), getters and setters for changeable fields, methods hashCode and
- * equals.
+ * Class Order includes 5 fields ({@link #serialVersionUID}, {@link #orderId},
+ * {@link #book}, {@link #user}, {@link #orderStatus}), getters and setters for
+ * changeable fields, methods {@link #hashCode()} and {@link #equals(Object)}.
  * <P>
  * <i>This Class is a member of the {@link com.epam.library.bean} package.</i>
  */
