@@ -19,21 +19,21 @@ import com.epam.library.command.interfaces.Command;
  *
  */
 public class CommandProvider {
+	private static final String ILLEGAL_COMMAND = "Illegal command for current user.";
 	private Map<CommandName, Command> guestCommands = new HashMap<>();
 	private Map<CommandName, Command> userCommands = new HashMap<>();
 	private Map<CommandName, Command> adminCommands = new HashMap<>();
 	private Map<CommandName, Command> superAdminCommands = new HashMap<>();
-
 	private static final CommandProvider instance = new CommandProvider();
 
 	private CommandProvider() {
 		//
-		// гость
+		// Guest or banned user
 		guestCommands.put(CommandName.LOGIN, new Login());
 		guestCommands.put(CommandName.REGISTRATION, new Registration());
 		guestCommands.put(CommandName.VIEW_ALL_BOOKS, new ViewAllBooks());
 		//
-		// пользователь
+		// User
 		userCommands.put(CommandName.LOGOUT, new Logout());
 		userCommands.put(CommandName.UPDATE_USER_INFO, new UpdateInfo());
 		userCommands.put(CommandName.VIEW_ALL_BOOKS, new ViewAllBooks());
@@ -41,7 +41,7 @@ public class CommandProvider {
 		userCommands.put(CommandName.CHANGE_STATUS_BOOK_FOR_BOOKING, new ChangeBookStatus());
 		userCommands.put(CommandName.ORDER_BOOK, new OrderBook());
 		//
-		// admin
+		// Admin
 		adminCommands.putAll(userCommands);
 		adminCommands.put(CommandName.VIEW_ALL_USERS, new ViewAllUsers());
 		adminCommands.put(CommandName.CHANGE_BOOK_STATUS, new ChangeBookStatus());
@@ -51,7 +51,7 @@ public class CommandProvider {
 		adminCommands.put(CommandName.UNBAN_USER, new UnBanUser());
 		adminCommands.put(CommandName.ADD_BOOK, new AddBook());
 		//
-		// superadmin
+		// SuperAdmin
 		superAdminCommands.putAll(adminCommands);
 		superAdminCommands.put(CommandName.GIVE_ADMIN, new GiveAdminForUser());
 	}
@@ -60,13 +60,13 @@ public class CommandProvider {
 		return instance;
 	}
 
-	public Command getCommand(int level, String stringCommand) throws CommandException {
+	public Command getCommand(int userLevel, String stringCommand) throws CommandException {
 		String com = stringCommand.replace("-", "_").toUpperCase();
 		Command command;
 		CommandName name = null;
 		try {
 			name = CommandName.valueOf(com);
-			switch (level) {
+			switch (userLevel) {
 			case 1:
 				command = guestCommands.get(name);
 				break;
@@ -86,7 +86,7 @@ public class CommandProvider {
 			throw new CommandException(e.getMessage(), e);
 		}
 		if (command == null)
-			throw new CommandException("Illigal command for curent user.");
+			throw new CommandException(ILLEGAL_COMMAND);
 		return command;
 	}
 }

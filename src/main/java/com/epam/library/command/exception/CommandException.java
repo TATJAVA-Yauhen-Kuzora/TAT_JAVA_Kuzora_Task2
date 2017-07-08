@@ -3,8 +3,6 @@
  */
 package com.epam.library.command.exception;
 
-import com.epam.library.services.exception.ServiceException;
-
 /**
  * @author Eugene13
  *

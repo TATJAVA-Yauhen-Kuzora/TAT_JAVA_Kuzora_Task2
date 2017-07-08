@@ -21,7 +21,15 @@ import javafx.scene.layout.AnchorPane;
 
 public final class GuiController {
 	private static User sessionUser;
-	private final CommandProvider commandProvider = CommandProvider.getInstance();
+	private static final CommandProvider commandProvider = CommandProvider.getInstance();
+	private static final int bookStatusAvailable = 1;
+	private static final int orderStatusBooked = 1;
+	private static final int orderStatusOnHands = 2;
+	private static final int userStatusBanned = 1;
+	private static final int userStatusUser = 2;
+	private static final int userStatusAdmin = 3;
+	private static final int userStatusSuperAdmin = 4;
+	private static final int minimalCountsParamInRequest = 1;
 	@FXML
 	private Button logButton, editButton, registrationButton, changeBookStatusButtonForAdmins, uploadUsersButton,
 			orderButton, confirmOrderButton, confirmReturn, bunButton, promoteButton;
@@ -42,21 +50,21 @@ public final class GuiController {
 	private ListView<User> listViewUsers = new ListView<>();
 
 	public void pressLogButton(ActionEvent event) {
-		if (sessionUser == null) {
-			try {
-				sessionUser = (User) executeTask("Login" + " " + loginField.getText() + " " + passwordField.getText());
+		try {
+			if (sessionUser == null) {
+				sessionUser = (User) executeTask("Login" + "|" + loginField.getText() + "|" + passwordField.getText());
 				loginField.setEditable(false);
 				passwordField.setVisible(false);
-				logButton.setText("Logout");
+				logButton.setText(LabelMessage.LOGOUT.getMessage());
 				editButton.setVisible(true);
 				registrationButton.setVisible(false);
-				exceprtionLabel.setText("");
+				exceprtionLabel.setText(LabelMessage.BLANK.getMessage());
 				listView.setDisable(false);
 				listView1.setVisible(true);
 				orderButton.setVisible(true);
-				if (sessionUser.getAccessLevel().getAccessLevelId() > 1) {
-					if (sessionUser.getAccessLevel().getAccessLevelId() == 3) {
-						adminLabel.setText("Admin users control panel");
+				if (sessionUser.getAccessLevel().getAccessLevelId() > userStatusBanned) {
+					if (sessionUser.getAccessLevel().getAccessLevelId() == userStatusAdmin) {
+						adminLabel.setText(LabelMessage.ADMIN_CONTROL_PANEL.getMessage());
 						confirmOrderButton.setVisible(true);
 						confirmReturn.setVisible(true);
 						adminLabel.setVisible(true);
@@ -65,8 +73,8 @@ public final class GuiController {
 						addBooksPanel.setVisible(true);
 						changeBookStatusButtonForAdmins.setVisible(true);
 						uploadUsersList(event);
-					} else if (sessionUser.getAccessLevel().getAccessLevelId() == 4) {
-						adminLabel.setText("SuperAdmin users control panel");
+					} else if (sessionUser.getAccessLevel().getAccessLevelId() == userStatusSuperAdmin) {
+						adminLabel.setText(LabelMessage.SUPERADMIN_CONTROL_PANEL.getMessage());
 						adminLabel.setVisible(true);
 						confirmOrderButton.setVisible(true);
 						confirmReturn.setVisible(true);
@@ -79,22 +87,18 @@ public final class GuiController {
 					uploadLibrary(event);
 					uploadOrdersList(event);
 				}
-			} catch (CommandException e) {
-				exceprtionLabel.setText(e.getMessage());
-			}
-		} else {
-			try {
+			} else {
 				sessionUser = (User) executeTask("Logout");
 				editAnchorPane.setVisible(false);
-				loginField.setText("");
+				loginField.setText(LabelMessage.BLANK.getMessage());
 				loginField.setEditable(true);
-				passwordField.setText("");
+				passwordField.setText(LabelMessage.BLANK.getMessage());
 				passwordField.setVisible(true);
-				logButton.setText("Login");
-				exceprtionLabel.setText("");
+				logButton.setText(LabelMessage.LOGIN.getMessage());
+				exceprtionLabel.setText(LabelMessage.BLANK.getMessage());
 				editButton.setVisible(false);
 				registrationButton.setVisible(true);
-				exceprtionLabel.setText("");
+				exceprtionLabel.setText(LabelMessage.BLANK.getMessage());
 				listView.setDisable(true);
 				listView1.setVisible(false);
 				changeBookStatusButtonForAdmins.setVisible(false);
@@ -105,27 +109,27 @@ public final class GuiController {
 				orderButton.setVisible(false);
 				confirmOrderButton.setVisible(false);
 				confirmReturn.setVisible(false);
-			} catch (CommandException e) {
-				exceprtionLabel.setText(e.getMessage());
 			}
+		} catch (CommandException e) {
+			exceprtionLabel.setText(e.getMessage());
 		}
 	}
 
 	public void openEditPanel(ActionEvent event) {
 		if (editAnchorPane.isVisible()) {
 			editAnchorPane.setVisible(false);
-			exceprtionLabel.setText("");
+			exceprtionLabel.setText(LabelMessage.BLANK.getMessage());
 		} else {
 			editNameField.setText(sessionUser.getName());
 			editSecondNameField.setText(sessionUser.getSecondName());
 			editLoginField.setText(sessionUser.getLogin());
-			editPasswordFieldOld.setText("");
-			editPasswordField1.setText("");
+			editPasswordFieldOld.setText(LabelMessage.BLANK.getMessage());
+			editPasswordField1.setText(LabelMessage.BLANK.getMessage());
 			editPasswordField1.setVisible(false);
 			editPasswordFieldOld.setVisible(false);
 			editAccessLevel.setText(sessionUser.getAccessLevel().getName());
 			editAnchorPane.setVisible(true);
-			exceprtionLabel.setText("");
+			exceprtionLabel.setText(LabelMessage.BLANK.getMessage());
 		}
 	}
 
@@ -135,23 +139,21 @@ public final class GuiController {
 			logButton.setDisable(false);
 			loginField.setDisable(false);
 			passwordField.setDisable(false);
-			exceprtionLabel.setText("");
+			exceprtionLabel.setText(LabelMessage.BLANK.getMessage());
 		} else {
-			editNameField.setText("");
-			editSecondNameField.setText("");
-			editLoginField.setText("");
-			editPasswordFieldOld.setText("");
-			editPasswordField1.setText("");
-			editPasswordFieldOld.setPromptText("password");
-			editPasswordField1.setPromptText("confirm password");
+			editNameField.setText(LabelMessage.BLANK.getMessage());
+			editSecondNameField.setText(LabelMessage.BLANK.getMessage());
+			editLoginField.setText(LabelMessage.BLANK.getMessage());
+			editPasswordFieldOld.setText(LabelMessage.BLANK.getMessage());
+			editPasswordField1.setText(LabelMessage.BLANK.getMessage());
 			editPasswordFieldOld.setVisible(true);
 			editPasswordField1.setVisible(true);
-			editAccessLevel.setText("User");
+			editAccessLevel.setText(LabelMessage.USER.getMessage());
 			editAnchorPane.setVisible(true);
 			logButton.setDisable(true);
 			loginField.setDisable(true);
 			passwordField.setDisable(true);
-			exceprtionLabel.setText("");
+			exceprtionLabel.setText(LabelMessage.BLANK.getMessage());
 		}
 	}
 
@@ -160,12 +162,12 @@ public final class GuiController {
 			try {
 				if (editPasswordFieldOld.getText().equals(editPasswordField1.getText())) {
 					sessionUser = (User) executeTask(
-							"Registration" + " " + editNameField.getText() + " " + editSecondNameField.getText() + " "
-									+ editLoginField.getText() + " " + editPasswordFieldOld.getText());
+							"Registration" + "|" + editNameField.getText() + "|" + editSecondNameField.getText() + "|"
+									+ editLoginField.getText() + "|" + editPasswordFieldOld.getText());
 					editAnchorPane.setVisible(false);
 					loginField.setEditable(false);
 					passwordField.setVisible(false);
-					logButton.setText("Logout");
+					logButton.setText(LabelMessage.LOGOUT.getMessage());
 					editButton.setVisible(true);
 					registrationButton.setVisible(false);
 					loginField.setText(sessionUser.getLogin());
@@ -174,7 +176,7 @@ public final class GuiController {
 					listView1.setVisible(true);
 					uploadUsersList(event);
 				} else {
-					exceprtionLabel.setText("Pay ettension with pass.");
+					exceprtionLabel.setText(LabelMessage.PASSWORD_ETT.getMessage());
 				}
 			} catch (CommandException e) {
 				exceprtionLabel.setText(e.getMessage());
@@ -182,14 +184,14 @@ public final class GuiController {
 		} else {
 			try {
 				sessionUser = (User) executeTask(
-						"Update_user_info" + " " + editNameField.getText() + " " + editSecondNameField.getText() + " "
-								+ editLoginField.getText() + " " + sessionUser.getUserId());
+						"Update_user_info" + "|" + editNameField.getText() + "|" + editSecondNameField.getText() + "|"
+								+ editLoginField.getText() + "|" + sessionUser.getUserId());
 				editNameField.setText(sessionUser.getName());
 				editSecondNameField.setText(sessionUser.getSecondName());
 				editLoginField.setText(sessionUser.getLogin());
-				exceprtionLabel.setText("Changes have saved.");
+				exceprtionLabel.setText(LabelMessage.Changes_HAVE_SAVED.getMessage());
 				loginField.setText(sessionUser.getLogin());
-				if (sessionUser.getAccessLevel().getAccessLevelId() > 2)
+				if (sessionUser.getAccessLevel().getAccessLevelId() > userStatusUser)
 					uploadUsersList(event);
 				uploadOrdersList(event);
 			} catch (CommandException e) {
@@ -220,7 +222,7 @@ public final class GuiController {
 		if (book != null) {
 			try {
 				executeTask(
-						"Change_book_status" + " " + book.getBookStatus().getBookStatusId() + " " + book.getBookId());
+						"Change_book_status" + "|" + book.getBookStatus().getBookStatusId() + "|" + book.getBookId());
 			} catch (CommandException e) {
 			}
 		}
@@ -232,12 +234,12 @@ public final class GuiController {
 		choosenBook = listView.getSelectionModel().getSelectedItems();
 		Book book = choosenBook.get(0);
 		if (book != null) {
-			if (book.getBookStatus().getBookStatusId() == 1) {
+			if (book.getBookStatus().getBookStatusId() == bookStatusAvailable) {
 				try {
-					executeTask("CHANGE_STATUS_BOOK_FOR_BOOKING" + " " + book.getBookStatus().getBookStatusId() + " "
+					executeTask("CHANGE_STATUS_BOOK_FOR_BOOKING" + "|" + book.getBookStatus().getBookStatusId() + "|"
 							+ book.getBookId());
 					uploadLibrary(event);
-					executeTask("Order_book" + " " + sessionUser.getUserId() + " " + book.getBookId());
+					executeTask("Order_book" + " " + sessionUser.getUserId() + "|" + book.getBookId());
 					uploadOrdersList(event);
 				} catch (CommandException e) {
 				}
@@ -250,9 +252,9 @@ public final class GuiController {
 		choosenOrder = listView1.getSelectionModel().getSelectedItems();
 		Orders order = choosenOrder.get(0);
 		if (order != null) {
-			if (order.getOrderStatus().getOrderStatusId() == 1) {
+			if (order.getOrderStatus().getOrderStatusId() == orderStatusBooked) {
 				try {
-					executeTask("CONFIRM_ORDER" + " " + order.getOrderId());
+					executeTask("CONFIRM_ORDER" + "|" + order.getOrderId());
 					uploadLibrary(event);
 					uploadOrdersList(event);
 				} catch (CommandException e) {
@@ -266,10 +268,10 @@ public final class GuiController {
 		choosenOrder = listView1.getSelectionModel().getSelectedItems();
 		Orders order = choosenOrder.get(0);
 		if (order != null) {
-			if (order.getOrderStatus().getOrderStatusId() == 2) {
+			if (order.getOrderStatus().getOrderStatusId() == orderStatusOnHands) {
 				try {
-					executeTask("Return_ORDER" + " " + order.getOrderId());
-					executeTask("Change_book_status" + " " + order.getBook().getBookStatus().getBookStatusId() + " "
+					executeTask("Return_ORDER" + "|" + order.getOrderId());
+					executeTask("Change_book_status" + "|" + order.getBook().getBookStatus().getBookStatusId() + "|"
 							+ order.getBook().getBookId());
 					uploadLibrary(event);
 					uploadOrdersList(event);
@@ -284,10 +286,10 @@ public final class GuiController {
 		choosenUser = listViewUsers.getSelectionModel().getSelectedItems();
 		User user = choosenUser.get(0);
 		if (user != null) {
-			if (((sessionUser.getAccessLevel().getAccessLevelId() > 2)
+			if (((sessionUser.getAccessLevel().getAccessLevelId() > userStatusUser)
 					& (sessionUser.getAccessLevel().getAccessLevelId() > user.getAccessLevel().getAccessLevelId()))) {
 				try {
-					executeTask("Ban_user" + " " + user.getUserId());
+					executeTask("Ban_user" + "|" + user.getUserId());
 				} catch (CommandException e) {
 				} finally {
 					uploadUsersList(event);
@@ -301,14 +303,14 @@ public final class GuiController {
 		choosenUser = listViewUsers.getSelectionModel().getSelectedItems();
 		User user = choosenUser.get(0);
 		if (user != null) {
-			if (((sessionUser.getAccessLevel().getAccessLevelId() > 2)
+			if (((sessionUser.getAccessLevel().getAccessLevelId() > userStatusUser)
 					& (sessionUser.getAccessLevel().getAccessLevelId() > user.getAccessLevel().getAccessLevelId()))) {
 				try {
-					if (user.getAccessLevel().getAccessLevelId() == 1) {
-						executeTask("UNBAN_USER" + " " + user.getUserId());
-					} else if ((user.getAccessLevel().getAccessLevelId() == 2)
-							& (sessionUser.getAccessLevel().getAccessLevelId() > 3)) {
-						executeTask("GIVE_ADMIN" + " " + user.getUserId());
+					if (user.getAccessLevel().getAccessLevelId() == userStatusBanned) {
+						executeTask("UNBAN_USER" + "|" + user.getUserId());
+					} else if ((user.getAccessLevel().getAccessLevelId() == userStatusUser)
+							& (sessionUser.getAccessLevel().getAccessLevelId() > userStatusAdmin)) {
+						executeTask("GIVE_ADMIN" + "|" + user.getUserId());
 					}
 				} catch (CommandException e) {
 				} finally {
@@ -320,9 +322,10 @@ public final class GuiController {
 
 	public void pressAddBook(ActionEvent event) {
 		try {
-			if ((Boolean) executeTask("Add_book" + " " + bookNameField.getText() + " " + bookAuthorField.getText())) {
+			if ((Boolean) executeTask("Add_book" + "|" + bookNameField.getText() + "|" + bookAuthorField.getText())) {
 				bookNameField.clear();
 				bookAuthorField.clear();
+				addInfoBookLabel.setText(LabelMessage.BLANK.getMessage());
 				uploadBooks();
 			}
 		} catch (CommandException e) {
@@ -367,13 +370,13 @@ public final class GuiController {
 		Command executionCommand;
 		int accessLevelId;
 		ArrayList<String> requestAfterParse = CommandParser.getInstance().parse(request);
-		if (requestAfterParse.size() < 1) {
+		if (requestAfterParse.size() < minimalCountsParamInRequest) {
 			return new WrongCommand().execute(request);
 		}
 		commandName = requestAfterParse.get(0);
 		requestAfterParse.remove(0);
 		if (sessionUser == null) {
-			accessLevelId = 1;
+			accessLevelId = userStatusBanned;
 		} else {
 			accessLevelId = sessionUser.getAccessLevel().getAccessLevelId();
 		}
@@ -382,5 +385,4 @@ public final class GuiController {
 		stringsArray = requestAfterParse.toArray(stringsArray);
 		return executionCommand.execute(stringsArray);
 	}
-
 }
