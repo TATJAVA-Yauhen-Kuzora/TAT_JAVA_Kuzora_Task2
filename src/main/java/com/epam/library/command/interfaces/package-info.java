@@ -1,7 +1,8 @@
 /**
- * Contains {@link com.epam.library.command.interfaces.Command} interface.
+ * Contains all interfaces of command layer ({@link com.epam.library.command}).
  * <p>
- * <i>All Beans classes implement interface Serializable and override methods
- * equals, hashCode.</i>
+ * List of command layer's interfaces:
+ * <p>
+ * 1) {@link com.epam.library.command.interfaces.Command}.
  */
 package com.epam.library.command.interfaces;

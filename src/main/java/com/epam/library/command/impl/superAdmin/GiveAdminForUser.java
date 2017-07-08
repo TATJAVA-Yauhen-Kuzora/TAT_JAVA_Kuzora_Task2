@@ -18,7 +18,7 @@ public class GiveAdminForUser implements Command {
 	@Override
 	public Object execute(String... request) throws CommandException {
 		if (request.length != 1)
-			throw new CommandException("Wrong count of arguments for banning user.");
+			throw new CommandException("Wrong count of arguments for adding admin to user.");
 		UserService userService = ServiceFactory.getInstance().getUserService();
 		try {
 			int userId = Integer.parseInt(request[0]);
@@ -27,7 +27,7 @@ public class GiveAdminForUser implements Command {
 		} catch (ServiceException e) {
 			throw new CommandException(e.getMessage(), e);
 		} catch (NumberFormatException e) {
-			throw new CommandException("Invalid parameters for ban user command.");
+			throw new CommandException("Invalid parameters for Give_Admin command.");
 		}
 	}
 

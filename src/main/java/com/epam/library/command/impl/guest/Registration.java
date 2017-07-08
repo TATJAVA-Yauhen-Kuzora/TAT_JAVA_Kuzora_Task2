@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.epam.library.command.impl.guest;
 
 import com.epam.library.bean.User;
@@ -11,11 +8,20 @@ import com.epam.library.services.exception.ServiceException;
 import com.epam.library.services.interfaces.UserService;
 
 /**
- * @author Eugene13
- *
+ * Class {@link Registration}.
+ * <P>
+ * Class Registration implements {@link Command} interface for calling
+ * registration process logic from {@link UserService}.
+ * <P>
+ * <i>This Class is a member of the {@link com.epam.library.command.impl.guest}
+ * package.</i>
  */
 public class Registration implements Command {
-
+	/**
+	 * Method execute for registration logic.
+	 * 
+	 * @return user object packed in Object Class
+	 */
 	@Override
 	public Object execute(String... request) throws CommandException {
 		if (request.length != 4)
