@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * Beans Class {@link Order}.
  * <P>
- * Class User includes 5 fields (serialVersionUID, orderId, book, user,
+ * Class Order includes 5 fields (serialVersionUID, orderId, book, user,
  * orderStatus), getters and setters for changeable fields, methods hashCode and
  * equals.
  * <P>

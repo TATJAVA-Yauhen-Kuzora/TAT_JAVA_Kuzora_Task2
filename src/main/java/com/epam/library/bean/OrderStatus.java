@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * Beans Class {@link OrderStatus}.
  * <P>
- * Class User includes 5 fields (serialVersionUID, orderStatusId, orderStatus),
+ * Class OrderStatus includes 5 fields (serialVersionUID, orderStatusId, orderStatus),
  * getters and setters for changeable fields, methods hashCode and equals.
  * <P>
  * <i>This Class is a member of the {@link com.epam.library.bean} package.</i>

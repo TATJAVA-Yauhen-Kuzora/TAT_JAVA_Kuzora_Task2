@@ -5,8 +5,9 @@ import java.io.Serializable;
 /**
  * Beans Class {@link AccessLevel}.
  * <P>
- * Class User includes 3 fields (serialVersionUID, accessLevelId, accessLevel),
- * getters and setters for changeable fields, methods hashCode and equals.
+ * Class AccessLevel includes 3 fields ({@link #serialVersionUID},
+ * {@link #accessLevelId}, {@link #accessLevel}), getters and setters for
+ * changeable fields, methods {@link #hashCode()} and {@link #equals(Object)}.
  * <P>
  * <i>This Class is a member of the {@link com.epam.library.bean} package.</i>
  */
@@ -104,5 +105,4 @@ public class AccessLevel implements Serializable {
 			return false;
 		return true;
 	}
-
 }

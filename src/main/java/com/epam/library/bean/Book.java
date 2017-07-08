@@ -5,9 +5,10 @@ import java.io.Serializable;
 /**
  * Beans Class {@link Book}.
  * <P>
- * Class Book includes 5 fields (serialVersionUID ,bookId, bookName, author,
- * bookStatus), getters and setters for changeable fields, methods hashCode and
- * equals.
+ * Class Book includes 5 fields ({@link #serialVersionUID}, {@link #bookId},
+ * {@link #bookName}, {@link #author}, {@link #bookStatus}), getters and setters
+ * for changeable fields, methods {@link #hashCode()} and
+ * {@link #equals(Object)}.
  * <P>
  * <i>This Class is a member of the {@link com.epam.library.bean} package.</i>
  */

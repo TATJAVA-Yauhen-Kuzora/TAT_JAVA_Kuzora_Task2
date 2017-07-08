@@ -5,10 +5,13 @@ import java.io.Serializable;
 /**
  * Beans Class {@link BookStatus}.
  * <P>
- * Class User includes 3 fields (serialVersionUID, bookStatusId, bookStatus),
- * getters and setters for changeable fields, methods hashCode and equals.
+ * Class BookStatus includes 3 fields ({@link #serialVersionUID},
+ * {@link #bookStatusId}, ), getters and setters for changeable fields, methods
+ * hashCode and equals.
+ * </p>
  * <P>
  * <i>This Class is a member of the {@link com.epam.library.bean} package.</i>
+ * </p>
  */
 public class BookStatus implements Serializable {
 	/**
