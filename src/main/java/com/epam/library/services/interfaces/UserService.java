@@ -5,7 +5,7 @@ package com.epam.library.services.interfaces;
 
 import java.util.ArrayList;
 
-import com.epam.library.beans.User;
+import com.epam.library.bean.User;
 import com.epam.library.services.exception.ServiceException;
 
 /**

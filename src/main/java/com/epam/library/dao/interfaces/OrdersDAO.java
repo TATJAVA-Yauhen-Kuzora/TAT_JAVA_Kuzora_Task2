@@ -4,7 +4,7 @@
 package com.epam.library.dao.interfaces;
 
 import java.util.ArrayList;
-import com.epam.library.beans.Orders;
+import com.epam.library.bean.Order;
 import com.epam.library.dao.exception.DAOException;
 
 /**
@@ -12,7 +12,7 @@ import com.epam.library.dao.exception.DAOException;
  *
  */
 public interface OrdersDAO {
-	ArrayList<Orders> getAllOrders() throws DAOException;
+	ArrayList<Order> getAllOrders() throws DAOException;
 
 	void addOrder(int userId, int bookId) throws DAOException;
 

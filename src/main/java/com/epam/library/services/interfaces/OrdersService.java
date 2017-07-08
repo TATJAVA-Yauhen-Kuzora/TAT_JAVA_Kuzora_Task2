@@ -5,7 +5,7 @@ package com.epam.library.services.interfaces;
 
 import java.util.ArrayList;
 
-import com.epam.library.beans.Orders;
+import com.epam.library.bean.Order;
 import com.epam.library.services.exception.ServiceException;
 
 /**
@@ -13,7 +13,7 @@ import com.epam.library.services.exception.ServiceException;
  *
  */
 public interface OrdersService {
-	ArrayList<Orders> getAllOrders() throws ServiceException;
+	ArrayList<Order> getAllOrders() throws ServiceException;
 
 	void addOrdersInHistory(int userId, int bookId) throws ServiceException;
 

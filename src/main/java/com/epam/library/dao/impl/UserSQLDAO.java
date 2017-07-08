@@ -5,10 +5,8 @@ package com.epam.library.dao.impl;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.List;
-
-import com.epam.library.beans.AccessLevel;
-import com.epam.library.beans.User;
+import com.epam.library.bean.AccessLevel;
+import com.epam.library.bean.User;
 import com.epam.library.dao.connection.ConnectionSQLDAO;
 import com.epam.library.dao.connection.ConnectionSQLException;
 import com.epam.library.dao.exception.DAOException;

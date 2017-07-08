@@ -5,7 +5,7 @@ package com.epam.library.command.impl.guest;
 
 import java.util.ArrayList;
 
-import com.epam.library.beans.Book;
+import com.epam.library.bean.Book;
 import com.epam.library.command.exception.CommandException;
 import com.epam.library.command.interfaces.Command;
 import com.epam.library.services.ServiceFactory;

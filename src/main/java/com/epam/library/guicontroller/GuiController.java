@@ -2,9 +2,9 @@ package com.epam.library.guicontroller;
 
 import java.util.ArrayList;
 
-import com.epam.library.beans.Book;
-import com.epam.library.beans.Orders;
-import com.epam.library.beans.User;
+import com.epam.library.bean.Book;
+import com.epam.library.bean.Order;
+import com.epam.library.bean.User;
 import com.epam.library.command.exception.CommandException;
 import com.epam.library.command.impl.guest.WrongCommand;
 import com.epam.library.command.interfaces.Command;
@@ -45,7 +45,7 @@ public final class GuiController {
 	@FXML
 	private ListView<Book> listView = new ListView<>();
 	@FXML
-	private ListView<Orders> listView1 = new ListView<>();
+	private ListView<Order> listView1 = new ListView<>();
 	@FXML
 	private ListView<User> listViewUsers = new ListView<>();
 
@@ -248,9 +248,9 @@ public final class GuiController {
 	}
 
 	public void pressConfirmOrderButton(ActionEvent event) {
-		ObservableList<Orders> choosenOrder;
+		ObservableList<Order> choosenOrder;
 		choosenOrder = listView1.getSelectionModel().getSelectedItems();
-		Orders order = choosenOrder.get(0);
+		Order order = choosenOrder.get(0);
 		if (order != null) {
 			if (order.getOrderStatus().getOrderStatusId() == orderStatusBooked) {
 				try {
@@ -264,9 +264,9 @@ public final class GuiController {
 	}
 
 	public void pressConfirmReturnButton(ActionEvent event) {
-		ObservableList<Orders> choosenOrder;
+		ObservableList<Order> choosenOrder;
 		choosenOrder = listView1.getSelectionModel().getSelectedItems();
-		Orders order = choosenOrder.get(0);
+		Order order = choosenOrder.get(0);
 		if (order != null) {
 			if (order.getOrderStatus().getOrderStatusId() == orderStatusOnHands) {
 				try {
@@ -356,10 +356,10 @@ public final class GuiController {
 	}
 
 	@SuppressWarnings("unchecked")
-	public ArrayList<Orders> uploadOrders() {
-		ArrayList<Orders> orders = new ArrayList<>();
+	public ArrayList<Order> uploadOrders() {
+		ArrayList<Order> orders = new ArrayList<>();
 		try {
-			orders = (ArrayList<Orders>) executeTask("View_all_orders");
+			orders = (ArrayList<Order>) executeTask("View_all_orders");
 		} catch (CommandException e) {
 		}
 		return orders;

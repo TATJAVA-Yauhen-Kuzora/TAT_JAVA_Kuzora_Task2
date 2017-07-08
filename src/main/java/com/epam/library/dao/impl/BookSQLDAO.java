@@ -8,11 +8,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
-import com.epam.library.beans.AccessLevel;
-import com.epam.library.beans.Book;
-import com.epam.library.beans.BookStatus;
+import com.epam.library.bean.Book;
+import com.epam.library.bean.BookStatus;
 import com.epam.library.dao.connection.ConnectionSQLDAO;
 import com.epam.library.dao.connection.ConnectionSQLException;
 import com.epam.library.dao.exception.DAOException;

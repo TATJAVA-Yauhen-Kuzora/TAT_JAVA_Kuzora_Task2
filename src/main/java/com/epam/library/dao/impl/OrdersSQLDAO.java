@@ -9,12 +9,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import com.epam.library.beans.AccessLevel;
-import com.epam.library.beans.Book;
-import com.epam.library.beans.BookStatus;
-import com.epam.library.beans.OrderStatus;
-import com.epam.library.beans.Orders;
-import com.epam.library.beans.User;
+import com.epam.library.bean.AccessLevel;
+import com.epam.library.bean.Book;
+import com.epam.library.bean.BookStatus;
+import com.epam.library.bean.OrderStatus;
+import com.epam.library.bean.Order;
+import com.epam.library.bean.User;
 import com.epam.library.dao.connection.ConnectionSQLDAO;
 import com.epam.library.dao.connection.ConnectionSQLException;
 import com.epam.library.dao.exception.DAOException;
@@ -57,7 +57,7 @@ public class OrdersSQLDAO implements OrdersDAO {
 	}
 
 	@Override
-	public ArrayList<Orders> getAllOrders() throws DAOException {
+	public ArrayList<Order> getAllOrders() throws DAOException {
 		Connection connection = null;
 		PreparedStatement pSt = null;
 		ResultSet rs = null;
@@ -65,10 +65,10 @@ public class OrdersSQLDAO implements OrdersDAO {
 			connection = ConnectionSQLDAO.getInstance().takeConnection();
 			pSt = connection.prepareStatement(GET_ALL_ORDERS);
 			rs = pSt.executeQuery();
-			Orders localOrder;
-			ArrayList<Orders> orders = new ArrayList<>();
+			Order localOrder;
+			ArrayList<Order> orders = new ArrayList<>();
 			while (rs.next()) {
-				localOrder = new Orders();
+				localOrder = new Order();
 				localOrder.setOrderId(rs.getInt(ORDER_ID));
 				OrderStatus orderStatus = new OrderStatus();
 				orderStatus.setOrderStatusId(rs.getInt(ORDER_STATUS_ID));

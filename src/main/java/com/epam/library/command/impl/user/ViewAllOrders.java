@@ -5,7 +5,7 @@ package com.epam.library.command.impl.user;
 
 import java.util.ArrayList;
 
-import com.epam.library.beans.Orders;
+import com.epam.library.bean.Order;
 import com.epam.library.command.exception.CommandException;
 import com.epam.library.command.interfaces.Command;
 import com.epam.library.services.ServiceFactory;
@@ -21,7 +21,7 @@ public class ViewAllOrders implements Command {
 	@Override
 	public Object execute(String... request) throws CommandException {
 		OrdersService ordersService = ServiceFactory.getInstance().getOrdersService();
-		ArrayList<Orders> orders = null;
+		ArrayList<Order> orders = null;
 		try {
 			orders = ordersService.getAllOrders();
 		} catch (ServiceException e) {

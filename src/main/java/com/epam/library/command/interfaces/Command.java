@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.epam.library.command.interfaces;
 
 import com.epam.library.command.exception.CommandException;

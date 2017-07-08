@@ -1,4 +1,4 @@
-package com.epam.library.beans;
+package com.epam.library.bean;
 
 import java.io.Serializable;
 
@@ -9,7 +9,6 @@ import java.io.Serializable;
  * login, password, accessLevel), getters and setters for changeable fields,
  * methods hashCode and equals.
  * <P>
- * <i>This Class is a member of the {@link com.epam.library.beans} package.</i>
  */
 public class User implements Serializable {
 	/**
@@ -37,7 +36,6 @@ public class User implements Serializable {
 	 */
 	private String password;
 	/**
-	 * Contains {@link AccessLevel} Object as summary info about user access
 	 * level from library.access_level.
 	 */
 	private AccessLevel accessLevel;
@@ -171,7 +169,6 @@ public class User implements Serializable {
 	/**
 	 * Method hashCode.
 	 * 
-	 * @return unique hashCode of {@link User} object
 	 */
 	@Override
 	public int hashCode() {

@@ -1,9 +1,7 @@
 package com.epam.library.dao.interfaces;
 
 import java.util.ArrayList;
-import java.util.List;
-
-import com.epam.library.beans.User;
+import com.epam.library.bean.User;
 import com.epam.library.dao.exception.DAOException;
 
 public interface UserDAO {

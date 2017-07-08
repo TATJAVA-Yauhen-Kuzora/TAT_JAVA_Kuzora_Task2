@@ -8,7 +8,6 @@ import com.epam.library.command.interfaces.Command;
 import com.epam.library.services.ServiceFactory;
 import com.epam.library.services.exception.ServiceException;
 import com.epam.library.services.interfaces.BookService;
-import com.epam.library.services.interfaces.UserService;
 
 /**
  * @author Eugene13

@@ -4,9 +4,7 @@
 package com.epam.library.services.impl;
 
 import java.util.ArrayList;
-import java.util.List;
-
-import com.epam.library.beans.Book;
+import com.epam.library.bean.Book;
 import com.epam.library.dao.DAOFactory;
 import com.epam.library.dao.exception.DAOException;
 import com.epam.library.dao.interfaces.BookDAO;

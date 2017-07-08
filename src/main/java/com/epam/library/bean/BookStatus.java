@@ -1,4 +1,4 @@
-package com.epam.library.beans;
+package com.epam.library.bean;
 
 import java.io.Serializable;
 
@@ -8,7 +8,7 @@ import java.io.Serializable;
  * Class User includes 3 fields (serialVersionUID, bookStatusId, bookStatus),
  * getters and setters for changeable fields, methods hashCode and equals.
  * <P>
- * <i>This Class is a member of the {@link com.epam.library.beans} package.</i>
+ * <i>This Class is a member of the {@link com.epam.library.bean} package.</i>
  */
 public class BookStatus implements Serializable {
 	/**
@@ -66,7 +66,7 @@ public class BookStatus implements Serializable {
 	/**
 	 * Method hashCode.
 	 * 
-	 * @return unique hashCode of {@link BookStatus} object
+	 * @return unique hashCode for {@link BookStatus} object
 	 */
 	@Override
 	public int hashCode() {

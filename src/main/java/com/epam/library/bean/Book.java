@@ -1,4 +1,4 @@
-package com.epam.library.beans;
+package com.epam.library.bean;
 
 import java.io.Serializable;
 
@@ -9,7 +9,7 @@ import java.io.Serializable;
  * bookStatus), getters and setters for changeable fields, methods hashCode and
  * equals.
  * <P>
- * <i>This Class is a member of the {@link com.epam.library.beans} package.</i>
+ * <i>This Class is a member of the {@link com.epam.library.bean} package.</i>
  */
 public class Book implements Serializable {
 	/**
@@ -94,7 +94,7 @@ public class Book implements Serializable {
 	/**
 	 * Getter getBookStatus.
 	 * 
-	 * @return bookStatus as Object of {@link BookStatus} Class
+	 * @return bookStatus as object of {@link BookStatus} Class
 	 */
 	public BookStatus getBookStatus() {
 		return bookStatus;
@@ -104,7 +104,7 @@ public class Book implements Serializable {
 	 * Setter setBookStatus.
 	 * 
 	 * @param bookStatus
-	 *            the bookStatus as Object of {@link BookStatus} Class to set
+	 *            the bookStatus as object of {@link BookStatus} Class to set
 	 */
 	public void setBookStatus(BookStatus bookStatus) {
 		this.bookStatus = bookStatus;
@@ -125,7 +125,7 @@ public class Book implements Serializable {
 	/**
 	 * Method hashCode.
 	 * 
-	 * @return unique hashCode of {@link Book} object
+	 * @return unique hashCode for {@link Book} object
 	 */
 	@Override
 	public int hashCode() {

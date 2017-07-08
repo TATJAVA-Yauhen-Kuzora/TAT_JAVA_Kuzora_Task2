@@ -6,7 +6,6 @@ package com.epam.library.guicontroller;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.epam.library.beans.AccessLevel;
 import com.epam.library.command.impl.guest.*;
 import com.epam.library.command.impl.user.*;
 import com.epam.library.command.exception.CommandException;

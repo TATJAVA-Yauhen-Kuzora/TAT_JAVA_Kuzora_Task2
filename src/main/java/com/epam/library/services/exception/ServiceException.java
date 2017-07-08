@@ -8,6 +8,11 @@ package com.epam.library.services.exception;
  *
  */
 public class ServiceException extends Exception {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1499677754326455467L;
+
 	public ServiceException(String message, Exception e) {
 		super(message, e);
 	}
