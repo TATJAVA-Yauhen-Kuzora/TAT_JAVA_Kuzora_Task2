@@ -1,10 +1,6 @@
-/**
- * 
- */
 package com.epam.library.services.impl;
 
 import java.util.ArrayList;
-
 import com.epam.library.bean.Order;
 import com.epam.library.dao.DAOFactory;
 import com.epam.library.dao.exception.DAOException;
@@ -13,11 +9,17 @@ import com.epam.library.services.exception.ServiceException;
 import com.epam.library.services.interfaces.OrdersService;
 
 /**
- * @author Eugene13
- *
+ * Class {@link OrdersServiceImpl}.
+ * <P>
+ * Class OrdersServiceImpl implements all methods from {@link OrdersService}.
+ * <P>
+ * <i>This Class is a member of the {@link com.epam.library.services.impl}
+ * package.</i>
  */
 public class OrdersServiceImpl implements OrdersService {
-
+	/**
+	 * Implementation of getAllOrders method.
+	 */
 	@Override
 	public ArrayList<Order> getAllOrders() throws ServiceException {
 		// validator
@@ -32,6 +34,9 @@ public class OrdersServiceImpl implements OrdersService {
 		}
 	}
 
+	/**
+	 * Implementation of addOrdersInHistory method.
+	 */
 	@Override
 	public void addOrdersInHistory(int userId, int bookId) throws ServiceException {
 		// validator
@@ -44,6 +49,9 @@ public class OrdersServiceImpl implements OrdersService {
 		}
 	}
 
+	/**
+	 * Implementation of sendOrder method.
+	 */
 	@Override
 	public void sendOrder(int orderId) throws ServiceException {
 		// validator
@@ -56,6 +64,9 @@ public class OrdersServiceImpl implements OrdersService {
 		}
 	}
 
+	/**
+	 * Implementation of returnOrder method.
+	 */
 	@Override
 	public void returnOrder(int orderId) throws ServiceException {
 		// validator
@@ -67,5 +78,4 @@ public class OrdersServiceImpl implements OrdersService {
 			throw new ServiceException(e.getMessage(), e);
 		}
 	}
-
 }

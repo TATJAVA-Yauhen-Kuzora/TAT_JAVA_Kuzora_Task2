@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.epam.library.services.impl;
 
 import java.util.ArrayList;
@@ -12,10 +9,17 @@ import com.epam.library.services.exception.ServiceException;
 import com.epam.library.services.interfaces.UserService;
 
 /**
- * @author Eugene13
- *
+ * Class {@link UserServiceImpl}.
+ * <P>
+ * Class UserServiceImpl implements all methods from {@link UserService}.
+ * <P>
+ * <i>This Class is a member of the {@link com.epam.library.services.impl}
+ * package.</i>
  */
 public class UserServiceImpl implements UserService {
+	/**
+	 * Implementation of singIn method.
+	 */
 	@Override
 	public User singIn(String login, String password) throws ServiceException {
 		// validator
@@ -36,11 +40,17 @@ public class UserServiceImpl implements UserService {
 		return user;
 	}
 
+	/**
+	 * Implementation of logout method.
+	 */
 	@Override
 	public User logout() throws ServiceException {
 		return null;
 	}
 
+	/**
+	 * Implementation of register method.
+	 */
 	@Override
 	public User register(String name, String secondName, String login, String password) throws ServiceException {
 		// validator logina и пароля
@@ -59,6 +69,9 @@ public class UserServiceImpl implements UserService {
 		return user;
 	}
 
+	/**
+	 * Implementation of updateUserInfo method.
+	 */
 	@Override
 	public User updateUserInfo(String name, String secondName, String login, int userId) throws ServiceException {
 		// validator logina и пароля
@@ -73,6 +86,9 @@ public class UserServiceImpl implements UserService {
 		return user;
 	}
 
+	/**
+	 * Implementation of viewAllUsers method.
+	 */
 	@Override
 	public ArrayList<User> viewAllUsers() throws ServiceException {
 		// validator
@@ -87,6 +103,9 @@ public class UserServiceImpl implements UserService {
 		}
 	}
 
+	/**
+	 * Implementation of banUser method.
+	 */
 	@Override
 	public void banUser(int userId) throws ServiceException {
 		// validator userId
@@ -99,6 +118,9 @@ public class UserServiceImpl implements UserService {
 		}
 	}
 
+	/**
+	 * Implementation of unBanUser method.
+	 */
 	@Override
 	public void unBanUser(int userId) throws ServiceException {
 		// validator userId
@@ -111,6 +133,9 @@ public class UserServiceImpl implements UserService {
 		}
 	}
 
+	/**
+	 * Implementation of giveAdminForUser method.
+	 */
 	@Override
 	public void giveAdminForUser(int userId) throws ServiceException {
 		// validator userId

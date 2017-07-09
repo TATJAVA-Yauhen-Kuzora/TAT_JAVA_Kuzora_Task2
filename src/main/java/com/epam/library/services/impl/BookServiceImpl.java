@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.epam.library.services.impl;
 
 import java.util.ArrayList;
@@ -12,11 +9,17 @@ import com.epam.library.services.exception.ServiceException;
 import com.epam.library.services.interfaces.BookService;
 
 /**
- * @author Eugene13
- *
+ * Class {@link BookServiceImpl}.
+ * <P>
+ * Class BookServiceImpl implements all methods from {@link BookService}.
+ * <P>
+ * <i>This Class is a member of the {@link com.epam.library.services.impl}
+ * package.</i>
  */
 public class BookServiceImpl implements BookService {
-
+	/**
+	 * Implementation of getAllBooks method.
+	 */
 	@Override
 	public ArrayList<Book> getAllBooks() throws ServiceException {
 		// validator
@@ -31,6 +34,9 @@ public class BookServiceImpl implements BookService {
 		}
 	}
 
+	/**
+	 * Implementation of changeBookStatus method.
+	 */
 	@Override
 	public void changeBookStatus(int bookStatusAvailiable, int bookId) throws ServiceException {
 		// validator
@@ -47,6 +53,9 @@ public class BookServiceImpl implements BookService {
 		}
 	}
 
+	/**
+	 * Implementation of addBookToLibrary method.
+	 */
 	@Override
 	public void addBookToLibrary(String bookName, String author, int bookStatusId) throws ServiceException {
 		// validator

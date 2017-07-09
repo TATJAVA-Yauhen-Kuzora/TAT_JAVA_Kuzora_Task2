@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.epam.library.services;
 
 import com.epam.library.services.impl.BookServiceImpl;
@@ -11,8 +8,13 @@ import com.epam.library.services.interfaces.OrdersService;
 import com.epam.library.services.interfaces.UserService;
 
 /**
- * @author Eugene13
- *
+ * Singleton Class {@link ServiceFactory}.
+ * <P>
+ * Class ServiceFactory gives different objects depended on type of object that
+ * command layer has called.
+ * <P>
+ * <i>This Class is a member of the {@link com.epam.library.services}
+ * package.</i>
  */
 public class ServiceFactory {
 	private static final ServiceFactory instance = new ServiceFactory();
@@ -21,23 +23,35 @@ public class ServiceFactory {
 		return instance;
 	}
 
+	/**
+	 * Creating {@link UserService} object.
+	 */
 	private UserService userService = new UserServiceImpl();
+	/**
+	 * Creating {@link BookService} object.
+	 */
 	private BookService bookService = new BookServiceImpl();
+	/**
+	 * Creating {@link OrdersService} object.
+	 */
 	private OrdersService ordersService = new OrdersServiceImpl();
 
+	/**
+	 * @return the userService as object of {@link UserService} type
+	 */
 	public UserService getUserService() {
 		return userService;
 	}
 
 	/**
-	 * @return the bookService
+	 * @return the bookService as object of {@link BookService} type
 	 */
 	public BookService getBookService() {
 		return bookService;
 	}
 
 	/**
-	 * @return the ordersService
+	 * @return the ordersService as object of {@link OrdersService} type
 	 */
 	public OrdersService getOrdersService() {
 		return ordersService;
