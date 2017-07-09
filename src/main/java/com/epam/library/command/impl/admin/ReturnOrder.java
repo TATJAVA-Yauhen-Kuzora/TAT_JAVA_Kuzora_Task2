@@ -17,7 +17,7 @@ import com.epam.library.services.interfaces.OrdersService;
  */
 public class ReturnOrder implements Command {
 	/**
-	 * Method execute for changing book status from On Hands to Returned.
+	 * Method execute for changing book status from "On Hands" to "Returned".
 	 * 
 	 * @return only true as boolean value (of course packed in Object Class), if
 	 *         order status has been changed in data base successfully

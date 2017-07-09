@@ -11,11 +11,20 @@ import com.epam.library.services.exception.ServiceException;
 import com.epam.library.services.interfaces.UserService;
 
 /**
- * @author Eugene13
- *
+ * Class {@link UpdateInfo}.
+ * <P>
+ * Class UpdateInfo implements {@link Command} interface for calling updating
+ * process logic from {@link UserService}.
+ * <P>
+ * <i>This Class is a member of the {@link com.epam.library.command.impl.user}
+ * package.</i>
  */
 public class UpdateInfo implements Command {
-
+	/**
+	 * Method execute for updating user info.
+	 * 
+	 * @return updated user object packed in Object Class
+	 */
 	@Override
 	public Object execute(String... request) throws CommandException {
 		if (request.length != 4)

@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.epam.library.command.impl.user;
 
 import com.epam.library.bean.User;
@@ -11,11 +8,20 @@ import com.epam.library.services.exception.ServiceException;
 import com.epam.library.services.interfaces.UserService;
 
 /**
- * @author Eugene13
- *
+ * Class {@link Logout}.
+ * <P>
+ * Class Logout implements {@link Command} interface for calling logout logic
+ * from {@link UserService}.
+ * <P>
+ * <i>This Class is a member of the {@link com.epam.library.command.impl.user}
+ * package.</i>
  */
 public class Logout implements Command {
-
+	/**
+	 * Method execute for calling logout logic.
+	 * 
+	 * @return null as result of successfully executing this implementation
+	 */
 	@Override
 	public Object execute(String... request) throws CommandException {
 		User user = null;

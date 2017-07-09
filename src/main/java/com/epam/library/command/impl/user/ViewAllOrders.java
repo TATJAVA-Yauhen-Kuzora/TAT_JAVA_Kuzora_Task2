@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.epam.library.command.impl.user;
 
 import java.util.ArrayList;
@@ -13,11 +10,20 @@ import com.epam.library.services.exception.ServiceException;
 import com.epam.library.services.interfaces.OrdersService;
 
 /**
- * @author Eugene13
- *
+ * Class {@link ViewAllOrders}.
+ * <P>
+ * Class ViewAllOrders implements {@link Command} interface for viewing list of
+ * all orders from {@link OrdersService}.
+ * <P>
+ * <i>This Class is a member of the {@link com.epam.library.command.impl.user}
+ * package.</i>
  */
 public class ViewAllOrders implements Command {
-
+	/**
+	 * Method execute for viewing list of all orders.
+	 * 
+	 * @return ArrayList<{@link Order}> object packed in Object Class
+	 */
 	@Override
 	public Object execute(String... request) throws CommandException {
 		OrdersService ordersService = ServiceFactory.getInstance().getOrdersService();
@@ -29,5 +35,4 @@ public class ViewAllOrders implements Command {
 		}
 		return orders;
 	}
-
 }

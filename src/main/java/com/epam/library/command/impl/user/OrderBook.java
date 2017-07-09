@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.epam.library.command.impl.user;
 
 import com.epam.library.command.exception.CommandException;
@@ -10,11 +7,21 @@ import com.epam.library.services.exception.ServiceException;
 import com.epam.library.services.interfaces.OrdersService;
 
 /**
- * @author Eugene13
- *
+ * Class {@link OrderBook}.
+ * <P>
+ * Class OrderBook implements {@link Command} interface for calling new order
+ * creating logic from {@link OrdersService}.
+ * <P>
+ * <i>This Class is a member of the {@link com.epam.library.command.impl.user}
+ * package.</i>
  */
 public class OrderBook implements Command {
-
+	/**
+	 * Method execute for creating new order.
+	 * 
+	 * @return only true as boolean value (of course packed in Object Class), if
+	 *         order status has been created in data base successfully
+	 */
 	@Override
 	public Object execute(String... request) throws CommandException {
 		if (request.length != 2)
