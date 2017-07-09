@@ -25,7 +25,7 @@ public class OrderBook implements Command {
 	@Override
 	public Object execute(String... request) throws CommandException {
 		if (request.length != 2)
-			throw new CommandException("Wrong count of arguments for logging.");
+			throw new CommandException("Wrong count of arguments for ordering book.");
 		OrdersService ordersService = ServiceFactory.getInstance().getOrdersService();
 		try {
 			int userId = Integer.parseInt(request[0]);
