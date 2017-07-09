@@ -24,3 +24,4 @@ hs_err_pid*
 # Target files
 /target/
 /.settings/
+/test-output/

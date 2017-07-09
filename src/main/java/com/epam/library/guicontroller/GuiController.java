@@ -1,14 +1,10 @@
 package com.epam.library.guicontroller;
 
 import java.util.ArrayList;
-
 import com.epam.library.bean.Book;
 import com.epam.library.bean.Order;
 import com.epam.library.bean.User;
 import com.epam.library.command.exception.CommandException;
-import com.epam.library.command.impl.guest.WrongCommand;
-import com.epam.library.command.interfaces.Command;
-
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,17 +15,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
-public final class GuiController {
-	private static User sessionUser;
-	private static final CommandProvider commandProvider = CommandProvider.getInstance();
-	private static final int bookStatusAvailable = 1;
-	private static final int orderStatusBooked = 1;
-	private static final int orderStatusOnHands = 2;
-	private static final int userStatusBanned = 1;
-	private static final int userStatusUser = 2;
-	private static final int userStatusAdmin = 3;
-	private static final int userStatusSuperAdmin = 4;
-	private static final int minimalCountsParamInRequest = 1;
+public final class GuiController extends Controller {
 	@FXML
 	private Button logButton, editButton, registrationButton, changeBookStatusButtonForAdmins, uploadUsersButton,
 			orderButton, confirmOrderButton, confirmReturn, bunButton, promoteButton;
@@ -239,7 +225,7 @@ public final class GuiController {
 					executeTask("CHANGE_STATUS_BOOK_FOR_BOOKING" + "|" + book.getBookStatus().getBookStatusId() + "|"
 							+ book.getBookId());
 					uploadLibrary(event);
-					executeTask("Order_book" + " " + sessionUser.getUserId() + "|" + book.getBookId());
+					executeTask("Order_book" + "|" + sessionUser.getUserId() + "|" + book.getBookId());
 					uploadOrdersList(event);
 				} catch (CommandException e) {
 				}
@@ -322,11 +308,12 @@ public final class GuiController {
 
 	public void pressAddBook(ActionEvent event) {
 		try {
-			if ((Boolean) executeTask("Add_book" + "|" + bookNameField.getText() + "|" + bookAuthorField.getText())) {
+			if ((Boolean) executeTask(
+					"Add_book" + "|" + bookNameField.getText() + "|" + bookAuthorField.getText() + "|" + 1)) {
 				bookNameField.clear();
 				bookAuthorField.clear();
 				addInfoBookLabel.setText(LabelMessage.BLANK.getMessage());
-				uploadBooks();
+				uploadLibrary(event);
 			}
 		} catch (CommandException e) {
 			addInfoBookLabel.setText(e.getMessage());
@@ -363,26 +350,5 @@ public final class GuiController {
 		} catch (CommandException e) {
 		}
 		return orders;
-	}
-
-	public Object executeTask(String request) throws CommandException {
-		String commandName;
-		Command executionCommand;
-		int accessLevelId;
-		ArrayList<String> requestAfterParse = CommandParser.getInstance().parse(request);
-		if (requestAfterParse.size() < minimalCountsParamInRequest) {
-			return new WrongCommand().execute(request);
-		}
-		commandName = requestAfterParse.get(0);
-		requestAfterParse.remove(0);
-		if (sessionUser == null) {
-			accessLevelId = userStatusBanned;
-		} else {
-			accessLevelId = sessionUser.getAccessLevel().getAccessLevelId();
-		}
-		executionCommand = commandProvider.getCommand(accessLevelId, commandName);
-		String[] stringsArray = new String[requestAfterParse.size()];
-		stringsArray = requestAfterParse.toArray(stringsArray);
-		return executionCommand.execute(stringsArray);
 	}
 }
