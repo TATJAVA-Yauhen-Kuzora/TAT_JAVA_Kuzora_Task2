@@ -4,12 +4,58 @@ import java.util.ArrayList;
 import com.epam.library.bean.Book;
 import com.epam.library.dao.exception.DAOException;
 
+/**
+ * Interface {@link BookDAO}.
+ * <P>
+ * Interface BookDAO includes 4 methods ({@link #getAllbooks()},
+ * {@link #setAvailiableStatus(int)}, {@link #setNotAvailiableStatus(int)},
+ * {@link #addBookToLibrary(String, String, int)}).
+ * <P>
+ * <i>This interface is a member of the {@link com.epam.library.dao.interfaces}
+ * package.</i>
+ */
 public interface BookDAO {
+	/**
+	 * Method getAllBooks returns list of all books.
+	 * 
+	 * @return object of ArrayList<{@link User}> type.
+	 * @throws DAOException
+	 *             Exception type for dao layer
+	 */
 	ArrayList<Book> getAllbooks() throws DAOException;
 
+	/**
+	 * Method setAvailiableStatus changes book status on Available.
+	 * 
+	 * @param bookId
+	 *            value of int type as book id from library.book.book_id
+	 * @throws DAOException
+	 *             Exception type for dao layer
+	 */
 	void setAvailiableStatus(int bookId) throws DAOException;
 
+	/**
+	 * Method setNotAvailiableStatus changes book status on Not available.
+	 * 
+	 * @param bookId
+	 *            value of int type as book id from library.book.book_id
+	 * @throws DAOException
+	 *             Exception type for dao layer
+	 */
 	void setNotAvailiableStatus(int bookId) throws DAOException;
 
+	/**
+	 * Method addBookToLibrary adds book to library's books.
+	 * 
+	 * @param bookNamee
+	 *            name of book
+	 * @param author
+	 *            name of author
+	 * @param bookStatusId
+	 *            value of int type as book status id from
+	 *            library.book_status.book_status_id
+	 * @throws DAOException
+	 *             Exception type for dao layer
+	 */
 	void addBookToLibrary(String bookName, String author, int bookStatusId) throws DAOException;
 }

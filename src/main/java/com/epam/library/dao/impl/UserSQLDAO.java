@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.epam.library.dao.impl;
 
 import java.sql.*;
@@ -13,8 +10,12 @@ import com.epam.library.dao.exception.DAOException;
 import com.epam.library.dao.interfaces.UserDAO;
 
 /**
- * @author Eugene13
- *
+ * Class {@link UserSQLDAO}.
+ * <P>
+ * Class UserSQLDAO implements all methods from {@link UserDAO}.
+ * <P>
+ * <i>This Class is a member of the {@link com.epam.library.dao.impl}
+ * package.</i>
  */
 public class UserSQLDAO implements UserDAO {
 	private final static String SIGN_IN = "SELECT user_id, name, second_name, login, password, acc_level, access_level FROM user LEFT JOIN access_level ON user.acc_level = access_level.access_level_id WHERE login=? and password=?";
@@ -32,7 +33,6 @@ public class UserSQLDAO implements UserDAO {
 	private final static String USER_PASSWORD = "password";
 	private final static String USER_ACCESS_LEVEL_ID = "acc_level";
 	private final static String USER_ACCESS_LEVEL_NAME = "access_level";
-
 	private static final UserDAO instance = new UserSQLDAO();
 
 	private UserSQLDAO() {
@@ -42,6 +42,9 @@ public class UserSQLDAO implements UserDAO {
 		return instance;
 	}
 
+	/**
+	 * Implementation of signIn method.
+	 */
 	@Override
 	public User signIn(String login, String password) throws DAOException {
 		Connection connection = null;
@@ -74,6 +77,9 @@ public class UserSQLDAO implements UserDAO {
 		}
 	}
 
+	/**
+	 * Implementation of register method.
+	 */
 	@Override
 	public User register(String name, String secondName, String login, String password) throws DAOException {
 		Connection connection = null;
@@ -99,6 +105,9 @@ public class UserSQLDAO implements UserDAO {
 		return null;
 	}
 
+	/**
+	 * Implementation of getAllUsers method.
+	 */
 	@Override
 	public ArrayList<User> getAllUsers() throws DAOException {
 		Connection connection = null;
@@ -131,6 +140,9 @@ public class UserSQLDAO implements UserDAO {
 		}
 	}
 
+	/**
+	 * Implementation of updateUserInfo method.
+	 */
 	@Override
 	public User updateUserInfo(String name, String secondName, String login, int userId) throws DAOException {
 		ResultSet rs = null;
@@ -170,6 +182,9 @@ public class UserSQLDAO implements UserDAO {
 		}
 	}
 
+	/**
+	 * Implementation of banUser method.
+	 */
 	@Override
 	public void banUser(int UserId) throws DAOException {
 		Connection connection = null;
@@ -188,6 +203,9 @@ public class UserSQLDAO implements UserDAO {
 		}
 	}
 
+	/**
+	 * Implementation of unBanUser method.
+	 */
 	@Override
 	public void unBanUser(int UserId) throws DAOException {
 		Connection connection = null;
@@ -206,6 +224,9 @@ public class UserSQLDAO implements UserDAO {
 		}
 	}
 
+	/**
+	 * Implementation of giveAdminForUser method.
+	 */
 	@Override
 	public void giveAdminForUser(int UserId) throws DAOException {
 		Connection connection = null;

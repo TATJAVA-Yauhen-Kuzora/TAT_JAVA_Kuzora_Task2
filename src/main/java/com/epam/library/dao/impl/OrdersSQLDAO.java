@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.epam.library.dao.impl;
 
 import java.sql.Connection;
@@ -8,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
 import com.epam.library.bean.AccessLevel;
 import com.epam.library.bean.Book;
 import com.epam.library.bean.BookStatus;
@@ -21,19 +17,22 @@ import com.epam.library.dao.exception.DAOException;
 import com.epam.library.dao.interfaces.OrdersDAO;
 
 /**
- * @author Eugene13
- *
+ * Class {@link OrdersSQLDAO}.
+ * <P>
+ * Class OrdersSQLDAO implements all methods from {@link OrdersDAO}.
+ * <P>
+ * <i>This Class is a member of the {@link com.epam.library.dao.impl}
+ * package.</i>
  */
 public class OrdersSQLDAO implements OrdersDAO {
 	private final static String GET_ALL_ORDERS = "SELECT " + "order_id, order_status.order_status_id, order_status, "
-			+ "user.user_id, name, second_name, login, acc_level, "
-			+ "book.book_id, book_name, author, book_status_id " + "FROM " + "orders " + "LEFT JOIN "
+			+ "user.user_id, name, second_name, login, acc_level, " + "book.book_id, book_name, author, book_status_id "
+			+ "FROM " + "orders " + "LEFT JOIN "
 			+ "order_status ON orders.order_status_id = order_status.order_status_id " + "LEFT JOIN "
 			+ "user ON orders.user_id=user.user_id " + "LEFT JOIN " + "book ON orders.book_id=book.book_id;";
 	private final static String ORDER_ADD = "INSERT INTO orders (`book_id`, `user_id`, `order_status_id`) VALUES(?,?,1)";
 	private final static String SEND_ORDER = "UPDATE orders SET order_status_id = 2 WHERE order_id = ?";
 	private final static String RETURN_ORDER = "UPDATE orders SET order_status_id = 3 WHERE order_id = ?";
-
 	private final static String ORDER_ID = "order_id";
 	private final static String ORDER_STATUS_ID = "order_status_id";
 	private final static String ORDER_STATUS_NAME = "order_status";
@@ -46,7 +45,6 @@ public class OrdersSQLDAO implements OrdersDAO {
 	private final static String ORDER_BOOK_NAME = "book_name";
 	private final static String ORDER_BOOK_AUTHOR = "author";
 	private final static String ORDER_BOOK_STATUS_ID = "book_status_id";
-
 	private static final OrdersDAO instance = new OrdersSQLDAO();
 
 	private OrdersSQLDAO() {
@@ -56,6 +54,9 @@ public class OrdersSQLDAO implements OrdersDAO {
 		return instance;
 	}
 
+	/**
+	 * Implementation of getAllOrders method.
+	 */
 	@Override
 	public ArrayList<Order> getAllOrders() throws DAOException {
 		Connection connection = null;
@@ -101,6 +102,9 @@ public class OrdersSQLDAO implements OrdersDAO {
 		}
 	}
 
+	/**
+	 * Implementation of addOrder method.
+	 */
 	@Override
 	public void addOrder(int userId, int bookId) throws DAOException {
 		Connection connection = null;
@@ -122,6 +126,9 @@ public class OrdersSQLDAO implements OrdersDAO {
 		}
 	}
 
+	/**
+	 * Implementation of confirmOrder method.
+	 */
 	@Override
 	public void confirmOrder(int orderId) throws DAOException {
 		Connection connection = null;
@@ -141,6 +148,9 @@ public class OrdersSQLDAO implements OrdersDAO {
 		}
 	}
 
+	/**
+	 * Implementation of confirmReturn method.
+	 */
 	@Override
 	public void confirmReturn(int orderId) throws DAOException {
 		Connection connection = null;
