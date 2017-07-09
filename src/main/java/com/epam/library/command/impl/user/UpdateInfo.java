@@ -28,7 +28,7 @@ public class UpdateInfo implements Command {
 	@Override
 	public Object execute(String... request) throws CommandException {
 		if (request.length != 4)
-			throw new CommandException("Wrong count of arguments for logging.");
+			throw new CommandException("Wrong count of arguments for updating.");
 		User user = null;
 		UserService userService = ServiceFactory.getInstance().getUserService();
 		try {

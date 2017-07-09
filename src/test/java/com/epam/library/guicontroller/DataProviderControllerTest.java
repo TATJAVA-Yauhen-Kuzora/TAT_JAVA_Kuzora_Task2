@@ -26,4 +26,30 @@ public class DataProviderControllerTest {
 				new Object[] { "testLogin", "Registration|name|secondName|testLogin|12345" }, //
 		};
 	}
+
+	@DataProvider
+	public Object[][] negativeRegistration() { //
+		return new Object[][] { //
+				new Object[] { "testLogin11", "Registion|name|secondName|testLogin11|12345" }, // wrong
+																								// command
+				new Object[] { "testLogin111", "Registration|name|secondName|testLogin111" }, // wrong
+				// count
+				// of
+				// args
+				new Object[] { "super", "Registration|Eugene|Kuzora|super|12345" }, // try
+																					// to
+																					// add
+																					// login
+																					// that
+																					// already
+																					// exist
+		};
+	}
+
+	@DataProvider
+	public Object[][] positiveUpdateUserInfo() { //
+		return new Object[][] { //
+				new Object[] { "testLogin2", "Update_user_info|name|secondName|testLogin2|12" }, //
+		};
+	}
 }
