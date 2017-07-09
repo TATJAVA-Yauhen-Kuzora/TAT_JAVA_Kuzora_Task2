@@ -3,8 +3,9 @@ package com.epam.library.command.exception;
 /**
  * Class {@link CommandException}.
  * <P>
- * Class CommandException extends Exception Class and overloads 3 constructors
- * with different parameters.
+ * Class CommandException - user exception class for
+ * {@link com.epam.library.command} layer, extends Exception Class and overloads
+ * 3 constructors with different parameters.
  * <P>
  * <i>This Class is a member of the {@link com.epam.library.command.exception}
  * package.</i>
