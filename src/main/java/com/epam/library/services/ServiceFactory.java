@@ -24,15 +24,15 @@ public class ServiceFactory {
 	}
 
 	/**
-	 * Creating {@link UserService} object.
+	 * Creating {@link UserServiceImpl} object.
 	 */
 	private UserService userService = new UserServiceImpl();
 	/**
-	 * Creating {@link BookService} object.
+	 * Creating {@link BookServiceImpl} object.
 	 */
 	private BookService bookService = new BookServiceImpl();
 	/**
-	 * Creating {@link OrdersService} object.
+	 * Creating {@link OrdersServiceImpl} object.
 	 */
 	private OrdersService ordersService = new OrdersServiceImpl();
 
