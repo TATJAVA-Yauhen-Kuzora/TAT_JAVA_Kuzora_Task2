@@ -20,6 +20,7 @@ public class ControllerTest {
 
 	@AfterMethod(groups = { "smoke", "methods", "exceptions", "positive", "negative" })
 	public void afterMethod() {
+		Controller.sessionUser = null;
 		controller = null;
 	}
 
@@ -31,6 +32,7 @@ public class ControllerTest {
 			testUser = (User) controller.executeTask(request);
 			Assert.assertEquals(expected, testUser.getLogin());
 		} catch (CommandException e) {
+			System.out.println(e.getMessage());
 			fail();
 		}
 	}
@@ -64,15 +66,26 @@ public class ControllerTest {
 	public void tst_method_execute_updateUserInfo(String expected, String request) {
 		User testUser;
 		try {
-			AccessLevel testAccessLevel = new AccessLevel();
-			testAccessLevel.setAccessLevelId(userStatusUser);
-			Controller.sessionUser = new User();
-			Controller.sessionUser.setAccessLevel(testAccessLevel);
+			setChosenAccessLevelToUser(userStatusUser);
 			testUser = (User) controller.executeTask(request);
 			Assert.assertEquals(expected, testUser.getLogin());
 		} catch (CommandException e) {
 			System.out.println(e.getMessage());
 			fail();
 		}
+	}
+
+	@Test(groups = { "smoke", "exceptions",
+			"negative" }, dataProvider = "negativeUpdateUserInfo", dataProviderClass = DataProviderControllerTest.class, expectedExceptions = CommandException.class)
+	public void tst_method_exception_updateUserInfo(String expected, String request) throws CommandException {
+		setChosenAccessLevelToUser(userStatusUser);
+		controller.executeTask(request);
+	}
+
+	private void setChosenAccessLevelToUser(int accessId) {
+		AccessLevel testAccessLevel = new AccessLevel();
+		testAccessLevel.setAccessLevelId(accessId);
+		Controller.sessionUser = new User();
+		Controller.sessionUser.setAccessLevel(testAccessLevel);
 	}
 }
