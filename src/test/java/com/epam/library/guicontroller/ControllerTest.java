@@ -4,6 +4,7 @@ import org.testng.annotations.Test;
 import com.epam.library.bean.AccessLevel;
 import com.epam.library.bean.User;
 import com.epam.library.command.exception.CommandException;
+
 import junit.framework.Assert;
 import org.testng.annotations.BeforeMethod;
 import static org.testng.Assert.fail;
@@ -12,6 +13,7 @@ import org.testng.annotations.AfterMethod;
 public class ControllerTest {
 	private Controller controller;
 	private final static int userStatusUser = 2;
+	private static final int userStatusAdmin = 3;
 
 	@BeforeMethod(groups = { "smoke", "methods", "exceptions", "positive", "negative" })
 	public void beforeMethod() {
@@ -32,7 +34,6 @@ public class ControllerTest {
 			testUser = (User) controller.executeTask(request);
 			Assert.assertEquals(expected, testUser.getLogin());
 		} catch (CommandException e) {
-			System.out.println(e.getMessage());
 			fail();
 		}
 	}
@@ -70,7 +71,6 @@ public class ControllerTest {
 			testUser = (User) controller.executeTask(request);
 			Assert.assertEquals(expected, testUser.getLogin());
 		} catch (CommandException e) {
-			System.out.println(e.getMessage());
 			fail();
 		}
 	}
@@ -79,6 +79,24 @@ public class ControllerTest {
 			"negative" }, dataProvider = "negativeUpdateUserInfo", dataProviderClass = DataProviderControllerTest.class, expectedExceptions = CommandException.class)
 	public void tst_method_exception_updateUserInfo(String expected, String request) throws CommandException {
 		setChosenAccessLevelToUser(userStatusUser);
+		controller.executeTask(request);
+	}
+
+	@Test(groups = { "smoke", "methods",
+			"positive" }, dataProvider = "positiveChangeBookStatus", dataProviderClass = DataProviderControllerTest.class)
+	public void tst_method_execute_changeBookStatus(String request) {
+		try {
+			setChosenAccessLevelToUser(userStatusAdmin);
+			Assert.assertTrue((Boolean) controller.executeTask(request));
+		} catch (CommandException e) {
+			fail();
+		}
+	}
+
+	@Test(groups = { "smoke", "exceptions",
+			"negative" }, dataProvider = "negativeChangeBookStatus", dataProviderClass = DataProviderControllerTest.class, expectedExceptions = CommandException.class)
+	public void tst_method_exception_changeBookStatus(String request) throws CommandException {
+		setChosenAccessLevelToUser(userStatusAdmin);
 		controller.executeTask(request);
 	}
 

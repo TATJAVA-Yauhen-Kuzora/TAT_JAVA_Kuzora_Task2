@@ -1,6 +1,11 @@
 package com.epam.library.guicontroller;
 
 import java.util.ArrayList;
+
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.epam.library.bean.Book;
 import com.epam.library.bean.Order;
 import com.epam.library.bean.User;
@@ -16,6 +21,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
 public final class GuiController extends Controller {
+	private final static Logger LOG = LogManager.getLogger(GuiController.class.getName());
 	@FXML
 	private Button logButton, editButton, registrationButton, changeBookStatusButtonForAdmins, uploadUsersButton,
 			orderButton, confirmOrderButton, confirmReturn, bunButton, promoteButton;
@@ -98,6 +104,7 @@ public final class GuiController extends Controller {
 			}
 		} catch (CommandException e) {
 			exceprtionLabel.setText(e.getMessage());
+			LOG.log(Level.ERROR, "CommandException", e);
 		}
 	}
 
@@ -144,8 +151,8 @@ public final class GuiController extends Controller {
 	}
 
 	public void pressConfirmRegButton(ActionEvent event) {
-		if (sessionUser == null) {
-			try {
+		try {
+			if (sessionUser == null) {
 				if (editPasswordFieldOld.getText().equals(editPasswordField1.getText())) {
 					sessionUser = (User) executeTask(
 							"Registration" + "|" + editNameField.getText() + "|" + editSecondNameField.getText() + "|"
@@ -164,11 +171,7 @@ public final class GuiController extends Controller {
 				} else {
 					exceprtionLabel.setText(LabelMessage.PASSWORD_ETT.getMessage());
 				}
-			} catch (CommandException e) {
-				exceprtionLabel.setText(e.getMessage());
-			}
-		} else {
-			try {
+			} else {
 				sessionUser = (User) executeTask(
 						"Update_user_info" + "|" + editNameField.getText() + "|" + editSecondNameField.getText() + "|"
 								+ editLoginField.getText() + "|" + sessionUser.getUserId());
@@ -180,9 +183,11 @@ public final class GuiController extends Controller {
 				if (sessionUser.getAccessLevel().getAccessLevelId() > userStatusUser)
 					uploadUsersList(event);
 				uploadOrdersList(event);
-			} catch (CommandException e) {
-				exceprtionLabel.setText(e.getMessage());
+
 			}
+		} catch (CommandException e) {
+			exceprtionLabel.setText(e.getMessage());
+			LOG.log(Level.ERROR, "CommandException", e);
 		}
 	}
 
@@ -210,6 +215,7 @@ public final class GuiController extends Controller {
 				executeTask(
 						"Change_book_status" + "|" + book.getBookStatus().getBookStatusId() + "|" + book.getBookId());
 			} catch (CommandException e) {
+				LOG.log(Level.ERROR, "CommandException", e);
 			}
 		}
 		uploadLibrary(event);
@@ -228,6 +234,7 @@ public final class GuiController extends Controller {
 					executeTask("Order_book" + "|" + sessionUser.getUserId() + "|" + book.getBookId());
 					uploadOrdersList(event);
 				} catch (CommandException e) {
+					LOG.log(Level.ERROR, "CommandException", e);
 				}
 			}
 		}
@@ -244,6 +251,7 @@ public final class GuiController extends Controller {
 					uploadLibrary(event);
 					uploadOrdersList(event);
 				} catch (CommandException e) {
+					LOG.log(Level.ERROR, "CommandException", e);
 				}
 			}
 		}
@@ -262,6 +270,7 @@ public final class GuiController extends Controller {
 					uploadLibrary(event);
 					uploadOrdersList(event);
 				} catch (CommandException e) {
+					LOG.log(Level.ERROR, "CommandException", e);
 				}
 			}
 		}
@@ -277,6 +286,7 @@ public final class GuiController extends Controller {
 				try {
 					executeTask("Ban_user" + "|" + user.getUserId());
 				} catch (CommandException e) {
+					LOG.log(Level.ERROR, "CommandException", e);
 				} finally {
 					uploadUsersList(event);
 				}
@@ -299,6 +309,7 @@ public final class GuiController extends Controller {
 						executeTask("GIVE_ADMIN" + "|" + user.getUserId());
 					}
 				} catch (CommandException e) {
+					LOG.log(Level.ERROR, "CommandException", e);
 				} finally {
 					uploadUsersList(event);
 				}
@@ -316,6 +327,7 @@ public final class GuiController extends Controller {
 				uploadLibrary(event);
 			}
 		} catch (CommandException e) {
+			LOG.log(Level.ERROR, "CommandException", e);
 			addInfoBookLabel.setText(e.getMessage());
 			bookNameField.clear();
 			bookAuthorField.clear();
@@ -328,6 +340,7 @@ public final class GuiController extends Controller {
 		try {
 			users = (ArrayList<User>) executeTask("View_all_users");
 		} catch (CommandException e) {
+			LOG.log(Level.ERROR, "CommandException", e);
 		}
 		return users;
 	}
@@ -338,6 +351,7 @@ public final class GuiController extends Controller {
 		try {
 			books = (ArrayList<Book>) executeTask("View_all_books");
 		} catch (CommandException e) {
+			LOG.log(Level.ERROR, "CommandException", e);
 		}
 		return books;
 	}
@@ -348,6 +362,7 @@ public final class GuiController extends Controller {
 		try {
 			orders = (ArrayList<Order>) executeTask("View_all_orders");
 		} catch (CommandException e) {
+			LOG.log(Level.ERROR, "CommandException", e);
 		}
 		return orders;
 	}

@@ -52,4 +52,24 @@ public class DataProviderControllerTest {
 				new Object[] { "testLogin3", "Update_user_info|name|secondName|testLogin4|12.54" }, //
 		};
 	}
+
+	@DataProvider
+	public Object[][] positiveChangeBookStatus() { //
+		return new Object[][] { //
+				new Object[] { "Change_book_status|2|1" }, //
+				new Object[] { "Change_book_status|1|1" }, //
+				new Object[] { "Change_book_status|2|2" }, //
+				new Object[] { "Change_book_status|2|1" }, //
+		};
+	}
+
+	@DataProvider
+	public Object[][] negativeChangeBookStatus() { //
+		return new Object[][] { //
+				new Object[] { "Change_book_stat|2|1" }, //
+				new Object[] { "Change_book_status|1" }, //
+				new Object[] { "Change_book_status|2|2.6" }, //
+		};
+	}
+
 }
