@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
  *
  */
 class CommandParser {
-	private static final String regExp = "[0-9A-Za-z-_ ]+";
+	private static final String regExp = "[0-9A-Za-z-_.,]+";
 	private static final CommandParser instance = new CommandParser();
 
 	private CommandParser() {

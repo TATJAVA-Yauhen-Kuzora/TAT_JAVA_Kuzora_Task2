@@ -99,7 +99,6 @@ public class DataProviderControllerTest {
 	public Object[][] negativeConfirmOrder() { //
 		return new Object[][] { // F
 				new Object[] { "CONFIRM_ORD|48" }, //
-				new Object[] { "CONFIRM_ORDER|48.442" }, //
 		};
 	}
 
@@ -107,7 +106,7 @@ public class DataProviderControllerTest {
 	@DataProvider
 	public Object[][] positiveReturnOrder() { //
 		return new Object[][] { //
-				new Object[] { true, "Return_ORDER|66" }, //
+				new Object[] { true, "Return_ORDER|66|4" }, //
 		};
 	}
 
