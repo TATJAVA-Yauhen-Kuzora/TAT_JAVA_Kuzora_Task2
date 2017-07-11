@@ -25,7 +25,7 @@ public class UserSQLDAO implements UserDAO {
 	private final static String UPDATE_USER_INFO = "UPDATE user SET name = ?, second_name= ?, login= ? WHERE user_id= ? and password= ?;";
 	private final static String BAN_USER = "UPDATE user SET acc_level= 1 WHERE user_id= ? and acc_level<4;";
 	private final static String UNBAN_USER = "UPDATE user SET acc_level= 2 WHERE user_id= ? and acc_level<4;";
-	private final static String GIVE_ADMIN_ACCESS_FOR_USER = "UPDATE user SET acc_level= 3 WHERE user_id= ?;";
+	private final static String GIVE_ADMIN_ACCESS_FOR_USER = "UPDATE user SET acc_level= 3 WHERE user_id= ? and acc_level<4;";
 	private final static String USER_ID = "user_id";
 	private final static String USER_NAME = "name";
 	private final static String USER_SECOND_NAME = "second_name";

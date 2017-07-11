@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Tests for controller">
+	<test verbose="2" name="Positive Tests">
+		<groups>
+			<run>
+				<include name="positive" />
+			</run>
+		</groups>
+		<classes>
+			<class name="com.epam.library.guicontroller.ControllerTest" />
+		</classes>
+	</test>
+	<test verbose="2" name="Negative Tests">
+		<groups>
+			<run>
+				<include name="negative" />
+			</run>
+		</groups>
+		<classes>
+			<class name="com.epam.library.guicontroller.ControllerTest" />
+		</classes>
+	</test>
+	<test verbose="2" name="Unit tests for exceptions">
+		<groups>
+			<run>
+				<include name="exceptions" />
+			</run>
+		</groups>
+		<classes>
+			<class name="com.epam.library.guicontroller.ControllerTest" />
+		</classes>
+	</test>
+</suite>

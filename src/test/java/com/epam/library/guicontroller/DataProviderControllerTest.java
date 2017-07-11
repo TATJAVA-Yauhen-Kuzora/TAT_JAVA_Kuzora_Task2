@@ -102,7 +102,6 @@ public class DataProviderControllerTest {
 		};
 	}
 
-	// ______________________________________________________________________________________________________
 	@DataProvider
 	public Object[][] positiveReturnOrder() { //
 		return new Object[][] { //
@@ -118,5 +117,56 @@ public class DataProviderControllerTest {
 		};
 	}
 
-	// ______________________________________________________________________________________________________
+	@DataProvider
+	public Object[][] positiveBanAndPromoteUser() { //
+		return new Object[][] { //
+				new Object[] { true, "Ban_user|9" }, //
+				new Object[] { false, "Ban_user|7" }, // super
+				new Object[] { true, "UNBAN_USER|9" }, //
+				new Object[] { false, "UNBAN_USER|7" }, // super
+				new Object[] { true, "GIVE_ADMIN|9" }, //
+				new Object[] { false, "GIVE_ADMIN|7" }, // super
+		};
+	}
+
+	@DataProvider
+	public Object[][] negativebanUser() { //
+		return new Object[][] { // F
+				new Object[] { "Ban_user|9.5" }, //
+				new Object[] { "Return_ORDER|48.442" }, //
+		};
+	}
+
+	// @DataProvider
+	// public Object[][] positiveUnBanUser() { //
+	// return new Object[][] { //
+	// new Object[] { true, "UNBAN_USER|9" }, //
+	// new Object[] { false, "UNBAN_USER|7" }, // super
+	// };
+	// }
+
+	@DataProvider
+	public Object[][] negativeUnBanUser() { //
+		return new Object[][] { // F
+				new Object[] { "UNBAN_USER|9.5" }, //
+				new Object[] { "UNBAN_USE|10" }, //
+		};
+	}
+
+	// @DataProvider
+	// public Object[][] positiveGiveAdmin() { //
+	// return new Object[][] { //
+	// new Object[] { true, "Ban_user|9" }, //
+	// new Object[] { true, "GIVE_ADMIN|9" }, //
+	// new Object[] { false, "GIVE_ADMIN|7" }, // super
+	// };
+	// }
+
+	@DataProvider
+	public Object[][] negativeGiveAdmin() { //
+		return new Object[][] { // F
+				new Object[] { "GIVE_ADMIN|9.5" }, //
+				new Object[] { "GIVE_ADN|9.5" }, //
+		};
+	}
 }

@@ -38,5 +38,4 @@ public class ReturnOrder implements Command {
 			throw new CommandException("Invalid parameters for return order command.");
 		}
 	}
-
 }
