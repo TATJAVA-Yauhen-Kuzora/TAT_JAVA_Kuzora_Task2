@@ -46,6 +46,8 @@ public interface BookDAO {
 	 */
 	boolean setNotAvailiableStatus(int bookId) throws DAOException;
 
+	boolean isAvailiableStatus(int bookId) throws DAOException;
+
 	/**
 	 * Method addBookToLibrary adds book to library's books.
 	 * 
@@ -56,7 +58,7 @@ public interface BookDAO {
 	 * @param bookStatusId
 	 *            value of int type as book status id from
 	 *            library.book_status.book_status_id
-	 * @return 
+	 * @return
 	 * @throws DAOException
 	 *             Exception type for dao layer
 	 */

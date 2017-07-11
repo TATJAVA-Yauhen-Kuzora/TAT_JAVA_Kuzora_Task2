@@ -23,6 +23,7 @@ import com.epam.library.dao.interfaces.BookDAO;
 public class BookSQLDAO implements BookDAO {
 	private final static String GET_LIST_OF_BOOKS = "SELECT book_id, book_name, author, book.book_status_id,  book_status FROM book LEFT JOIN book_status ON book.book_status_id = book_status.book_status_id";
 	private final static String SET_STATUS = "UPDATE book SET book_status_id = ? WHERE book_id = ?;";
+	private final static String CHECK_STATUS = "SELECT * from book WHERE book_id = ? AND book_status_id = 1;";
 	private final static String ADD_BOOK = "INSERT INTO book (book_name, author, book_status_id) VALUES(?,?,?)";
 	private final static String BOOK_ID = "book_id";
 	private final static String BOOK_NAME = "book_name";
@@ -141,6 +142,27 @@ public class BookSQLDAO implements BookDAO {
 			return false;
 		} catch (SQLException e) {
 			throw new DAOException("Add book sql exception.", e);
+		} catch (ConnectionSQLException e) {
+			throw new DAOException("Smthg wrong with connection.", e);
+		}
+	}
+
+	@Override
+	public boolean isAvailiableStatus(int bookId) throws DAOException {
+		Connection connection = null;
+		PreparedStatement pSt = null;
+		ResultSet rs = null;
+		try {
+			connection = ConnectionSQLDAO.getInstance().takeConnection();
+			pSt = connection.prepareStatement(CHECK_STATUS);
+			pSt.setInt(1, bookId);
+			rs = pSt.executeQuery();
+			if (rs.next()) {
+				return true;
+			}
+			return false;
+		} catch (SQLException e) {
+			throw new DAOException("Update book status sql exception.", e);
 		} catch (ConnectionSQLException e) {
 			throw new DAOException("Smthg wrong with connection.", e);
 		}

@@ -19,7 +19,7 @@ import com.epam.library.dao.interfaces.UserDAO;
  */
 public class UserSQLDAO implements UserDAO {
 	private final static String SIGN_IN = "SELECT user_id, name, second_name, login, password, acc_level, access_level FROM user LEFT JOIN access_level ON user.acc_level = access_level.access_level_id WHERE login=? and password=?";
-	private final static String SIGN_UPDATE = "SELECT user_id, name, second_name, login, password, acc_level, access_level FROM user LEFT JOIN access_level ON user.acc_level = access_level.access_level_id WHERE user_id=?";
+	private final static String SIGN_UPDATE = "SELECT user_id, name, second_name, login, password, acc_level, access_level FROM user LEFT JOIN access_level ON user.acc_level = access_level.access_level_id WHERE user_id=? and password= ?";
 	private final static String REGISTER = "INSERT INTO user (`name`, `second_name`, `login`, `password`, `acc_level`) VALUES(?,?,?,?,2)";
 	private final static String GET_ALL_USERS = "SELECT user_id, name, second_name, login, password, acc_level, access_level FROM user LEFT JOIN access_level ON user.acc_level = access_level.access_level_id";
 	private final static String UPDATE_USER_INFO = "UPDATE user SET name = ?, second_name= ?, login= ? WHERE user_id= ? and password= ?;";
@@ -161,10 +161,13 @@ public class UserSQLDAO implements UserDAO {
 			if (access > 0) {
 				pSt = connection.prepareStatement(SIGN_UPDATE);
 				pSt.setInt(1, userId);
+				pSt.setString(2, password);
 				rs = pSt.executeQuery();
 				if (!rs.next()) {
 					return null;
 				}
+			} else {
+				return null;
 			}
 			User user = new User();
 			user.setUserId(rs.getInt(USER_ID));

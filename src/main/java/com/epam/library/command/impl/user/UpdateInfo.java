@@ -41,5 +41,4 @@ public class UpdateInfo implements Command {
 		}
 		return user;
 	}
-
 }

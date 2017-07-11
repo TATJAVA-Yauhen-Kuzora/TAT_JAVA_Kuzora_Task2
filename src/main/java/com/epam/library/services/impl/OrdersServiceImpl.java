@@ -47,8 +47,11 @@ public class OrdersServiceImpl implements OrdersService {
 		OrdersDAO orderDao = daoFactory.getOrdersDAOImpl();
 		BookDAO bookDao = daoFactory.getBookDAOImpl();
 		try {
-			if (bookDao.setNotAvailiableStatus(bookId))
-				return orderDao.addOrder(userId, bookId);
+			if (bookDao.isAvailiableStatus(bookId)) {
+				if (bookDao.setNotAvailiableStatus(bookId)) {
+					return orderDao.addOrder(userId, bookId);
+				}
+			}
 			return false;
 		} catch (DAOException e) {
 			throw new ServiceException(e.getMessage(), e);

@@ -41,7 +41,7 @@ public class DataProviderControllerTest {
 	public Object[][] positiveUpdateUserInfo() { //
 		return new Object[][] { //
 				new Object[] { "testLogin2", "Update_user_info|name|secondName|testLogin2|12|111" }, //
-				new Object[] { "testLogin2", "Update_user_info|name|secondName|testLogin2|12|11" }, //
+				new Object[] { null, "Update_user_info|name|secondName|testLogin2|12|11" }, //
 		};
 	}
 
@@ -50,17 +50,15 @@ public class DataProviderControllerTest {
 		return new Object[][] { //
 				new Object[] { "testLogin3", "Update_user5inf4|name|secondName|testLogin4|12" }, //
 				new Object[] { "testLogin3", "Update_user_info|name|secondName|12" }, //
-				new Object[] { "testLogin3", "Update_user_info|name|secondName|testLogin4|12.54" }, //
+				new Object[] { "testLogin3", "Update_user_info|name|secondName|testLogin4|%12.54|43" }, //
 		};
 	}
 
 	@DataProvider
 	public Object[][] positiveChangeBookStatus() { //
 		return new Object[][] { //
-				new Object[] { "Change_book_status|2|1" }, //
-				new Object[] { "Change_book_status|1|1" }, //
-				new Object[] { "Change_book_status|2|2" }, //
-				new Object[] { "Change_book_status|2|1" }, //
+				new Object[] { true, "Change_book_status|1|3" }, //
+				new Object[] { true, "Change_book_status|2|3" }, //
 		};
 	}
 
@@ -76,7 +74,8 @@ public class DataProviderControllerTest {
 	@DataProvider
 	public Object[][] positiveOrderBook() { //
 		return new Object[][] { //
-				new Object[] { "Order_book|7|1" }, //
+				new Object[] { true, "Order_book|7|1" }, //
+				new Object[] { false, "Order_book|7|1" }, //
 		};
 	}
 
@@ -91,8 +90,8 @@ public class DataProviderControllerTest {
 	@DataProvider
 	public Object[][] positiveConfirmOrder() { //
 		return new Object[][] { //
-				new Object[] { true, "CONFIRM_ORDER|48" }, //
-				new Object[] { false, "CONFIRM_ORDER|47" }, //
+				new Object[] { true, "CONFIRM_ORDER|62" }, //
+				new Object[] { false, "CONFIRM_ORDER|61" }, //
 		};
 	}
 
@@ -100,6 +99,25 @@ public class DataProviderControllerTest {
 	public Object[][] negativeConfirmOrder() { //
 		return new Object[][] { // F
 				new Object[] { "CONFIRM_ORD|48" }, //
+				new Object[] { "CONFIRM_ORDER|48.442" }, //
 		};
 	}
+
+	// ______________________________________________________________________________________________________
+	@DataProvider
+	public Object[][] positiveReturnOrder() { //
+		return new Object[][] { //
+				new Object[] { true, "Return_ORDER|66" }, //
+		};
+	}
+
+	@DataProvider
+	public Object[][] negativeReturnOrder() { //
+		return new Object[][] { // F
+				new Object[] { "Return_ORDER|48" }, //
+				new Object[] { "Return_ORDER|48.442" }, //
+		};
+	}
+
+	// ______________________________________________________________________________________________________
 }
