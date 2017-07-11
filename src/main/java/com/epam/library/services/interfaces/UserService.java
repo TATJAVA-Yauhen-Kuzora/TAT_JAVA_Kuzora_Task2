@@ -82,7 +82,8 @@ public interface UserService {
 	 * @throws ServiceException
 	 *             Exception type for service layer
 	 */
-	User updateUserInfo(String name, String secondName, String login, int userId) throws ServiceException;
+	User updateUserInfo(String name, String secondName, String login, int userId, String password)
+			throws ServiceException;
 
 	/**
 	 * Method banUser bans user using user id.

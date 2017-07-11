@@ -75,7 +75,7 @@ public class BookSQLDAO implements BookDAO {
 	 * Implementation of setAvailiableStatus method.
 	 */
 	@Override
-	public void setAvailiableStatus(int bookId) throws DAOException {
+	public boolean setAvailiableStatus(int bookId) throws DAOException {
 		Connection connection = null;
 		PreparedStatement pSt = null;
 		try {
@@ -85,8 +85,9 @@ public class BookSQLDAO implements BookDAO {
 			pSt.setInt(2, bookId);
 			int access = pSt.executeUpdate();
 			if (access > 0) {
-				return;
+				return true;
 			}
+			return false;
 		} catch (SQLException e) {
 			throw new DAOException("Update book status sql exception.", e);
 		} catch (ConnectionSQLException e) {
@@ -98,7 +99,7 @@ public class BookSQLDAO implements BookDAO {
 	 * Implementation of setNotAvailiableStatus method.
 	 */
 	@Override
-	public void setNotAvailiableStatus(int bookId) throws DAOException {
+	public boolean setNotAvailiableStatus(int bookId) throws DAOException {
 		Connection connection = null;
 		PreparedStatement pSt = null;
 		try {
@@ -108,8 +109,9 @@ public class BookSQLDAO implements BookDAO {
 			pSt.setInt(2, bookId);
 			int access = pSt.executeUpdate();
 			if (access > 0) {
-				return;
+				return true;
 			}
+			return false;
 		} catch (SQLException e) {
 			throw new DAOException("Update book status sql exception.", e);
 		} catch (ConnectionSQLException e) {

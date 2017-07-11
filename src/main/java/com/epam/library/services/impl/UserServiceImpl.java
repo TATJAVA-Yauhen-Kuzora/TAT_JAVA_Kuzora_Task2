@@ -24,7 +24,7 @@ public class UserServiceImpl implements UserService {
 	public User singIn(String login, String password) throws ServiceException {
 		// validator
 		DAOFactory daoFactory = DAOFactory.getInstance();
-		UserDAO dao = daoFactory.getUserDAO();
+		UserDAO dao = daoFactory.getUserDAOImpl();
 		User user = null;
 		try {
 			user = dao.signIn(login, password);
@@ -55,7 +55,7 @@ public class UserServiceImpl implements UserService {
 	public User register(String name, String secondName, String login, String password) throws ServiceException {
 		// validator logina и пароля
 		DAOFactory daoFactory = DAOFactory.getInstance();
-		UserDAO dao = daoFactory.getUserDAO();
+		UserDAO dao = daoFactory.getUserDAOImpl();
 		User user = null;
 		try {
 			user = dao.register(name, secondName, login, password);
@@ -73,13 +73,14 @@ public class UserServiceImpl implements UserService {
 	 * Implementation of updateUserInfo method.
 	 */
 	@Override
-	public User updateUserInfo(String name, String secondName, String login, int userId) throws ServiceException {
+	public User updateUserInfo(String name, String secondName, String login, int userId, String password)
+			throws ServiceException {
 		// validator logina и пароля
 		DAOFactory daoFactory = DAOFactory.getInstance();
-		UserDAO dao = daoFactory.getUserDAO();
+		UserDAO dao = daoFactory.getUserDAOImpl();
 		User user = null;
 		try {
-			user = dao.updateUserInfo(name, secondName, login, userId);
+			user = dao.updateUserInfo(name, secondName, login, userId, password);
 		} catch (DAOException e) {
 			throw new ServiceException(e.getMessage(), e);
 		}
@@ -93,7 +94,7 @@ public class UserServiceImpl implements UserService {
 	public ArrayList<User> viewAllUsers() throws ServiceException {
 		// validator
 		DAOFactory daoFactory = DAOFactory.getInstance();
-		UserDAO dao = daoFactory.getUserDAO();
+		UserDAO dao = daoFactory.getUserDAOImpl();
 		ArrayList<User> users = new ArrayList<>();
 		try {
 			users = dao.getAllUsers();
@@ -110,7 +111,7 @@ public class UserServiceImpl implements UserService {
 	public void banUser(int userId) throws ServiceException {
 		// validator userId
 		DAOFactory daoFactory = DAOFactory.getInstance();
-		UserDAO dao = daoFactory.getUserDAO();
+		UserDAO dao = daoFactory.getUserDAOImpl();
 		try {
 			dao.banUser(userId);
 		} catch (DAOException e) {
@@ -125,7 +126,7 @@ public class UserServiceImpl implements UserService {
 	public void unBanUser(int userId) throws ServiceException {
 		// validator userId
 		DAOFactory daoFactory = DAOFactory.getInstance();
-		UserDAO dao = daoFactory.getUserDAO();
+		UserDAO dao = daoFactory.getUserDAOImpl();
 		try {
 			dao.unBanUser(userId);
 		} catch (DAOException e) {
@@ -140,7 +141,7 @@ public class UserServiceImpl implements UserService {
 	public void giveAdminForUser(int userId) throws ServiceException {
 		// validator userId
 		DAOFactory daoFactory = DAOFactory.getInstance();
-		UserDAO dao = daoFactory.getUserDAO();
+		UserDAO dao = daoFactory.getUserDAOImpl();
 		try {
 			dao.giveAdminForUser(userId);
 		} catch (DAOException e) {

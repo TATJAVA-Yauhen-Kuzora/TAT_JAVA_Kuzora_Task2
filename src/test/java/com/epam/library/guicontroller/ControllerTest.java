@@ -105,12 +105,35 @@ public class ControllerTest {
 	public void tst_method_execute_orderBook(String request) {
 		try {
 			setChosenAccessLevelToUser(userStatusUser);
-			
-			
 			Assert.assertTrue((Boolean) controller.executeTask(request));
 		} catch (CommandException e) {
 			fail();
 		}
+	}
+
+	@Test(groups = { "smoke", "exceptions",
+			"negative" }, dataProvider = "negativeOrderBook", dataProviderClass = DataProviderControllerTest.class, expectedExceptions = CommandException.class)
+	public void tst_method_exception_orderBook(String request) throws CommandException {
+		setChosenAccessLevelToUser(userStatusAdmin);
+		controller.executeTask(request);
+	}
+
+	@Test(groups = { "smoke", "methods",
+			"positive" }, dataProvider = "positiveConfirmOrder", dataProviderClass = DataProviderControllerTest.class)
+	public void tst_method_execute_confirmOrder(String request) {
+		try {
+			setChosenAccessLevelToUser(userStatusAdmin);
+			Assert.assertTrue((Boolean) controller.executeTask(request));
+		} catch (CommandException e) {
+			fail();
+		}
+	}
+
+	@Test(groups = { "smoke", "exceptions",
+			"negative" }, dataProvider = "negativeConfirmOrder", dataProviderClass = DataProviderControllerTest.class, expectedExceptions = CommandException.class)
+	public void tst_method_exception_confirmOrder(String request) throws CommandException {
+		setChosenAccessLevelToUser(userStatusAdmin);
+		controller.executeTask(request);
 	}
 
 	private void setChosenAccessLevelToUser(int accessId) {

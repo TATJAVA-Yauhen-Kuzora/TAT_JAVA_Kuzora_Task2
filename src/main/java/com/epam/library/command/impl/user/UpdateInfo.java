@@ -27,12 +27,13 @@ public class UpdateInfo implements Command {
 	 */
 	@Override
 	public Object execute(String... request) throws CommandException {
-		if (request.length != 4)
+		if (request.length != 5)
 			throw new CommandException("Wrong count of arguments for updating.");
 		User user = null;
 		UserService userService = ServiceFactory.getInstance().getUserService();
 		try {
-			user = userService.updateUserInfo(request[0], request[1], request[2], Integer.parseInt(request[3]));
+			user = userService.updateUserInfo(request[0], request[1], request[2], Integer.parseInt(request[3]),
+					request[4]);
 		} catch (ServiceException e) {
 			throw new CommandException(e.getMessage(), e);
 		} catch (NumberFormatException e) {

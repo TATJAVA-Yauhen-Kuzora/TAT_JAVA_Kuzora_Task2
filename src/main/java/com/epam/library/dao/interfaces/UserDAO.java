@@ -68,11 +68,12 @@ public interface UserDAO {
 	 *            login of user
 	 * @param userId
 	 *            unique user id
+	 * @param password 
 	 * @return object of User Class
 	 * @throws DAOException
 	 *             Exception type for dao layer
 	 */
-	User updateUserInfo(String name, String secondName, String login, int userId) throws DAOException;
+	User updateUserInfo(String name, String secondName, String login, int userId, String password) throws DAOException;
 
 	/**
 	 * Method banUser bans user using user id.

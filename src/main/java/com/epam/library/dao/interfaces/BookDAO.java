@@ -18,7 +18,7 @@ public interface BookDAO {
 	/**
 	 * Method getAllBooks returns list of all books.
 	 * 
-	 * @return object of ArrayList<{@link User}> type.
+	 * @return object of ArrayList<{@link User}> type
 	 * @throws DAOException
 	 *             Exception type for dao layer
 	 */
@@ -29,20 +29,22 @@ public interface BookDAO {
 	 * 
 	 * @param bookId
 	 *            value of int type as book id from library.book.book_id
+	 * @return boolean value as result of successfully execution
 	 * @throws DAOException
 	 *             Exception type for dao layer
 	 */
-	void setAvailiableStatus(int bookId) throws DAOException;
+	boolean setAvailiableStatus(int bookId) throws DAOException;
 
 	/**
 	 * Method setNotAvailiableStatus changes book status on Not available.
 	 * 
 	 * @param bookId
 	 *            value of int type as book id from library.book.book_id
+	 * @return boolean value as result of successfully execution
 	 * @throws DAOException
 	 *             Exception type for dao layer
 	 */
-	void setNotAvailiableStatus(int bookId) throws DAOException;
+	boolean setNotAvailiableStatus(int bookId) throws DAOException;
 
 	/**
 	 * Method addBookToLibrary adds book to library's books.

@@ -25,7 +25,7 @@ public class OrdersServiceImpl implements OrdersService {
 	public ArrayList<Order> getAllOrders() throws ServiceException {
 		// validator
 		DAOFactory daoFactory = DAOFactory.getInstance();
-		OrdersDAO dao = daoFactory.getOrdersImpl();
+		OrdersDAO dao = daoFactory.getOrdersDAOImpl();
 		ArrayList<Order> orders = new ArrayList<>();
 		try {
 			orders = dao.getAllOrders();
@@ -42,11 +42,11 @@ public class OrdersServiceImpl implements OrdersService {
 	public void addOrdersInHistory(int userId, int bookId) throws ServiceException {
 		// validator
 		DAOFactory daoFactory = DAOFactory.getInstance();
-		OrdersDAO orderDao = daoFactory.getOrdersImpl();
-		BookDAO bookDao = daoFactory.getBookDAO();
+		OrdersDAO orderDao = daoFactory.getOrdersDAOImpl();
+		BookDAO bookDao = daoFactory.getBookDAOImpl();
 		try {
-			orderDao.addOrder(userId, bookId);
-			bookDao.setNotAvailiableStatus(bookId);
+			if (bookDao.setNotAvailiableStatus(bookId))
+				orderDao.addOrder(userId, bookId);
 		} catch (DAOException e) {
 			throw new ServiceException(e.getMessage(), e);
 		}
@@ -59,7 +59,7 @@ public class OrdersServiceImpl implements OrdersService {
 	public void sendOrder(int orderId) throws ServiceException {
 		// validator
 		DAOFactory daoFactory = DAOFactory.getInstance();
-		OrdersDAO dao = daoFactory.getOrdersImpl();
+		OrdersDAO dao = daoFactory.getOrdersDAOImpl();
 		try {
 			dao.confirmOrder(orderId);
 		} catch (DAOException e) {
@@ -74,11 +74,11 @@ public class OrdersServiceImpl implements OrdersService {
 	public void returnOrder(int orderId, int bookId) throws ServiceException {
 		// validator
 		DAOFactory daoFactory = DAOFactory.getInstance();
-		OrdersDAO orderDao = daoFactory.getOrdersImpl();
-		BookDAO bookDao = daoFactory.getBookDAO();
+		OrdersDAO orderDao = daoFactory.getOrdersDAOImpl();
+		BookDAO bookDao = daoFactory.getBookDAOImpl();
 		try {
-			orderDao.confirmReturn(orderId);
-			bookDao.setAvailiableStatus(bookId);
+			if (bookDao.setAvailiableStatus(bookId))
+				orderDao.confirmReturn(orderId);
 		} catch (DAOException e) {
 			throw new ServiceException(e.getMessage(), e);
 		}

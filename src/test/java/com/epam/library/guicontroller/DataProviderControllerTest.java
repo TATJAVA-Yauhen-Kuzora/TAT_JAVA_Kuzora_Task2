@@ -75,10 +75,29 @@ public class DataProviderControllerTest {
 	@DataProvider
 	public Object[][] positiveOrderBook() { //
 		return new Object[][] { //
-				new Object[] { "Change_book_status|2|1" }, //
-				new Object[] { "Change_book_status|1|1" }, //
-				new Object[] { "Change_book_status|2|2" }, //
-				new Object[] { "Change_book_status|2|1" }, //
+				new Object[] { "Order_book|7|1" }, //
+		};
+	}
+
+	@DataProvider
+	public Object[][] negativeOrderBook() { //
+		return new Object[][] { //
+				new Object[] { "Order_boo|7|2" }, //
+				new Object[] { "Order_book|7|10.5" }, //
+		};
+	}
+
+	@DataProvider
+	public Object[][] positiveConfirmOrder() { //
+		return new Object[][] { //
+				new Object[] { "CONFIRM_ORDER|48" }, //
+		};
+	}
+
+	@DataProvider
+	public Object[][] negativeConfirmOrder() { //
+		return new Object[][] { //
+				new Object[] { "CONFIRM_ORDER|48" }, //
 		};
 	}
 }

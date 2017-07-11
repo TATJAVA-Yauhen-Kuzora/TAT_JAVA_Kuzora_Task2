@@ -25,7 +25,7 @@ public class SendOrder implements Command {
 	@Override
 	public Object execute(String... request) throws CommandException {
 		if (request.length != 1)
-			throw new CommandException("Wrong count of arguments for confirm order.");
+			throw new CommandException("Wrong count of arguments for send order.");
 		OrdersService bookService = ServiceFactory.getInstance().getOrdersService();
 		try {
 			int orderId = Integer.parseInt(request[0]);

@@ -22,9 +22,9 @@ public class UserSQLDAO implements UserDAO {
 	private final static String SIGN_UPDATE = "SELECT user_id, name, second_name, login, password, acc_level, access_level FROM user LEFT JOIN access_level ON user.acc_level = access_level.access_level_id WHERE user_id=?";
 	private final static String REGISTER = "INSERT INTO user (`name`, `second_name`, `login`, `password`, `acc_level`) VALUES(?,?,?,?,2)";
 	private final static String GET_ALL_USERS = "SELECT user_id, name, second_name, login, password, acc_level, access_level FROM user LEFT JOIN access_level ON user.acc_level = access_level.access_level_id";
-	private final static String UPDATE_USER_INFO = "UPDATE user SET name = ?, second_name= ?, login= ? WHERE user_id= ?;";
-	private final static String BAN_USER = "UPDATE user SET acc_level= 1 WHERE user_id= ?;";
-	private final static String UNBAN_USER = "UPDATE user SET acc_level= 2 WHERE user_id= ?;";
+	private final static String UPDATE_USER_INFO = "UPDATE user SET name = ?, second_name= ?, login= ? WHERE user_id= ? and password= ?;";
+	private final static String BAN_USER = "UPDATE user SET acc_level= 1 WHERE user_id= ? and acc_level<4;";
+	private final static String UNBAN_USER = "UPDATE user SET acc_level= 2 WHERE user_id= ? and acc_level<4;";
 	private final static String GIVE_ADMIN_ACCESS_FOR_USER = "UPDATE user SET acc_level= 3 WHERE user_id= ?;";
 	private final static String USER_ID = "user_id";
 	private final static String USER_NAME = "name";
@@ -144,7 +144,8 @@ public class UserSQLDAO implements UserDAO {
 	 * Implementation of updateUserInfo method.
 	 */
 	@Override
-	public User updateUserInfo(String name, String secondName, String login, int userId) throws DAOException {
+	public User updateUserInfo(String name, String secondName, String login, int userId, String password)
+			throws DAOException {
 		ResultSet rs = null;
 		Connection connection = null;
 		PreparedStatement pSt = null;
@@ -155,6 +156,7 @@ public class UserSQLDAO implements UserDAO {
 			pSt.setString(2, secondName);
 			pSt.setString(3, login);
 			pSt.setInt(4, userId);
+			pSt.setString(5, password);
 			int access = pSt.executeUpdate();
 			if (access > 0) {
 				pSt = connection.prepareStatement(SIGN_UPDATE);

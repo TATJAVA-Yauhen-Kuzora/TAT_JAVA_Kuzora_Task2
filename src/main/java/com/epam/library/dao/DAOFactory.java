@@ -6,8 +6,6 @@ import com.epam.library.dao.impl.UserSQLDAO;
 import com.epam.library.dao.interfaces.BookDAO;
 import com.epam.library.dao.interfaces.OrdersDAO;
 import com.epam.library.dao.interfaces.UserDAO;
-import com.epam.library.services.ServiceFactory;
-import com.epam.library.services.interfaces.UserService;
 
 /**
  * Singleton Class {@link DAOFactory}.
@@ -42,21 +40,21 @@ public class DAOFactory {
 	/**
 	 * @return the sqlUserImpl as object of {@link UserDAO} type
 	 */
-	public UserDAO getUserDAO() {
+	public UserDAO getUserDAOImpl() {
 		return sqlUserImpl;
 	}
 
 	/**
 	 * @return the sqlBookImpl as object of {@link BookDAO} type
 	 */
-	public BookDAO getBookDAO() {
+	public BookDAO getBookDAOImpl() {
 		return sqlBookImpl;
 	}
 
 	/**
 	 * @return the sqlOrdersImpl as object of {@link OrdersDAO} type
 	 */
-	public OrdersDAO getOrdersImpl() {
+	public OrdersDAO getOrdersDAOImpl() {
 		return sqlOrdersImpl;
 	}
 
