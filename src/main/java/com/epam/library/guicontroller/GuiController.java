@@ -172,9 +172,9 @@ public final class GuiController extends Controller {
 					exceprtionLabel.setText(LabelMessage.PASSWORD_ETT.getMessage());
 				}
 			} else {
-				sessionUser = (User) executeTask(
-						"Update_user_info" + "|" + editNameField.getText() + "|" + editSecondNameField.getText() + "|"
-								+ editLoginField.getText() + "|" + sessionUser.getUserId());
+				sessionUser = (User) executeTask("Update_user_info" + "|" + editNameField.getText() + "|"
+						+ editSecondNameField.getText() + "|" + editLoginField.getText() + "|" + sessionUser.getUserId()
+						+ "|" + sessionUser.getPassword());
 				editNameField.setText(sessionUser.getName());
 				editSecondNameField.setText(sessionUser.getSecondName());
 				editLoginField.setText(sessionUser.getLogin());
