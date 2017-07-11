@@ -29,8 +29,8 @@ public class GiveAdminForUser implements Command {
 		UserService userService = ServiceFactory.getInstance().getUserService();
 		try {
 			int userId = Integer.parseInt(request[0]);
-			userService.giveAdminForUser(userId);
-			return true;
+			boolean resultOfExecution = userService.giveAdminForUser(userId);
+			return resultOfExecution;
 		} catch (ServiceException e) {
 			throw new CommandException(e.getMessage(), e);
 		} catch (NumberFormatException e) {

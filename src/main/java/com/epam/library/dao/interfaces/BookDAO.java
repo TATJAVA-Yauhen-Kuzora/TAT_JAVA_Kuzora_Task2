@@ -56,8 +56,9 @@ public interface BookDAO {
 	 * @param bookStatusId
 	 *            value of int type as book status id from
 	 *            library.book_status.book_status_id
+	 * @return 
 	 * @throws DAOException
 	 *             Exception type for dao layer
 	 */
-	void addBookToLibrary(String bookName, String author, int bookStatusId) throws DAOException;
+	boolean addBookToLibrary(String bookName, String author, int bookStatusId) throws DAOException;
 }

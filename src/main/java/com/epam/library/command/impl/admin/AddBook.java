@@ -31,8 +31,8 @@ public class AddBook implements Command {
 			String bookName = request[0];
 			String author = request[1];
 			int bookStatusId = Integer.parseInt(request[2]);
-			bookService.addBookToLibrary(bookName, author, bookStatusId);
-			return true;
+			boolean resultOfExecution = bookService.addBookToLibrary(bookName, author, bookStatusId);
+			return resultOfExecution;
 		} catch (ServiceException e) {
 			throw new CommandException(e.getMessage(), e);
 		} catch (NumberFormatException e) {

@@ -90,28 +90,31 @@ public interface UserService {
 	 * 
 	 * @param userId
 	 *            unique user id
+	 * @return 
 	 * @throws ServiceException
 	 *             Exception type for service layer
 	 */
-	void banUser(int userId) throws ServiceException;
+	boolean banUser(int userId) throws ServiceException;
 
 	/**
 	 * Method unBanUser unbans user using user id.
 	 * 
 	 * @param userId
 	 *            unique user id
+	 * @return 
 	 * @throws ServiceException
 	 *             Exception type for service layer
 	 */
-	void unBanUser(int userId) throws ServiceException;
+	boolean unBanUser(int userId) throws ServiceException;
 
 	/**
 	 * Method giveAdminForUser gives user admin level using user id.
 	 * 
 	 * @param userId
 	 *            unique user id
+	 * @return 
 	 * @throws ServiceException
 	 *             Exception type for service layer
 	 */
-	void giveAdminForUser(int userId) throws ServiceException;
+	boolean giveAdminForUser(int userId) throws ServiceException;
 }

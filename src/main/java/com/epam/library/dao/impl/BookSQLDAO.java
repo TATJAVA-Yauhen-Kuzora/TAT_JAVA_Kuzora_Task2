@@ -121,9 +121,11 @@ public class BookSQLDAO implements BookDAO {
 
 	/**
 	 * Implementation of addBookToLibrary method.
+	 * 
+	 * @return
 	 */
 	@Override
-	public void addBookToLibrary(String bookName, String author, int bookStatusId) throws DAOException {
+	public boolean addBookToLibrary(String bookName, String author, int bookStatusId) throws DAOException {
 		Connection connection = null;
 		PreparedStatement pSt = null;
 		try {
@@ -134,8 +136,9 @@ public class BookSQLDAO implements BookDAO {
 			pSt.setInt(3, bookStatusId);
 			int access = pSt.executeUpdate();
 			if (access > 0) {
-				return;
+				return true;
 			}
+			return false;
 		} catch (SQLException e) {
 			throw new DAOException("Add book sql exception.", e);
 		} catch (ConnectionSQLException e) {

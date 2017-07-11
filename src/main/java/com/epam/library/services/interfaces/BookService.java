@@ -32,10 +32,11 @@ public interface BookService {
 	 *            library.book_status.book_status_id
 	 * @param bookId
 	 *            value of int type as book id from library.book.book_id
+	 * @return 
 	 * @throws ServiceException
 	 *             Exception type for service layer
 	 */
-	void changeBookStatus(int bookStatusAvailiable, int bookId) throws ServiceException;
+	boolean changeBookStatus(int bookStatusAvailiable, int bookId) throws ServiceException;
 
 	/**
 	 * Method addBookToLibrary adds book to library's books.
@@ -47,8 +48,9 @@ public interface BookService {
 	 * @param bookStatusId
 	 *            value of int type as book status id from
 	 *            library.book_status.book_status_id
+	 * @return 
 	 * @throws ServiceException
 	 *             Exception type for service layer
 	 */
-	void addBookToLibrary(String bookName, String author, int bookStatusId) throws ServiceException;
+	boolean addBookToLibrary(String bookName, String author, int bookStatusId) throws ServiceException;
 }

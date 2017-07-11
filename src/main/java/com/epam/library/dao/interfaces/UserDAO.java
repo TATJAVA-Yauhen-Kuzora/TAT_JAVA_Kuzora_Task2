@@ -80,28 +80,31 @@ public interface UserDAO {
 	 * 
 	 * @param userId
 	 *            unique user id
+	 * @return 
 	 * @throws DAOException
 	 *             Exception type for dao layer
 	 */
-	void banUser(int userId) throws DAOException;
+	boolean banUser(int userId) throws DAOException;
 
 	/**
 	 * Method unBanUser unbans user using user id.
 	 * 
 	 * @param userId
 	 *            unique user id
+	 * @return 
 	 * @throws DAOException
 	 *             Exception type for dao layer
 	 */
-	void unBanUser(int userId) throws DAOException;
+	boolean unBanUser(int userId) throws DAOException;
 
 	/**
 	 * Method giveAdminForUser gives user admin level using user id.
 	 * 
 	 * @param userId
 	 *            unique user id
+	 * @return 
 	 * @throws DAOException
 	 *             Exception type for dao layer
 	 */
-	void giveAdminForUser(int userId) throws DAOException;
+	boolean giveAdminForUser(int userId) throws DAOException;
 }

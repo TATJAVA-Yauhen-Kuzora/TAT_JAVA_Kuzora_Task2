@@ -186,9 +186,11 @@ public class UserSQLDAO implements UserDAO {
 
 	/**
 	 * Implementation of banUser method.
+	 * 
+	 * @return
 	 */
 	@Override
-	public void banUser(int UserId) throws DAOException {
+	public boolean banUser(int UserId) throws DAOException {
 		Connection connection = null;
 		PreparedStatement pSt = null;
 		try {
@@ -197,7 +199,9 @@ public class UserSQLDAO implements UserDAO {
 			pSt.setInt(1, UserId);
 			int access = pSt.executeUpdate();
 			if (access > 0) {
+				return true;
 			}
+			return false;
 		} catch (SQLException e) {
 			throw new DAOException("Ban user sql exception.", e);
 		} catch (ConnectionSQLException e) {
@@ -207,9 +211,11 @@ public class UserSQLDAO implements UserDAO {
 
 	/**
 	 * Implementation of unBanUser method.
+	 * 
+	 * @return
 	 */
 	@Override
-	public void unBanUser(int UserId) throws DAOException {
+	public boolean unBanUser(int UserId) throws DAOException {
 		Connection connection = null;
 		PreparedStatement pSt = null;
 		try {
@@ -218,7 +224,9 @@ public class UserSQLDAO implements UserDAO {
 			pSt.setInt(1, UserId);
 			int access = pSt.executeUpdate();
 			if (access > 0) {
+				return true;
 			}
+			return false;
 		} catch (SQLException e) {
 			throw new DAOException("Unban user sql exception.", e);
 		} catch (ConnectionSQLException e) {
@@ -228,9 +236,11 @@ public class UserSQLDAO implements UserDAO {
 
 	/**
 	 * Implementation of giveAdminForUser method.
+	 * 
+	 * @return
 	 */
 	@Override
-	public void giveAdminForUser(int UserId) throws DAOException {
+	public boolean giveAdminForUser(int UserId) throws DAOException {
 		Connection connection = null;
 		PreparedStatement pSt = null;
 		try {
@@ -239,7 +249,9 @@ public class UserSQLDAO implements UserDAO {
 			pSt.setInt(1, UserId);
 			int access = pSt.executeUpdate();
 			if (access > 0) {
+				return true;
 			}
+			return false;
 		} catch (SQLException e) {
 			throw new DAOException("GiveAdmin user sql exception.", e);
 		} catch (ConnectionSQLException e) {

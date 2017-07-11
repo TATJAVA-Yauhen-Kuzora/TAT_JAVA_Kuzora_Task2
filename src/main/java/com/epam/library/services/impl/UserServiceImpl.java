@@ -106,14 +106,15 @@ public class UserServiceImpl implements UserService {
 
 	/**
 	 * Implementation of banUser method.
+	 * @return 
 	 */
 	@Override
-	public void banUser(int userId) throws ServiceException {
+	public boolean banUser(int userId) throws ServiceException {
 		// validator userId
 		DAOFactory daoFactory = DAOFactory.getInstance();
 		UserDAO dao = daoFactory.getUserDAOImpl();
 		try {
-			dao.banUser(userId);
+			return dao.banUser(userId);
 		} catch (DAOException e) {
 			throw new ServiceException(e.getMessage(), e);
 		}
@@ -121,14 +122,15 @@ public class UserServiceImpl implements UserService {
 
 	/**
 	 * Implementation of unBanUser method.
+	 * @return 
 	 */
 	@Override
-	public void unBanUser(int userId) throws ServiceException {
+	public boolean unBanUser(int userId) throws ServiceException {
 		// validator userId
 		DAOFactory daoFactory = DAOFactory.getInstance();
 		UserDAO dao = daoFactory.getUserDAOImpl();
 		try {
-			dao.unBanUser(userId);
+			return dao.unBanUser(userId);
 		} catch (DAOException e) {
 			throw new ServiceException(e.getMessage(), e);
 		}
@@ -136,14 +138,15 @@ public class UserServiceImpl implements UserService {
 
 	/**
 	 * Implementation of giveAdminForUser method.
+	 * @return 
 	 */
 	@Override
-	public void giveAdminForUser(int userId) throws ServiceException {
+	public boolean giveAdminForUser(int userId) throws ServiceException {
 		// validator userId
 		DAOFactory daoFactory = DAOFactory.getInstance();
 		UserDAO dao = daoFactory.getUserDAOImpl();
 		try {
-			dao.giveAdminForUser(userId);
+			return dao.giveAdminForUser(userId);
 		} catch (DAOException e) {
 			throw new ServiceException(e.getMessage(), e);
 		}

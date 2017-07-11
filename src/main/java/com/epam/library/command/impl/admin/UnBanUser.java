@@ -32,8 +32,8 @@ public class UnBanUser implements Command {
 		UserService userService = ServiceFactory.getInstance().getUserService();
 		try {
 			int userId = Integer.parseInt(request[0]);
-			userService.unBanUser(userId);
-			return true;
+			boolean resultOfExecution = userService.unBanUser(userId);
+			return resultOfExecution;
 		} catch (ServiceException e) {
 			throw new CommandException(e.getMessage(), e);
 		} catch (NumberFormatException e) {

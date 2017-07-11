@@ -36,17 +36,19 @@ public class BookServiceImpl implements BookService {
 
 	/**
 	 * Implementation of changeBookStatus method.
+	 * 
+	 * @return
 	 */
 	@Override
-	public void changeBookStatus(int bookStatusAvailiable, int bookId) throws ServiceException {
+	public boolean changeBookStatus(int bookStatusAvailiable, int bookId) throws ServiceException {
 		// validator
 		DAOFactory daoFactory = DAOFactory.getInstance();
 		BookDAO dao = daoFactory.getBookDAOImpl();
 		try {
 			if (bookStatusAvailiable == 1) {
-				dao.setNotAvailiableStatus(bookId);
+				return dao.setNotAvailiableStatus(bookId);
 			} else {
-				dao.setAvailiableStatus(bookId);
+				return dao.setAvailiableStatus(bookId);
 			}
 		} catch (DAOException e) {
 			throw new ServiceException(e.getMessage(), e);
@@ -55,14 +57,16 @@ public class BookServiceImpl implements BookService {
 
 	/**
 	 * Implementation of addBookToLibrary method.
+	 * 
+	 * @return
 	 */
 	@Override
-	public void addBookToLibrary(String bookName, String author, int bookStatusId) throws ServiceException {
+	public boolean addBookToLibrary(String bookName, String author, int bookStatusId) throws ServiceException {
 		// validator
 		DAOFactory daoFactory = DAOFactory.getInstance();
 		BookDAO dao = daoFactory.getBookDAOImpl();
 		try {
-			dao.addBookToLibrary(bookName, author, bookStatusId);
+			return dao.addBookToLibrary(bookName, author, bookStatusId);
 		} catch (DAOException e) {
 			throw new ServiceException(e.getMessage(), e);
 		}

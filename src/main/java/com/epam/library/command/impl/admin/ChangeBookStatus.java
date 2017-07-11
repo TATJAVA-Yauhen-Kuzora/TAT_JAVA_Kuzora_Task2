@@ -31,8 +31,8 @@ public class ChangeBookStatus implements Command {
 		try {
 			int bookStatus = Integer.parseInt(request[0]);
 			int bookId = Integer.parseInt(request[1]);
-			bookService.changeBookStatus(bookStatus, bookId);
-			return true;
+			boolean resultOfExecution = bookService.changeBookStatus(bookStatus, bookId);
+			return resultOfExecution;
 		} catch (ServiceException e) {
 			throw new CommandException(e.getMessage(), e);
 		} catch (NumberFormatException e) {
