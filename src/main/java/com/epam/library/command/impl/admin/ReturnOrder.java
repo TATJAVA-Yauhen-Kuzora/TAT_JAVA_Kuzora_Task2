@@ -24,12 +24,13 @@ public class ReturnOrder implements Command {
 	 */
 	@Override
 	public Object execute(String... request) throws CommandException {
-		if (request.length != 1)
+		if (request.length != 2)
 			throw new CommandException("Wrong count of arguments for return order.");
 		OrdersService bookService = ServiceFactory.getInstance().getOrdersService();
 		try {
 			int orderId = Integer.parseInt(request[0]);
-			bookService.returnOrder(orderId);
+			int bookId = Integer.parseInt(request[1]);
+			bookService.returnOrder(orderId, bookId);
 			return true;
 		} catch (ServiceException e) {
 			throw new CommandException(e.getMessage(), e);

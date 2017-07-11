@@ -228,11 +228,9 @@ public final class GuiController extends Controller {
 		if (book != null) {
 			if (book.getBookStatus().getBookStatusId() == bookStatusAvailable) {
 				try {
-					executeTask("CHANGE_STATUS_BOOK_FOR_BOOKING" + "|" + book.getBookStatus().getBookStatusId() + "|"
-							+ book.getBookId());
-					uploadLibrary(event);
 					executeTask("Order_book" + "|" + sessionUser.getUserId() + "|" + book.getBookId());
 					uploadOrdersList(event);
+					uploadLibrary(event);
 				} catch (CommandException e) {
 					LOG.log(Level.ERROR, "CommandException", e);
 				}
@@ -264,9 +262,7 @@ public final class GuiController extends Controller {
 		if (order != null) {
 			if (order.getOrderStatus().getOrderStatusId() == orderStatusOnHands) {
 				try {
-					executeTask("Return_ORDER" + "|" + order.getOrderId());
-					executeTask("Change_book_status" + "|" + order.getBook().getBookStatus().getBookStatusId() + "|"
-							+ order.getBook().getBookId());
+					executeTask("Return_ORDER" + "|" + order.getOrderId() + "|" + order.getBook().getBookId());
 					uploadLibrary(event);
 					uploadOrdersList(event);
 				} catch (CommandException e) {

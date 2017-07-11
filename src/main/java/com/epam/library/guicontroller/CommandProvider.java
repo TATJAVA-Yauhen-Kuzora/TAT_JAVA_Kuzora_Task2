@@ -37,7 +37,6 @@ public class CommandProvider {
 		userCommands.put(CommandName.UPDATE_USER_INFO, new UpdateInfo());
 		userCommands.put(CommandName.VIEW_ALL_BOOKS, new ViewAllBooks());
 		userCommands.put(CommandName.VIEW_ALL_ORDERS, new ViewAllOrders());
-		userCommands.put(CommandName.CHANGE_STATUS_BOOK_FOR_BOOKING, new ChangeBookStatus());
 		userCommands.put(CommandName.ORDER_BOOK, new OrderBook());
 		//
 		// Admin

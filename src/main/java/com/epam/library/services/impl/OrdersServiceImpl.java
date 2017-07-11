@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import com.epam.library.bean.Order;
 import com.epam.library.dao.DAOFactory;
 import com.epam.library.dao.exception.DAOException;
+import com.epam.library.dao.interfaces.BookDAO;
 import com.epam.library.dao.interfaces.OrdersDAO;
 import com.epam.library.services.exception.ServiceException;
 import com.epam.library.services.interfaces.OrdersService;
@@ -41,9 +42,11 @@ public class OrdersServiceImpl implements OrdersService {
 	public void addOrdersInHistory(int userId, int bookId) throws ServiceException {
 		// validator
 		DAOFactory daoFactory = DAOFactory.getInstance();
-		OrdersDAO dao = daoFactory.getOrdersImpl();
+		OrdersDAO orderDao = daoFactory.getOrdersImpl();
+		BookDAO bookDao = daoFactory.getBookDAO();
 		try {
-			dao.addOrder(userId, bookId);
+			orderDao.addOrder(userId, bookId);
+			bookDao.setNotAvailiableStatus(bookId);
 		} catch (DAOException e) {
 			throw new ServiceException(e.getMessage(), e);
 		}
@@ -68,12 +71,14 @@ public class OrdersServiceImpl implements OrdersService {
 	 * Implementation of returnOrder method.
 	 */
 	@Override
-	public void returnOrder(int orderId) throws ServiceException {
+	public void returnOrder(int orderId, int bookId) throws ServiceException {
 		// validator
 		DAOFactory daoFactory = DAOFactory.getInstance();
-		OrdersDAO dao = daoFactory.getOrdersImpl();
+		OrdersDAO orderDao = daoFactory.getOrdersImpl();
+		BookDAO bookDao = daoFactory.getBookDAO();
 		try {
-			dao.confirmReturn(orderId);
+			orderDao.confirmReturn(orderId);
+			bookDao.setAvailiableStatus(bookId);
 		} catch (DAOException e) {
 			throw new ServiceException(e.getMessage(), e);
 		}

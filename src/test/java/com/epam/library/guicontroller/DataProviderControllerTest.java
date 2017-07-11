@@ -72,4 +72,13 @@ public class DataProviderControllerTest {
 		};
 	}
 
+	@DataProvider
+	public Object[][] positiveOrderBook() { //
+		return new Object[][] { //
+				new Object[] { "Change_book_status|2|1" }, //
+				new Object[] { "Change_book_status|1|1" }, //
+				new Object[] { "Change_book_status|2|2" }, //
+				new Object[] { "Change_book_status|2|1" }, //
+		};
+	}
 }

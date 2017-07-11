@@ -52,8 +52,9 @@ public interface OrdersService {
 	 * 
 	 * @param orderId
 	 *            value of int type as order id from library.orders.oreder_id
+	 * @param bookId
 	 * @throws ServiceException
 	 *             Exception type for service layer
 	 */
-	void returnOrder(int orderId) throws ServiceException;
+	void returnOrder(int orderId, int bookId) throws ServiceException;
 }

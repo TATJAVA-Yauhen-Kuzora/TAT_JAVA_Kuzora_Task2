@@ -4,10 +4,10 @@ import org.testng.annotations.Test;
 import com.epam.library.bean.AccessLevel;
 import com.epam.library.bean.User;
 import com.epam.library.command.exception.CommandException;
-
-import junit.framework.Assert;
 import org.testng.annotations.BeforeMethod;
 import static org.testng.Assert.fail;
+
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 
 public class ControllerTest {
@@ -98,6 +98,19 @@ public class ControllerTest {
 	public void tst_method_exception_changeBookStatus(String request) throws CommandException {
 		setChosenAccessLevelToUser(userStatusAdmin);
 		controller.executeTask(request);
+	}
+
+	@Test(groups = { "smoke", "methods",
+			"positive" }, dataProvider = "positiveOrderBook", dataProviderClass = DataProviderControllerTest.class)
+	public void tst_method_execute_orderBook(String request) {
+		try {
+			setChosenAccessLevelToUser(userStatusUser);
+			
+			
+			Assert.assertTrue((Boolean) controller.executeTask(request));
+		} catch (CommandException e) {
+			fail();
+		}
 	}
 
 	private void setChosenAccessLevelToUser(int accessId) {
