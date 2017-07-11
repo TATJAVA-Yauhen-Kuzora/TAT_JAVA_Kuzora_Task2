@@ -30,8 +30,8 @@ public class OrderBook implements Command {
 		try {
 			int userId = Integer.parseInt(request[0]);
 			int bookId = Integer.parseInt(request[1]);
-			ordersService.addOrdersInHistory(userId, bookId);
-			return true;
+			boolean resultOfExecution = ordersService.addOrdersInHistory(userId, bookId);
+			return resultOfExecution;
 		} catch (ServiceException e) {
 			throw new CommandException(e.getMessage(), e);
 		} catch (NumberFormatException e) {

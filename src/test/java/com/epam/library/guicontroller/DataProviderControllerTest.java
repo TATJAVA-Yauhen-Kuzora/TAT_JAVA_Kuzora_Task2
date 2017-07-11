@@ -40,7 +40,8 @@ public class DataProviderControllerTest {
 	@DataProvider
 	public Object[][] positiveUpdateUserInfo() { //
 		return new Object[][] { //
-				new Object[] { "testLogin2", "Update_user_info|name|secondName|testLogin2|12" }, //
+				new Object[] { "testLogin2", "Update_user_info|name|secondName|testLogin2|12|111" }, //
+				new Object[] { "testLogin2", "Update_user_info|name|secondName|testLogin2|12|11" }, //
 		};
 	}
 
@@ -90,14 +91,15 @@ public class DataProviderControllerTest {
 	@DataProvider
 	public Object[][] positiveConfirmOrder() { //
 		return new Object[][] { //
-				new Object[] { "CONFIRM_ORDER|48" }, //
+				new Object[] { true, "CONFIRM_ORDER|48" }, //
+				new Object[] { false, "CONFIRM_ORDER|47" }, //
 		};
 	}
 
 	@DataProvider
 	public Object[][] negativeConfirmOrder() { //
-		return new Object[][] { //
-				new Object[] { "CONFIRM_ORDER|48" }, //
+		return new Object[][] { // F
+				new Object[] { "CONFIRM_ORD|48" }, //
 		};
 	}
 }

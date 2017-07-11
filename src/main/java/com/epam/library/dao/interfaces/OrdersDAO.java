@@ -31,28 +31,31 @@ public interface OrdersDAO {
 	 *            value of int type as user id from library.user.user_id
 	 * @param bookId
 	 *            value of int type as book id from library.book.book_id
+	 * @return 
 	 * @throws DAOException
 	 *             Exception type for dao layer
 	 */
-	void addOrder(int userId, int bookId) throws DAOException;
+	boolean addOrder(int userId, int bookId) throws DAOException;
 
 	/**
 	 * Method confirmOrder changes order status from "Booked" to "On hands".
 	 * 
 	 * @param orderId
 	 *            value of int type as order id from library.orders.oreder_id
+	 * @return 
 	 * @throws DAOException
 	 *             Exception type for service layer
 	 */
-	void confirmOrder(int orderId) throws DAOException;
+	boolean confirmOrder(int orderId) throws DAOException;
 
 	/**
 	 * Method confirmReturn changes order status from "On hands" to "Returned".
 	 * 
 	 * @param orderId
 	 *            value of int type as order id from library.orders.oreder_id
+	 * @return 
 	 * @throws DAOException
 	 *             Exception type for service layer
 	 */
-	void confirmReturn(int orderId) throws DAOException;
+	boolean confirmReturn(int orderId) throws DAOException;
 }

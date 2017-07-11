@@ -104,9 +104,11 @@ public class OrdersSQLDAO implements OrdersDAO {
 
 	/**
 	 * Implementation of addOrder method.
+	 * 
+	 * @return
 	 */
 	@Override
-	public void addOrder(int userId, int bookId) throws DAOException {
+	public boolean addOrder(int userId, int bookId) throws DAOException {
 		Connection connection = null;
 		PreparedStatement pSt = null;
 		try {
@@ -116,8 +118,9 @@ public class OrdersSQLDAO implements OrdersDAO {
 			pSt.setInt(2, userId);
 			int i = pSt.executeUpdate();
 			if (i > 0) {
-				return;
+				return true;
 			}
+			return false;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new DAOException("Add order sql exception.", e);
@@ -128,9 +131,11 @@ public class OrdersSQLDAO implements OrdersDAO {
 
 	/**
 	 * Implementation of confirmOrder method.
+	 * 
+	 * @return
 	 */
 	@Override
-	public void confirmOrder(int orderId) throws DAOException {
+	public boolean confirmOrder(int orderId) throws DAOException {
 		Connection connection = null;
 		PreparedStatement pSt = null;
 		try {
@@ -139,8 +144,9 @@ public class OrdersSQLDAO implements OrdersDAO {
 			pSt.setInt(1, orderId);
 			int access = pSt.executeUpdate();
 			if (access > 0) {
-				return;
+				return true;
 			}
+			return false;
 		} catch (SQLException e) {
 			throw new DAOException("Update order status sql exception.", e);
 		} catch (ConnectionSQLException e) {
@@ -150,9 +156,11 @@ public class OrdersSQLDAO implements OrdersDAO {
 
 	/**
 	 * Implementation of confirmReturn method.
+	 * 
+	 * @return
 	 */
 	@Override
-	public void confirmReturn(int orderId) throws DAOException {
+	public boolean confirmReturn(int orderId) throws DAOException {
 		Connection connection = null;
 		PreparedStatement pSt = null;
 		try {
@@ -161,8 +169,9 @@ public class OrdersSQLDAO implements OrdersDAO {
 			pSt.setInt(1, orderId);
 			int access = pSt.executeUpdate();
 			if (access > 0) {
-				return;
+				return true;
 			}
+			return false;
 		} catch (SQLException e) {
 			throw new DAOException("Update order status sql exception.", e);
 		} catch (ConnectionSQLException e) {

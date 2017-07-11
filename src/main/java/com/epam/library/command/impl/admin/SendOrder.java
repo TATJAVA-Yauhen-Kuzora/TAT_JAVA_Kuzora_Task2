@@ -29,8 +29,8 @@ public class SendOrder implements Command {
 		OrdersService bookService = ServiceFactory.getInstance().getOrdersService();
 		try {
 			int orderId = Integer.parseInt(request[0]);
-			bookService.sendOrder(orderId);
-			return true;
+			boolean resultOfExecution = bookService.sendOrder(orderId);
+			return resultOfExecution;
 		} catch (ServiceException e) {
 			throw new CommandException(e.getMessage(), e);
 		} catch (NumberFormatException e) {

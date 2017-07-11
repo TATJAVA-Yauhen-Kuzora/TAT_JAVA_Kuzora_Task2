@@ -120,10 +120,10 @@ public class ControllerTest {
 
 	@Test(groups = { "smoke", "methods",
 			"positive" }, dataProvider = "positiveConfirmOrder", dataProviderClass = DataProviderControllerTest.class)
-	public void tst_method_execute_confirmOrder(String request) {
+	public void tst_method_execute_confirmOrder(boolean expected, String request) {
 		try {
 			setChosenAccessLevelToUser(userStatusAdmin);
-			Assert.assertTrue((Boolean) controller.executeTask(request));
+			Assert.assertEquals(controller.executeTask(request), expected);
 		} catch (CommandException e) {
 			fail();
 		}

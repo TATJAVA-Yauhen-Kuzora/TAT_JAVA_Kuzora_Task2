@@ -30,8 +30,8 @@ public class ReturnOrder implements Command {
 		try {
 			int orderId = Integer.parseInt(request[0]);
 			int bookId = Integer.parseInt(request[1]);
-			bookService.returnOrder(orderId, bookId);
-			return true;
+			boolean resultOfExecution = bookService.returnOrder(orderId, bookId);
+			return resultOfExecution;
 		} catch (ServiceException e) {
 			throw new CommandException(e.getMessage(), e);
 		} catch (NumberFormatException e) {

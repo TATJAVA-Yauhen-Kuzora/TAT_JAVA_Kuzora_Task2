@@ -37,16 +37,19 @@ public class OrdersServiceImpl implements OrdersService {
 
 	/**
 	 * Implementation of addOrdersInHistory method.
+	 * 
+	 * @return
 	 */
 	@Override
-	public void addOrdersInHistory(int userId, int bookId) throws ServiceException {
+	public boolean addOrdersInHistory(int userId, int bookId) throws ServiceException {
 		// validator
 		DAOFactory daoFactory = DAOFactory.getInstance();
 		OrdersDAO orderDao = daoFactory.getOrdersDAOImpl();
 		BookDAO bookDao = daoFactory.getBookDAOImpl();
 		try {
 			if (bookDao.setNotAvailiableStatus(bookId))
-				orderDao.addOrder(userId, bookId);
+				return orderDao.addOrder(userId, bookId);
+			return false;
 		} catch (DAOException e) {
 			throw new ServiceException(e.getMessage(), e);
 		}
@@ -54,14 +57,16 @@ public class OrdersServiceImpl implements OrdersService {
 
 	/**
 	 * Implementation of sendOrder method.
+	 * 
+	 * @return
 	 */
 	@Override
-	public void sendOrder(int orderId) throws ServiceException {
+	public boolean sendOrder(int orderId) throws ServiceException {
 		// validator
 		DAOFactory daoFactory = DAOFactory.getInstance();
 		OrdersDAO dao = daoFactory.getOrdersDAOImpl();
 		try {
-			dao.confirmOrder(orderId);
+			return dao.confirmOrder(orderId);
 		} catch (DAOException e) {
 			throw new ServiceException(e.getMessage(), e);
 		}
@@ -69,16 +74,19 @@ public class OrdersServiceImpl implements OrdersService {
 
 	/**
 	 * Implementation of returnOrder method.
+	 * 
+	 * @return
 	 */
 	@Override
-	public void returnOrder(int orderId, int bookId) throws ServiceException {
+	public boolean returnOrder(int orderId, int bookId) throws ServiceException {
 		// validator
 		DAOFactory daoFactory = DAOFactory.getInstance();
 		OrdersDAO orderDao = daoFactory.getOrdersDAOImpl();
 		BookDAO bookDao = daoFactory.getBookDAOImpl();
 		try {
 			if (bookDao.setAvailiableStatus(bookId))
-				orderDao.confirmReturn(orderId);
+				return orderDao.confirmReturn(orderId);
+			return false;
 		} catch (DAOException e) {
 			throw new ServiceException(e.getMessage(), e);
 		}

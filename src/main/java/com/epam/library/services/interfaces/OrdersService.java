@@ -32,20 +32,22 @@ public interface OrdersService {
 	 *            value of int type as user id from library.user.user_id
 	 * @param bookId
 	 *            value of int type as book id from library.book.book_id
+	 * @return 
 	 * @throws ServiceException
 	 *             Exception type for service layer
 	 */
-	void addOrdersInHistory(int userId, int bookId) throws ServiceException;
+	boolean addOrdersInHistory(int userId, int bookId) throws ServiceException;
 
 	/**
 	 * Method sendOrder changes order status from "Booked" to "On hands".
 	 * 
 	 * @param orderId
 	 *            value of int type as order id from library.orders.oreder_id
+	 * @return 
 	 * @throws ServiceException
 	 *             Exception type for service layer
 	 */
-	void sendOrder(int orderId) throws ServiceException;
+	boolean sendOrder(int orderId) throws ServiceException;
 
 	/**
 	 * Method sendOrder changes order status from "On hands" to "Returned".
@@ -53,8 +55,9 @@ public interface OrdersService {
 	 * @param orderId
 	 *            value of int type as order id from library.orders.oreder_id
 	 * @param bookId
+	 * @return 
 	 * @throws ServiceException
 	 *             Exception type for service layer
 	 */
-	void returnOrder(int orderId, int bookId) throws ServiceException;
+	boolean returnOrder(int orderId, int bookId) throws ServiceException;
 }
