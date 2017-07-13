@@ -1,11 +1,12 @@
-/**
- * 
- */
 package com.epam.library.guicontroller;
 
 /**
- * @author Eugene13
- *
+ * Enum {@link LabelMessage }.
+ * <P>
+ * Enum LabelMessage  includes 8 members for different labels in {@link GuiController} Class.
+ * <P>
+ * <i>This Enum is a member of the
+ * {@link com.epam.library.guicontroller} package.</i>
  */
 public enum LabelMessage {
 	LOGIN("Login"), 
@@ -22,7 +23,12 @@ public enum LabelMessage {
 	LabelMessage(String message) {
 		this.message = message;
 	}
-
+	
+	/**
+	 * Getter getMessage.
+	 * 
+	 * @return message of enum member
+	 */
 	public String getMessage() {
 		return message;
 	}

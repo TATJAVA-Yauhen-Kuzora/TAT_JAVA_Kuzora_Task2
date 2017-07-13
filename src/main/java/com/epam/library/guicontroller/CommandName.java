@@ -1,11 +1,12 @@
-/**
- * 
- */
 package com.epam.library.guicontroller;
 
 /**
- * @author Eugene13
- *
+ * Enum {@link CommandName}.
+ * <P>
+ * Enum CommandName includes 16 members for different commands.
+ * <P>
+ * <i>This Enum is a member of the
+ * {@link com.epam.library.guicontroller} package.</i>
  */
 public enum CommandName {
 	LOGIN, LOGOUT, WRONGCCOMMAND, REGISTRATION, UPDATE_USER_INFO, VIEW_ALL_BOOKS, 

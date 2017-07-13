@@ -1,11 +1,7 @@
-/**
- * 
- */
 package com.epam.library.guicontroller;
 
 import java.util.HashMap;
 import java.util.Map;
-
 import com.epam.library.command.impl.guest.*;
 import com.epam.library.command.impl.user.*;
 import com.epam.library.command.exception.CommandException;
@@ -14,8 +10,12 @@ import com.epam.library.command.impl.superAdmin.*;
 import com.epam.library.command.interfaces.Command;
 
 /**
- * @author Eugene13
- *
+ * Class {@link CommandProvider}.
+ * <P>
+ * Class CommandProvider includes 1 method {@link #getCommand(int, String)}.
+ * <P>
+ * <i>This Class is a member of the {@link com.epam.library.guicontroller}
+ * package.</i>
  */
 public class CommandProvider {
 	private static final String ILLEGAL_COMMAND = "Illegal command for current user.";
@@ -58,6 +58,17 @@ public class CommandProvider {
 		return instance;
 	}
 
+	/**
+	 * Method getCommand returns object of {@link Command} type.
+	 * 
+	 * @param userLevel
+	 *            id of user access level
+	 * @param stringCommand
+	 *            commnd name in String presentation
+	 * @return object of {@link Command} type
+	 * @throws CommandException
+	 *             Exception type for controller layer
+	 */
 	public Command getCommand(int userLevel, String stringCommand) throws CommandException {
 		String com = stringCommand.replace("-", "_").toUpperCase();
 		Command command;

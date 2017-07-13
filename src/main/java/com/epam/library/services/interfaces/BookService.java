@@ -18,7 +18,7 @@ public interface BookService {
 	/**
 	 * Method getAllBooks returns list of all books.
 	 * 
-	 * @return object of ArrayList<{@link User}> type.
+	 * @return object of ArrayList<{@link User}> type
 	 * @throws ServiceException
 	 *             Exception type for service layer
 	 */
