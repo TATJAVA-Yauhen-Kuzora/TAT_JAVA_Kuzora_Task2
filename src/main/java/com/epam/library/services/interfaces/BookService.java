@@ -32,7 +32,7 @@ public interface BookService {
 	 *            library.book_status.book_status_id
 	 * @param bookId
 	 *            value of int type as book id from library.book.book_id
-	 * @return 
+	 * @return boolean value as result of executing
 	 * @throws ServiceException
 	 *             Exception type for service layer
 	 */
@@ -48,7 +48,7 @@ public interface BookService {
 	 * @param bookStatusId
 	 *            value of int type as book status id from
 	 *            library.book_status.book_status_id
-	 * @return 
+	 * @return boolean value as result of executing
 	 * @throws ServiceException
 	 *             Exception type for service layer
 	 */

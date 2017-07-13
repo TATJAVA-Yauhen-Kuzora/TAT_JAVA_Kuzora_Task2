@@ -19,7 +19,7 @@ public class SendOrder implements Command {
 	/**
 	 * Method execute for changing book status from Booked to On hands.
 	 * 
-	 * @return only true as boolean value (of course packed in Object Class), if
+	 * @return true as boolean value (of course packed in Object Class), if
 	 *         order status has been changed in data base successfully
 	 */
 	@Override

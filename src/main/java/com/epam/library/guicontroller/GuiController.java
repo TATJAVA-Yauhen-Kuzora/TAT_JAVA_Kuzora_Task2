@@ -157,7 +157,9 @@ public final class GuiController extends Controller {
 					sessionUser = (User) executeTask(
 							"Registration" + "|" + editNameField.getText() + "|" + editSecondNameField.getText() + "|"
 									+ editLoginField.getText() + "|" + editPasswordFieldOld.getText());
+					exceprtionLabel.setText(LabelMessage.BLANK.getMessage());
 					editAnchorPane.setVisible(false);
+					orderButton.setVisible(true);
 					loginField.setEditable(false);
 					passwordField.setVisible(false);
 					logButton.setText(LabelMessage.LOGOUT.getMessage());
@@ -167,7 +169,8 @@ public final class GuiController extends Controller {
 					logButton.setDisable(false);
 					listView.setDisable(false);
 					listView1.setVisible(true);
-					uploadUsersList(event);
+					uploadLibrary(event);
+					uploadOrdersList(event);
 				} else {
 					exceprtionLabel.setText(LabelMessage.PASSWORD_ETT.getMessage());
 				}

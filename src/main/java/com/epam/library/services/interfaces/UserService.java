@@ -90,7 +90,7 @@ public interface UserService {
 	 * 
 	 * @param userId
 	 *            unique user id
-	 * @return 
+	 * @return boolean value as result of executing
 	 * @throws ServiceException
 	 *             Exception type for service layer
 	 */
@@ -101,7 +101,7 @@ public interface UserService {
 	 * 
 	 * @param userId
 	 *            unique user id
-	 * @return 
+	 * @return boolean value as result of executing
 	 * @throws ServiceException
 	 *             Exception type for service layer
 	 */
@@ -112,7 +112,7 @@ public interface UserService {
 	 * 
 	 * @param userId
 	 *            unique user id
-	 * @return 
+	 * @return boolean value as result of executing
 	 * @throws ServiceException
 	 *             Exception type for service layer
 	 */

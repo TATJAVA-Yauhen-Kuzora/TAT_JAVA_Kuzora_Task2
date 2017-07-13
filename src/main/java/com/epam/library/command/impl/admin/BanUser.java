@@ -22,8 +22,8 @@ public class BanUser implements Command {
 	/**
 	 * Method execute for changing user status on Banned.
 	 * 
-	 * @return only true as boolean value (of course packed in Object Class), if
-	 *         user has been banned successfully
+	 * @return true as boolean value (of course packed in Object Class), if user
+	 *         has been banned successfully
 	 */
 	@Override
 	public Object execute(String... request) throws CommandException {

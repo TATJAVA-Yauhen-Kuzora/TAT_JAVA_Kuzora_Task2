@@ -19,8 +19,8 @@ public class GiveAdminForUser implements Command {
 	/**
 	 * Method execute for giving admin rights to user.
 	 * 
-	 * @return only true as boolean value (of course packed in Object Class), if
-	 *         user status has been changed from User on Admin successfully
+	 * @return true as boolean value (of course packed in Object Class), if user
+	 *         status has been changed from User on Admin successfully
 	 */
 	@Override
 	public Object execute(String... request) throws CommandException {

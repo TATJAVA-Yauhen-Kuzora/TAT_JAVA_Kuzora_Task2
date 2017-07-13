@@ -19,7 +19,7 @@ public class OrderBook implements Command {
 	/**
 	 * Method execute for creating new order.
 	 * 
-	 * @return only true as boolean value (of course packed in Object Class), if
+	 * @return true as boolean value (of course packed in Object Class), if
 	 *         order status has been created in data base successfully
 	 */
 	@Override

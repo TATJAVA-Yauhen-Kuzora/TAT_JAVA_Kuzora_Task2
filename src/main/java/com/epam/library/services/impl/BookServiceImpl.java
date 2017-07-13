@@ -1,5 +1,6 @@
 package com.epam.library.services.impl;
 
+import static com.epam.library.services.validator.Validator.*;
 import java.util.ArrayList;
 import com.epam.library.bean.Book;
 import com.epam.library.dao.DAOFactory;
@@ -22,7 +23,6 @@ public class BookServiceImpl implements BookService {
 	 */
 	@Override
 	public ArrayList<Book> getAllBooks() throws ServiceException {
-		// validator
 		DAOFactory daoFactory = DAOFactory.getInstance();
 		BookDAO dao = daoFactory.getBookDAOImpl();
 		ArrayList<Book> books = new ArrayList<>();
@@ -36,12 +36,10 @@ public class BookServiceImpl implements BookService {
 
 	/**
 	 * Implementation of changeBookStatus method.
-	 * 
-	 * @return
 	 */
 	@Override
 	public boolean changeBookStatus(int bookStatusAvailiable, int bookId) throws ServiceException {
-		// validator
+		validateBookInfo(bookStatusAvailiable, bookId);
 		DAOFactory daoFactory = DAOFactory.getInstance();
 		BookDAO dao = daoFactory.getBookDAOImpl();
 		try {
@@ -57,12 +55,10 @@ public class BookServiceImpl implements BookService {
 
 	/**
 	 * Implementation of addBookToLibrary method.
-	 * 
-	 * @return
 	 */
 	@Override
 	public boolean addBookToLibrary(String bookName, String author, int bookStatusId) throws ServiceException {
-		// validator
+		validateBookInfo(bookName, author, bookStatusId);
 		DAOFactory daoFactory = DAOFactory.getInstance();
 		BookDAO dao = daoFactory.getBookDAOImpl();
 		try {

@@ -20,8 +20,8 @@ public class ChangeBookStatus implements Command {
 	 * Method execute for changing book status from Available on Not available
 	 * and conversely.
 	 * 
-	 * @return only true as boolean value (of course packed in Object Class), if
-	 *         book status has been changed in data base successfully
+	 * @return true as boolean value (of course packed in Object Class), if book
+	 *         status has been changed in data base successfully
 	 */
 	@Override
 	public Object execute(String... request) throws CommandException {

@@ -32,7 +32,7 @@ public interface OrdersService {
 	 *            value of int type as user id from library.user.user_id
 	 * @param bookId
 	 *            value of int type as book id from library.book.book_id
-	 * @return 
+	 * @return boolean value as result of executing
 	 * @throws ServiceException
 	 *             Exception type for service layer
 	 */
@@ -43,7 +43,7 @@ public interface OrdersService {
 	 * 
 	 * @param orderId
 	 *            value of int type as order id from library.orders.oreder_id
-	 * @return 
+	 * @return boolean value as result of executing
 	 * @throws ServiceException
 	 *             Exception type for service layer
 	 */
@@ -55,7 +55,7 @@ public interface OrdersService {
 	 * @param orderId
 	 *            value of int type as order id from library.orders.oreder_id
 	 * @param bookId
-	 * @return 
+	 * @return boolean value as result of executing
 	 * @throws ServiceException
 	 *             Exception type for service layer
 	 */

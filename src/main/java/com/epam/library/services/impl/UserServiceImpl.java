@@ -1,5 +1,6 @@
 package com.epam.library.services.impl;
 
+import static com.epam.library.services.validator.Validator.*;
 import java.util.ArrayList;
 import com.epam.library.bean.User;
 import com.epam.library.dao.DAOFactory;
@@ -22,7 +23,6 @@ public class UserServiceImpl implements UserService {
 	 */
 	@Override
 	public User singIn(String login, String password) throws ServiceException {
-		// validator
 		DAOFactory daoFactory = DAOFactory.getInstance();
 		UserDAO dao = daoFactory.getUserDAOImpl();
 		User user = null;
@@ -53,7 +53,7 @@ public class UserServiceImpl implements UserService {
 	 */
 	@Override
 	public User register(String name, String secondName, String login, String password) throws ServiceException {
-		// validator logina и пароля
+		validateUserInfo(name, secondName, login, password);
 		DAOFactory daoFactory = DAOFactory.getInstance();
 		UserDAO dao = daoFactory.getUserDAOImpl();
 		User user = null;
@@ -75,7 +75,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User updateUserInfo(String name, String secondName, String login, int userId, String password)
 			throws ServiceException {
-		// validator logina и пароля
+		validateUserInfo(userId);
 		DAOFactory daoFactory = DAOFactory.getInstance();
 		UserDAO dao = daoFactory.getUserDAOImpl();
 		User user = null;
@@ -92,7 +92,6 @@ public class UserServiceImpl implements UserService {
 	 */
 	@Override
 	public ArrayList<User> viewAllUsers() throws ServiceException {
-		// validator
 		DAOFactory daoFactory = DAOFactory.getInstance();
 		UserDAO dao = daoFactory.getUserDAOImpl();
 		ArrayList<User> users = new ArrayList<>();
@@ -106,11 +105,12 @@ public class UserServiceImpl implements UserService {
 
 	/**
 	 * Implementation of banUser method.
-	 * @return 
+	 * 
+	 * @return
 	 */
 	@Override
 	public boolean banUser(int userId) throws ServiceException {
-		// validator userId
+		validateUserInfo(userId);
 		DAOFactory daoFactory = DAOFactory.getInstance();
 		UserDAO dao = daoFactory.getUserDAOImpl();
 		try {
@@ -122,11 +122,12 @@ public class UserServiceImpl implements UserService {
 
 	/**
 	 * Implementation of unBanUser method.
-	 * @return 
+	 * 
+	 * @return
 	 */
 	@Override
 	public boolean unBanUser(int userId) throws ServiceException {
-		// validator userId
+		validateUserInfo(userId);
 		DAOFactory daoFactory = DAOFactory.getInstance();
 		UserDAO dao = daoFactory.getUserDAOImpl();
 		try {
@@ -138,11 +139,12 @@ public class UserServiceImpl implements UserService {
 
 	/**
 	 * Implementation of giveAdminForUser method.
-	 * @return 
+	 * 
+	 * @return
 	 */
 	@Override
 	public boolean giveAdminForUser(int userId) throws ServiceException {
-		// validator userId
+		validateUserInfo(userId);
 		DAOFactory daoFactory = DAOFactory.getInstance();
 		UserDAO dao = daoFactory.getUserDAOImpl();
 		try {

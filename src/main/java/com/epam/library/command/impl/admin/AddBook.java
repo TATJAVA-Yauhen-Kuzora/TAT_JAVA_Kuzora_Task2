@@ -19,8 +19,8 @@ public class AddBook implements Command {
 	/**
 	 * Method execute for adding book logic.
 	 * 
-	 * @return only true as boolean value (of course packed in Object Class), if
-	 *         book has been added in data base successfully
+	 * @return true as boolean value (of course packed in Object Class), if book
+	 *         has been added in data base successfully
 	 */
 	@Override
 	public Object execute(String... request) throws CommandException {
@@ -39,5 +39,4 @@ public class AddBook implements Command {
 			throw new CommandException("Invalid parameters for update book status command.");
 		}
 	}
-
 }

@@ -1,5 +1,6 @@
 package com.epam.library.services.impl;
 
+import static com.epam.library.services.validator.Validator.*;
 import java.util.ArrayList;
 import com.epam.library.bean.Order;
 import com.epam.library.dao.DAOFactory;
@@ -23,7 +24,6 @@ public class OrdersServiceImpl implements OrdersService {
 	 */
 	@Override
 	public ArrayList<Order> getAllOrders() throws ServiceException {
-		// validator
 		DAOFactory daoFactory = DAOFactory.getInstance();
 		OrdersDAO dao = daoFactory.getOrdersDAOImpl();
 		ArrayList<Order> orders = new ArrayList<>();
@@ -37,12 +37,10 @@ public class OrdersServiceImpl implements OrdersService {
 
 	/**
 	 * Implementation of addOrdersInHistory method.
-	 * 
-	 * @return
 	 */
 	@Override
 	public boolean addOrdersInHistory(int userId, int bookId) throws ServiceException {
-		// validator
+		validateOrderInfoForAdding(userId, bookId);
 		DAOFactory daoFactory = DAOFactory.getInstance();
 		OrdersDAO orderDao = daoFactory.getOrdersDAOImpl();
 		BookDAO bookDao = daoFactory.getBookDAOImpl();
@@ -60,12 +58,10 @@ public class OrdersServiceImpl implements OrdersService {
 
 	/**
 	 * Implementation of sendOrder method.
-	 * 
-	 * @return
 	 */
 	@Override
 	public boolean sendOrder(int orderId) throws ServiceException {
-		// validator
+		validateOrderInfo(orderId);
 		DAOFactory daoFactory = DAOFactory.getInstance();
 		OrdersDAO dao = daoFactory.getOrdersDAOImpl();
 		try {
@@ -77,12 +73,10 @@ public class OrdersServiceImpl implements OrdersService {
 
 	/**
 	 * Implementation of returnOrder method.
-	 * 
-	 * @return
 	 */
 	@Override
 	public boolean returnOrder(int orderId, int bookId) throws ServiceException {
-		// validator
+		validateOrderInfo(orderId, bookId);
 		DAOFactory daoFactory = DAOFactory.getInstance();
 		OrdersDAO orderDao = daoFactory.getOrdersDAOImpl();
 		BookDAO bookDao = daoFactory.getBookDAOImpl();

@@ -19,7 +19,7 @@ public class ReturnOrder implements Command {
 	/**
 	 * Method execute for changing book status from "On Hands" to "Returned".
 	 * 
-	 * @return only true as boolean value (of course packed in Object Class), if
+	 * @return true as boolean value (of course packed in Object Class), if
 	 *         order status has been changed in data base successfully
 	 */
 	@Override

@@ -35,7 +35,7 @@ public class Registration implements Command {
 		try {
 			user = userService.register(name, secondName, login, password);
 		} catch (ServiceException e) {
-			throw new CommandException(e);
+			throw new CommandException(e.getMessage(), e);
 		}
 		return user;
 	}
