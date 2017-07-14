@@ -98,7 +98,7 @@ public class Validator {
 	 */
 	public static boolean validateUserInfo(String name, String secondName, String login, String password)
 			throws ServiceException {
-		String regExp = "[A-Za-z0-9]{5-20}$";
+		String regExp = "[A-Za-z0-9]{5,20}$";
 		Pattern pattern = Pattern.compile(regExp);
 		Matcher matcher = pattern.matcher(password);
 		if (!matcher.find()) {
