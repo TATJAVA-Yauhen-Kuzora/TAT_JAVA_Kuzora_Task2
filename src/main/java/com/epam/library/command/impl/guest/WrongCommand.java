@@ -2,7 +2,6 @@ package com.epam.library.command.impl.guest;
 
 import com.epam.library.command.exception.CommandException;
 import com.epam.library.command.interfaces.Command;
-import com.epam.library.services.interfaces.UserService;
 
 /**
  * Class {@link WrongCommand}.

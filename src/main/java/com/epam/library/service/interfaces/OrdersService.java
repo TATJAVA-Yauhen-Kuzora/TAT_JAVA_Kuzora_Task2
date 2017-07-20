@@ -1,9 +1,9 @@
-package com.epam.library.services.interfaces;
+package com.epam.library.service.interfaces;
 
 import java.util.ArrayList;
 
 import com.epam.library.bean.Order;
-import com.epam.library.services.exception.ServiceException;
+import com.epam.library.service.exception.ServiceException;
 
 /**
  * Interface {@link OrdersService}.
@@ -13,7 +13,7 @@ import com.epam.library.services.exception.ServiceException;
  * {@link #returnOrder(int)}).
  * <p>
  * <i>This interface is a member of the
- * {@link com.epam.library.services.interfaces} package.</i>
+ * {@link com.epam.library.service.interfaces} package.</i>
  */
 public interface OrdersService {
 	/**

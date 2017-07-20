@@ -59,11 +59,9 @@ public class OrdersSQLDAO implements OrdersDAO {
 	 */
 	@Override
 	public ArrayList<Order> getAllOrders() throws DAOException {
-		Connection connection = null;
 		PreparedStatement pSt = null;
 		ResultSet rs = null;
-		try {
-			connection = ConnectionSQLDAO.getInstance().takeConnection();
+		try (Connection connection = ConnectionSQLDAO.getInstance().takeConnection()) {
 			pSt = connection.prepareStatement(GET_ALL_ORDERS);
 			rs = pSt.executeQuery();
 			Order localOrder;
@@ -109,10 +107,8 @@ public class OrdersSQLDAO implements OrdersDAO {
 	 */
 	@Override
 	public boolean addOrder(int userId, int bookId) throws DAOException {
-		Connection connection = null;
 		PreparedStatement pSt = null;
-		try {
-			connection = ConnectionSQLDAO.getInstance().takeConnection();
+		try (Connection connection = ConnectionSQLDAO.getInstance().takeConnection()) {
 			pSt = connection.prepareStatement(ORDER_ADD);
 			pSt.setInt(1, bookId);
 			pSt.setInt(2, userId);
@@ -136,10 +132,8 @@ public class OrdersSQLDAO implements OrdersDAO {
 	 */
 	@Override
 	public boolean confirmOrder(int orderId) throws DAOException {
-		Connection connection = null;
 		PreparedStatement pSt = null;
-		try {
-			connection = ConnectionSQLDAO.getInstance().takeConnection();
+		try (Connection connection = ConnectionSQLDAO.getInstance().takeConnection()) {
 			pSt = connection.prepareStatement(SEND_ORDER);
 			pSt.setInt(1, orderId);
 			int access = pSt.executeUpdate();
@@ -161,10 +155,8 @@ public class OrdersSQLDAO implements OrdersDAO {
 	 */
 	@Override
 	public boolean confirmReturn(int orderId) throws DAOException {
-		Connection connection = null;
 		PreparedStatement pSt = null;
-		try {
-			connection = ConnectionSQLDAO.getInstance().takeConnection();
+		try (Connection connection = ConnectionSQLDAO.getInstance().takeConnection()) {
 			pSt = connection.prepareStatement(RETURN_ORDER);
 			pSt.setInt(1, orderId);
 			int access = pSt.executeUpdate();

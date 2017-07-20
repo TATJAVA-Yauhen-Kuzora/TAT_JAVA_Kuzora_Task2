@@ -47,11 +47,9 @@ public class UserSQLDAO implements UserDAO {
 	 */
 	@Override
 	public User signIn(String login, String password) throws DAOException {
-		Connection connection = null;
 		PreparedStatement pSt = null;
 		ResultSet rs = null;
-		try {
-			connection = ConnectionSQLDAO.getInstance().takeConnection();
+		try (Connection connection = ConnectionSQLDAO.getInstance().takeConnection()) {
 			pSt = connection.prepareStatement(SIGN_IN);
 			pSt.setString(1, login);
 			pSt.setString(2, password);
@@ -82,10 +80,8 @@ public class UserSQLDAO implements UserDAO {
 	 */
 	@Override
 	public User register(String name, String secondName, String login, String password) throws DAOException {
-		Connection connection = null;
 		PreparedStatement pSt = null;
-		try {
-			connection = ConnectionSQLDAO.getInstance().takeConnection();
+		try (Connection connection = ConnectionSQLDAO.getInstance().takeConnection()) {
 			pSt = connection.prepareStatement(REGISTER);
 			pSt.setString(1, name);
 			pSt.setString(2, secondName);
@@ -110,11 +106,9 @@ public class UserSQLDAO implements UserDAO {
 	 */
 	@Override
 	public ArrayList<User> getAllUsers() throws DAOException {
-		Connection connection = null;
 		PreparedStatement pSt = null;
 		ResultSet rs = null;
-		try {
-			connection = ConnectionSQLDAO.getInstance().takeConnection();
+		try (Connection connection = ConnectionSQLDAO.getInstance().takeConnection()) {
 			pSt = connection.prepareStatement(GET_ALL_USERS);
 			rs = pSt.executeQuery();
 			User localUser;
@@ -147,10 +141,8 @@ public class UserSQLDAO implements UserDAO {
 	public User updateUserInfo(String name, String secondName, String login, int userId, String password)
 			throws DAOException {
 		ResultSet rs = null;
-		Connection connection = null;
 		PreparedStatement pSt = null;
-		try {
-			connection = ConnectionSQLDAO.getInstance().takeConnection();
+		try (Connection connection = ConnectionSQLDAO.getInstance().takeConnection()) {
 			pSt = connection.prepareStatement(UPDATE_USER_INFO);
 			pSt.setString(1, name);
 			pSt.setString(2, secondName);
@@ -194,10 +186,8 @@ public class UserSQLDAO implements UserDAO {
 	 */
 	@Override
 	public boolean banUser(int UserId) throws DAOException {
-		Connection connection = null;
 		PreparedStatement pSt = null;
-		try {
-			connection = ConnectionSQLDAO.getInstance().takeConnection();
+		try (Connection connection = ConnectionSQLDAO.getInstance().takeConnection()) {
 			pSt = connection.prepareStatement(BAN_USER);
 			pSt.setInt(1, UserId);
 			int access = pSt.executeUpdate();
@@ -219,10 +209,8 @@ public class UserSQLDAO implements UserDAO {
 	 */
 	@Override
 	public boolean unBanUser(int UserId) throws DAOException {
-		Connection connection = null;
 		PreparedStatement pSt = null;
-		try {
-			connection = ConnectionSQLDAO.getInstance().takeConnection();
+		try (Connection connection = ConnectionSQLDAO.getInstance().takeConnection()) {
 			pSt = connection.prepareStatement(UNBAN_USER);
 			pSt.setInt(1, UserId);
 			int access = pSt.executeUpdate();
@@ -244,10 +232,8 @@ public class UserSQLDAO implements UserDAO {
 	 */
 	@Override
 	public boolean giveAdminForUser(int UserId) throws DAOException {
-		Connection connection = null;
 		PreparedStatement pSt = null;
-		try {
-			connection = ConnectionSQLDAO.getInstance().takeConnection();
+		try (Connection connection = ConnectionSQLDAO.getInstance().takeConnection()) {
 			pSt = connection.prepareStatement(GIVE_ADMIN_ACCESS_FOR_USER);
 			pSt.setInt(1, UserId);
 			int access = pSt.executeUpdate();

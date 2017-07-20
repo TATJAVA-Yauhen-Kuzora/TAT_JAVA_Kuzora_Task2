@@ -1,8 +1,8 @@
-package com.epam.library.services.validator;
+package com.epam.library.service.validator;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import com.epam.library.services.exception.ServiceException;
+import com.epam.library.service.exception.ServiceException;
 
 /**
  * Class {@link Validator}.
@@ -14,7 +14,7 @@ import com.epam.library.services.exception.ServiceException;
  * {@link #validateUserInfo(int)},
  * {@link #validateUserInfo(String, String, String, String)}).
  * <P>
- * <i>This Class is a member of the {@link com.epam.library.services.validator}
+ * <i>This Class is a member of the {@link com.epam.library.service.validator}
  * package.</i>
  */
 public class Validator {

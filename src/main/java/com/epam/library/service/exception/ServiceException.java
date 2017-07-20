@@ -1,13 +1,13 @@
-package com.epam.library.services.exception;
+package com.epam.library.service.exception;
 
 /**
  * Class {@link ServiceException}.
  * <P>
  * Class ServiceException - user exception class for
- * {@link com.epam.library.services} layer, extends Exception Class and
- * overloads 3 constructors with different parameters.
+ * {@link com.epam.library.service} layer, extends Exception Class and overloads
+ * 3 constructors with different parameters.
  * <P>
- * <i>This Class is a member of the {@link com.epam.library.services.exception}
+ * <i>This Class is a member of the {@link com.epam.library.service.exception}
  * package.</i>
  */
 public class ServiceException extends Exception {

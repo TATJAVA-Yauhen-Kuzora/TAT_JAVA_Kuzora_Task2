@@ -1,11 +1,11 @@
-package com.epam.library.services;
+package com.epam.library.service;
 
-import com.epam.library.services.impl.BookServiceImpl;
-import com.epam.library.services.impl.OrdersServiceImpl;
-import com.epam.library.services.impl.UserServiceImpl;
-import com.epam.library.services.interfaces.BookService;
-import com.epam.library.services.interfaces.OrdersService;
-import com.epam.library.services.interfaces.UserService;
+import com.epam.library.service.impl.BookServiceImpl;
+import com.epam.library.service.impl.OrdersServiceImpl;
+import com.epam.library.service.impl.UserServiceImpl;
+import com.epam.library.service.interfaces.BookService;
+import com.epam.library.service.interfaces.OrdersService;
+import com.epam.library.service.interfaces.UserService;
 
 /**
  * Singleton Class {@link ServiceFactory}.
@@ -13,7 +13,7 @@ import com.epam.library.services.interfaces.UserService;
  * Class ServiceFactory gives different objects depended on type of object that
  * command layer has called.
  * <P>
- * <i>This Class is a member of the {@link com.epam.library.services}
+ * <i>This Class is a member of the {@link com.epam.library.service}
  * package.</i>
  */
 public class ServiceFactory {

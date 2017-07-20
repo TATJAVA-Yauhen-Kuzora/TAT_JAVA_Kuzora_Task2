@@ -5,9 +5,9 @@ import java.util.ArrayList;
 import com.epam.library.bean.User;
 import com.epam.library.command.exception.CommandException;
 import com.epam.library.command.interfaces.Command;
-import com.epam.library.services.ServiceFactory;
-import com.epam.library.services.exception.ServiceException;
-import com.epam.library.services.interfaces.UserService;
+import com.epam.library.service.ServiceFactory;
+import com.epam.library.service.exception.ServiceException;
+import com.epam.library.service.interfaces.UserService;
 
 /**
  * Class {@link ViewAllUsers}.

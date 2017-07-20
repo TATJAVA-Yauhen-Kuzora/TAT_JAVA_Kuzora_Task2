@@ -1,20 +1,20 @@
-package com.epam.library.services.impl;
+package com.epam.library.service.impl;
 
-import static com.epam.library.services.validator.Validator.*;
+import static com.epam.library.service.validator.Validator.*;
 import java.util.ArrayList;
 import com.epam.library.bean.User;
 import com.epam.library.dao.DAOFactory;
 import com.epam.library.dao.exception.DAOException;
 import com.epam.library.dao.interfaces.UserDAO;
-import com.epam.library.services.exception.ServiceException;
-import com.epam.library.services.interfaces.UserService;
+import com.epam.library.service.exception.ServiceException;
+import com.epam.library.service.interfaces.UserService;
 
 /**
  * Class {@link UserServiceImpl}.
  * <P>
  * Class UserServiceImpl implements all methods from {@link UserService}.
  * <P>
- * <i>This Class is a member of the {@link com.epam.library.services.impl}
+ * <i>This Class is a member of the {@link com.epam.library.service.impl}
  * package.</i>
  */
 public class UserServiceImpl implements UserService {

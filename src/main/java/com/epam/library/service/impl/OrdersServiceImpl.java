@@ -1,21 +1,21 @@
-package com.epam.library.services.impl;
+package com.epam.library.service.impl;
 
-import static com.epam.library.services.validator.Validator.*;
+import static com.epam.library.service.validator.Validator.*;
 import java.util.ArrayList;
 import com.epam.library.bean.Order;
 import com.epam.library.dao.DAOFactory;
 import com.epam.library.dao.exception.DAOException;
 import com.epam.library.dao.interfaces.BookDAO;
 import com.epam.library.dao.interfaces.OrdersDAO;
-import com.epam.library.services.exception.ServiceException;
-import com.epam.library.services.interfaces.OrdersService;
+import com.epam.library.service.exception.ServiceException;
+import com.epam.library.service.interfaces.OrdersService;
 
 /**
  * Class {@link OrdersServiceImpl}.
  * <P>
  * Class OrdersServiceImpl implements all methods from {@link OrdersService}.
  * <P>
- * <i>This Class is a member of the {@link com.epam.library.services.impl}
+ * <i>This Class is a member of the {@link com.epam.library.service.impl}
  * package.</i>
  */
 public class OrdersServiceImpl implements OrdersService {

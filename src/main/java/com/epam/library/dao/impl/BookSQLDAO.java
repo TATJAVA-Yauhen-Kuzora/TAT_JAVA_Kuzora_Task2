@@ -44,11 +44,9 @@ public class BookSQLDAO implements BookDAO {
 	 */
 	@Override
 	public ArrayList<Book> getAllbooks() throws DAOException {
-		Connection connection = null;
 		PreparedStatement pSt = null;
 		ResultSet rs = null;
-		try {
-			connection = ConnectionSQLDAO.getInstance().takeConnection();
+		try (Connection connection = ConnectionSQLDAO.getInstance().takeConnection()) {
 			pSt = connection.prepareStatement(GET_LIST_OF_BOOKS);
 			rs = pSt.executeQuery();
 			Book book;
@@ -77,10 +75,8 @@ public class BookSQLDAO implements BookDAO {
 	 */
 	@Override
 	public boolean setAvailiableStatus(int bookId) throws DAOException {
-		Connection connection = null;
 		PreparedStatement pSt = null;
-		try {
-			connection = ConnectionSQLDAO.getInstance().takeConnection();
+		try (Connection connection = ConnectionSQLDAO.getInstance().takeConnection()) {
 			pSt = connection.prepareStatement(SET_STATUS);
 			pSt.setInt(1, 1);
 			pSt.setInt(2, bookId);
@@ -101,10 +97,8 @@ public class BookSQLDAO implements BookDAO {
 	 */
 	@Override
 	public boolean setNotAvailiableStatus(int bookId) throws DAOException {
-		Connection connection = null;
 		PreparedStatement pSt = null;
-		try {
-			connection = ConnectionSQLDAO.getInstance().takeConnection();
+		try (Connection connection = ConnectionSQLDAO.getInstance().takeConnection()) {
 			pSt = connection.prepareStatement(SET_STATUS);
 			pSt.setInt(1, 2);
 			pSt.setInt(2, bookId);
@@ -127,10 +121,8 @@ public class BookSQLDAO implements BookDAO {
 	 */
 	@Override
 	public boolean addBookToLibrary(String bookName, String author, int bookStatusId) throws DAOException {
-		Connection connection = null;
 		PreparedStatement pSt = null;
-		try {
-			connection = ConnectionSQLDAO.getInstance().takeConnection();
+		try (Connection connection = ConnectionSQLDAO.getInstance().takeConnection()) {
 			pSt = connection.prepareStatement(ADD_BOOK);
 			pSt.setString(1, bookName);
 			pSt.setString(2, author);
@@ -149,11 +141,9 @@ public class BookSQLDAO implements BookDAO {
 
 	@Override
 	public boolean isAvailiableStatus(int bookId) throws DAOException {
-		Connection connection = null;
 		PreparedStatement pSt = null;
 		ResultSet rs = null;
-		try {
-			connection = ConnectionSQLDAO.getInstance().takeConnection();
+		try (Connection connection = ConnectionSQLDAO.getInstance().takeConnection()) {
 			pSt = connection.prepareStatement(CHECK_STATUS);
 			pSt.setInt(1, bookId);
 			rs = pSt.executeQuery();

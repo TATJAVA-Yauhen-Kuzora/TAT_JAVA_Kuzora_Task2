@@ -1,8 +1,8 @@
-package com.epam.library.services.interfaces;
+package com.epam.library.service.interfaces;
 
 import java.util.ArrayList;
 import com.epam.library.bean.User;
-import com.epam.library.services.exception.ServiceException;
+import com.epam.library.service.exception.ServiceException;
 
 /**
  * Interface {@link UserService}.
@@ -14,7 +14,7 @@ import com.epam.library.services.exception.ServiceException;
  * {@link #unBanUser(int)}, {@link #giveAdminForUser(int)}.
  * <p>
  * <i>This interface is a member of the
- * {@link com.epam.library.services.interfaces} package.</i>
+ * {@link com.epam.library.service.interfaces} package.</i>
  */
 public interface UserService {
 	/**
