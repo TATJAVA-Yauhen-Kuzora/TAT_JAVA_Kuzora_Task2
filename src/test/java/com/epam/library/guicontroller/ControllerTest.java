@@ -1,20 +1,18 @@
 package com.epam.library.guicontroller;
 
 import org.testng.annotations.Test;
-import com.epam.library.bean.AccessLevel;
 import com.epam.library.bean.User;
 import com.epam.library.command.exception.CommandException;
 import org.testng.annotations.BeforeMethod;
 import static org.testng.Assert.fail;
-
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 
 public class ControllerTest {
 	private Controller controller;
-	private final static int userStatusUser = 2;
-	private static final int userStatusAdmin = 3;
-	private static final int userStatusSuperAdmin = 4;
+	private static final String commandForLoggingAdmin = "Login|PIZDECLOGIN|12345";
+	private static final String commandForLoggingSuper = "Login|super|12345";
+	private static final String commandForLoggingUser = "Login|super1|1234";
 
 	@BeforeMethod(groups = { "smoke", "methods", "exceptions", "positive", "negative" })
 	public void beforeMethod() {
@@ -23,7 +21,6 @@ public class ControllerTest {
 
 	@AfterMethod(groups = { "smoke", "methods", "exceptions", "positive", "negative" })
 	public void afterMethod() {
-		Controller.sessionUser = null;
 		controller = null;
 	}
 
@@ -68,7 +65,7 @@ public class ControllerTest {
 	public void tst_method_execute_updateUserInfo(String expected, String request) {
 		User testUser;
 		try {
-			setChosenAccessLevelToUser(userStatusUser);
+			logInSystem(commandForLoggingUser);
 			testUser = (User) controller.executeTask(request);
 			if (testUser == null) {
 				Assert.assertEquals(testUser, expected);
@@ -83,7 +80,7 @@ public class ControllerTest {
 	@Test(groups = { "smoke", "exceptions",
 			"negative" }, dataProvider = "negativeUpdateUserInfo", dataProviderClass = DataProviderControllerTest.class, expectedExceptions = CommandException.class)
 	public void tst_method_exception_updateUserInfo(String expected, String request) throws CommandException {
-		setChosenAccessLevelToUser(userStatusUser);
+		logInSystem(commandForLoggingUser);
 		controller.executeTask(request);
 	}
 
@@ -91,7 +88,7 @@ public class ControllerTest {
 			"positive" }, dataProvider = "positiveChangeBookStatus", dataProviderClass = DataProviderControllerTest.class)
 	public void tst_method_execute_changeBookStatus(boolean expected, String request) {
 		try {
-			setChosenAccessLevelToUser(userStatusAdmin);
+			logInSystem(commandForLoggingAdmin);
 			Assert.assertEquals((boolean) controller.executeTask(request), expected);
 		} catch (CommandException e) {
 			fail();
@@ -101,7 +98,7 @@ public class ControllerTest {
 	@Test(groups = { "smoke", "exceptions",
 			"negative" }, dataProvider = "negativeChangeBookStatus", dataProviderClass = DataProviderControllerTest.class, expectedExceptions = CommandException.class)
 	public void tst_method_exception_changeBookStatus(String request) throws CommandException {
-		setChosenAccessLevelToUser(userStatusAdmin);
+		logInSystem(commandForLoggingAdmin);
 		controller.executeTask(request);
 	}
 
@@ -109,7 +106,7 @@ public class ControllerTest {
 			"positive" }, dataProvider = "positiveOrderBook", dataProviderClass = DataProviderControllerTest.class)
 	public void tst_method_execute_orderBook(boolean expected, String request) {
 		try {
-			setChosenAccessLevelToUser(userStatusAdmin);
+			logInSystem(commandForLoggingAdmin);
 			Assert.assertEquals(((boolean) controller.executeTask(request)), expected);
 		} catch (CommandException e) {
 			fail();
@@ -119,7 +116,7 @@ public class ControllerTest {
 	@Test(groups = { "smoke", "exceptions",
 			"negative" }, dataProvider = "negativeOrderBook", dataProviderClass = DataProviderControllerTest.class, expectedExceptions = CommandException.class)
 	public void tst_method_exception_orderBook(String request) throws CommandException {
-		setChosenAccessLevelToUser(userStatusAdmin);
+		logInSystem(commandForLoggingAdmin);
 		controller.executeTask(request);
 	}
 
@@ -127,7 +124,7 @@ public class ControllerTest {
 			"positive" }, dataProvider = "positiveConfirmOrder", dataProviderClass = DataProviderControllerTest.class)
 	public void tst_method_execute_confirmOrder(boolean expected, String request) {
 		try {
-			setChosenAccessLevelToUser(userStatusAdmin);
+			logInSystem(commandForLoggingAdmin);
 			Assert.assertEquals((boolean) controller.executeTask(request), expected);
 		} catch (CommandException e) {
 			fail();
@@ -137,7 +134,7 @@ public class ControllerTest {
 	@Test(groups = { "smoke", "exceptions",
 			"negative" }, dataProvider = "negativeConfirmOrder", dataProviderClass = DataProviderControllerTest.class, expectedExceptions = CommandException.class)
 	public void tst_method_exception_confirmOrder(String request) throws CommandException {
-		setChosenAccessLevelToUser(userStatusAdmin);
+		logInSystem(commandForLoggingAdmin);
 		controller.executeTask(request);
 	}
 
@@ -145,7 +142,7 @@ public class ControllerTest {
 			"positive" }, dataProvider = "positiveReturnOrder", dataProviderClass = DataProviderControllerTest.class)
 	public void tst_method_execute_returnOrder(boolean expected, String request) {
 		try {
-			setChosenAccessLevelToUser(userStatusAdmin);
+			logInSystem(commandForLoggingAdmin);
 			Assert.assertEquals((boolean) controller.executeTask(request), expected);
 		} catch (CommandException e) {
 			fail();
@@ -155,7 +152,7 @@ public class ControllerTest {
 	@Test(groups = { "smoke", "exceptions",
 			"negative" }, dataProvider = "negativeReturnOrder", dataProviderClass = DataProviderControllerTest.class, expectedExceptions = CommandException.class)
 	public void tst_method_exception_returnOrder(String request) throws CommandException {
-		setChosenAccessLevelToUser(userStatusAdmin);
+		logInSystem(commandForLoggingAdmin);
 		controller.executeTask(request);
 	}
 
@@ -163,7 +160,7 @@ public class ControllerTest {
 			"positive" }, dataProvider = "positiveBanAndPromoteUser", dataProviderClass = DataProviderControllerTest.class)
 	public void tst_method_execute_banUser(boolean expected, String request) {
 		try {
-			setChosenAccessLevelToUser(userStatusSuperAdmin);
+			logInSystem(commandForLoggingSuper);
 			Assert.assertEquals((boolean) controller.executeTask(request), expected);
 		} catch (CommandException e) {
 			fail();
@@ -173,7 +170,7 @@ public class ControllerTest {
 	@Test(groups = { "smoke", "exceptions",
 			"negative" }, dataProvider = "negativebanUser", dataProviderClass = DataProviderControllerTest.class, expectedExceptions = CommandException.class)
 	public void tst_method_exception_BanUser(String request) throws CommandException {
-		setChosenAccessLevelToUser(userStatusSuperAdmin);
+		logInSystem(commandForLoggingSuper);
 		controller.executeTask(request);
 	}
 
@@ -181,7 +178,7 @@ public class ControllerTest {
 			"positive" }, dataProvider = "positiveBanAndPromoteUser", dataProviderClass = DataProviderControllerTest.class)
 	public void tst_method_execute_unBanUser(boolean expected, String request) {
 		try {
-			setChosenAccessLevelToUser(userStatusSuperAdmin);
+			logInSystem(commandForLoggingSuper);
 			Assert.assertEquals((boolean) controller.executeTask(request), expected);
 		} catch (CommandException e) {
 			fail();
@@ -191,7 +188,7 @@ public class ControllerTest {
 	@Test(groups = { "smoke", "exceptions",
 			"negative" }, dataProvider = "negativeUnBanUser", dataProviderClass = DataProviderControllerTest.class, expectedExceptions = CommandException.class)
 	public void tst_method_exception_unbanUser(String request) throws CommandException {
-		setChosenAccessLevelToUser(userStatusSuperAdmin);
+		logInSystem(commandForLoggingSuper);
 		controller.executeTask(request);
 	}
 
@@ -199,7 +196,7 @@ public class ControllerTest {
 			"positive" }, dataProvider = "positiveBanAndPromoteUser", dataProviderClass = DataProviderControllerTest.class)
 	public void tst_method_execute_GiveAdmin(boolean expected, String request) {
 		try {
-			setChosenAccessLevelToUser(userStatusSuperAdmin);
+			logInSystem(commandForLoggingSuper);
 			Assert.assertEquals((boolean) controller.executeTask(request), expected);
 		} catch (CommandException e) {
 			fail();
@@ -209,14 +206,14 @@ public class ControllerTest {
 	@Test(groups = { "smoke", "exceptions",
 			"negative" }, dataProvider = "negativeGiveAdmin", dataProviderClass = DataProviderControllerTest.class, expectedExceptions = CommandException.class)
 	public void tst_method_exception_GiveAdmin(String request) throws CommandException {
-		setChosenAccessLevelToUser(userStatusSuperAdmin);
+		logInSystem(commandForLoggingSuper);
 		controller.executeTask(request);
 	}
 
-	private void setChosenAccessLevelToUser(int accessId) {
-		AccessLevel testAccessLevel = new AccessLevel();
-		testAccessLevel.setAccessLevelId(accessId);
-		Controller.sessionUser = new User();
-		Controller.sessionUser.setAccessLevel(testAccessLevel);
+	private void logInSystem(String logCommand) {
+		try {
+			controller.executeTask(logCommand);
+		} catch (CommandException e) {
+		}
 	}
 }

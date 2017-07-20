@@ -7,7 +7,7 @@ import com.epam.library.command.impl.guest.WrongCommand;
 import com.epam.library.command.interfaces.Command;
 
 public class Controller {
-	static User sessionUser;
+	User sessionUser;
 	static final int bookStatusAvailable = 1;
 	static final int orderStatusBooked = 1;
 	static final int orderStatusOnHands = 2;
@@ -36,6 +36,11 @@ public class Controller {
 		executionCommand = commandProvider.getCommand(accessLevelId, commandName);
 		String[] stringsArray = new String[requestAfterParse.size()];
 		stringsArray = requestAfterParse.toArray(stringsArray);
-		return executionCommand.execute(stringsArray);
+		Object resultOfExecuting = executionCommand.execute(stringsArray);
+		try {
+			sessionUser = (User) resultOfExecuting;
+		} catch (Exception e) {
+		}
+		return resultOfExecuting;
 	}
 }
