@@ -116,8 +116,6 @@ public class BookSQLDAO implements BookDAO {
 
 	/**
 	 * Implementation of addBookToLibrary method.
-	 * 
-	 * @return
 	 */
 	@Override
 	public boolean addBookToLibrary(String bookName, String author, int bookStatusId) throws DAOException {
@@ -139,6 +137,9 @@ public class BookSQLDAO implements BookDAO {
 		}
 	}
 
+	/**
+	 * Implementation of isAvailiableStatus method.
+	 */
 	@Override
 	public boolean isAvailiableStatus(int bookId) throws DAOException {
 		PreparedStatement pSt = null;

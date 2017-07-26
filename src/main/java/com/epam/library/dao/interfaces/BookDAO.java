@@ -2,6 +2,7 @@ package com.epam.library.dao.interfaces;
 
 import java.util.ArrayList;
 import com.epam.library.bean.Book;
+import com.epam.library.bean.User;
 import com.epam.library.dao.exception.DAOException;
 
 /**
@@ -46,19 +47,28 @@ public interface BookDAO {
 	 */
 	boolean setNotAvailiableStatus(int bookId) throws DAOException;
 
+	/**
+	 * Method isAvailiableStatus checks book status.
+	 * 
+	 * @param bookId
+	 *            value of int type as book id from library.book.book_id
+	 * @return boolean value as result of successfully execution
+	 * @throws DAOException
+	 *             Exception type for dao layer
+	 */
 	boolean isAvailiableStatus(int bookId) throws DAOException;
 
 	/**
 	 * Method addBookToLibrary adds book to library's books.
 	 * 
-	 * @param bookNamee
+	 * @param bookName
 	 *            name of book
 	 * @param author
 	 *            name of author
 	 * @param bookStatusId
 	 *            value of int type as book status id from
 	 *            library.book_status.book_status_id
-	 * @return
+	 * @return boolean value as result of successfully execution
 	 * @throws DAOException
 	 *             Exception type for dao layer
 	 */

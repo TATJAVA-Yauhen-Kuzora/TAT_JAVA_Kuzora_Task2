@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.epam.library.main;
 
 import javafx.application.Application;
@@ -17,6 +14,7 @@ public class Main extends Application {
 
 	/**
 	 * @param args
+	 *            arguments of command line
 	 */
 	public static void main(String[] args) {
 		launch(args);

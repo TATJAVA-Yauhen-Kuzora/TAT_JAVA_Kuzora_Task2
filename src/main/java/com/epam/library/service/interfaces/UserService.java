@@ -10,8 +10,9 @@ import com.epam.library.service.exception.ServiceException;
  * Interface UserService includes 8 methods ({@link #singIn(String, String)},
  * {@link #logout()}, {@link #register(String, String, String, String)},
  * {@link #viewAllUsers()},
- * {@link #updateUserInfo(String, String, String, int)}, {@link #banUser(int)},
- * {@link #unBanUser(int)}, {@link #giveAdminForUser(int)}.
+ * {@link #updateUserInfo(String, String, String, int, String)},
+ * {@link #banUser(int)}, {@link #unBanUser(int)},
+ * {@link #giveAdminForUser(int)}.
  * <p>
  * <i>This interface is a member of the
  * {@link com.epam.library.service.interfaces} package.</i>
@@ -78,6 +79,8 @@ public interface UserService {
 	 *            login of user
 	 * @param userId
 	 *            unique user id
+	 * @param password
+	 *            user password
 	 * @return object of User Class
 	 * @throws ServiceException
 	 *             Exception type for service layer

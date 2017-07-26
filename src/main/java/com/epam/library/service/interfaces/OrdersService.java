@@ -10,7 +10,7 @@ import com.epam.library.service.exception.ServiceException;
  * <P>
  * Interface OrdersService includes 4 methods ({@link #getAllOrders()},
  * {@link #addOrdersInHistory(int, int)}, {@link #sendOrder(int)},
- * {@link #returnOrder(int)}).
+ * {@link #returnOrder(int, int)}).
  * <p>
  * <i>This interface is a member of the
  * {@link com.epam.library.service.interfaces} package.</i>
@@ -55,6 +55,7 @@ public interface OrdersService {
 	 * @param orderId
 	 *            value of int type as order id from library.orders.oreder_id
 	 * @param bookId
+	 *            book id
 	 * @return boolean value as result of executing
 	 * @throws ServiceException
 	 *             Exception type for service layer

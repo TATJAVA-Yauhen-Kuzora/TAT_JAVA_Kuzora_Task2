@@ -21,6 +21,10 @@ public class Validator {
 	/**
 	 * Method validateBookInfo checks bookStatusAvailiable and bookId.
 	 * 
+	 * @param bookStatusAvailiable
+	 *            book status
+	 * @param bookId
+	 *            book id
 	 * @return true if all checks are passed.
 	 * @throws ServiceException
 	 *             Exception type for service layer
@@ -36,6 +40,12 @@ public class Validator {
 	/**
 	 * Method validateBookInfo checks bookStatusAvailiable.
 	 * 
+	 * @param bookName
+	 *            book name
+	 * @param author
+	 *            author name
+	 * @param bookStatusId
+	 *            book status id
 	 * @return true if all checks are passed.
 	 * @throws ServiceException
 	 *             Exception type for service layer
@@ -49,6 +59,10 @@ public class Validator {
 	/**
 	 * Method validateOrderInfoForAdding checks userId and bookId.
 	 * 
+	 * @param userId
+	 *            user id
+	 * @param bookId
+	 *            book id
 	 * @return true if all checks are passed.
 	 * @throws ServiceException
 	 *             Exception type for service layer
@@ -64,6 +78,8 @@ public class Validator {
 	/**
 	 * Method validateOrderInfo checks orderId.
 	 * 
+	 * @param orderId
+	 *            order id
 	 * @return true if all checks are passed.
 	 * @throws ServiceException
 	 *             Exception type for service layer
@@ -77,6 +93,10 @@ public class Validator {
 	/**
 	 * Method validateOrderInfo checks orderId.
 	 * 
+	 * @param orderId
+	 *            order id
+	 * @param bookId
+	 *            book id
 	 * @return true if all checks are passed.
 	 * @throws ServiceException
 	 *             Exception type for service layer
@@ -92,6 +112,14 @@ public class Validator {
 	/**
 	 * Method validateUserInfo checks password.
 	 * 
+	 * @param name
+	 *            user name
+	 * @param secondName
+	 *            user second name
+	 * @param login
+	 *            user login
+	 * @param password
+	 *            user password
 	 * @return true if all checks are passed.
 	 * @throws ServiceException
 	 *             Exception type for service layer
@@ -110,6 +138,8 @@ public class Validator {
 	/**
 	 * Method validateUserInfo checks userId.
 	 * 
+	 * @param userId
+	 *            user id
 	 * @return true if all checks are passed.
 	 * @throws ServiceException
 	 *             Exception type for service layer

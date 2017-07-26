@@ -18,7 +18,7 @@ public class ConnectionSQLException extends Exception {
 	/**
 	 * Constructor.
 	 * 
-	 * @param e
+	 * @param exception
 	 *            as Exception object for saving first cause of exception
 	 * @param message
 	 *            as info for creating user exception

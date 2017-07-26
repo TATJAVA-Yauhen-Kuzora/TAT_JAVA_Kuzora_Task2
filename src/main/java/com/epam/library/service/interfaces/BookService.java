@@ -2,6 +2,7 @@ package com.epam.library.service.interfaces;
 
 import java.util.ArrayList;
 import com.epam.library.bean.Book;
+import com.epam.library.bean.User;
 import com.epam.library.service.exception.ServiceException;
 
 /**
@@ -41,7 +42,7 @@ public interface BookService {
 	/**
 	 * Method addBookToLibrary adds book to library's books.
 	 * 
-	 * @param bookNamee
+	 * @param bookName
 	 *            name of book
 	 * @param author
 	 *            name of author

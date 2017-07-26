@@ -9,8 +9,9 @@ import com.epam.library.dao.exception.DAOException;
  * <P>
  * Interface UserDAO includes 7 methods ({@link #signIn(String, String)},
  * {@link #register(String, String, String, String)}, {@link #getAllUsers()},
- * {@link #updateUserInfo(String, String, String, int)}, {@link #banUser(int)},
- * {@link #unBanUser(int)}, {@link #giveAdminForUser(int)}).
+ * {@link #updateUserInfo(String, String, String, int, String)},
+ * {@link #banUser(int)}, {@link #unBanUser(int)},
+ * {@link #giveAdminForUser(int)}).
  * <p>
  * <i>This interface is a member of the {@link com.epam.library.dao.interfaces}
  * package.</i>
@@ -68,7 +69,8 @@ public interface UserDAO {
 	 *            login of user
 	 * @param userId
 	 *            unique user id
-	 * @param password 
+	 * @param password
+	 *            user password
 	 * @return object of User Class
 	 * @throws DAOException
 	 *             Exception type for dao layer
@@ -80,7 +82,7 @@ public interface UserDAO {
 	 * 
 	 * @param userId
 	 *            unique user id
-	 * @return 
+	 * @return boolean value as result of successfully executing
 	 * @throws DAOException
 	 *             Exception type for dao layer
 	 */
@@ -91,7 +93,7 @@ public interface UserDAO {
 	 * 
 	 * @param userId
 	 *            unique user id
-	 * @return 
+	 * @return boolean value as result of successfully executing
 	 * @throws DAOException
 	 *             Exception type for dao layer
 	 */
@@ -102,7 +104,7 @@ public interface UserDAO {
 	 * 
 	 * @param userId
 	 *            unique user id
-	 * @return 
+	 * @return boolean value as result of successfully executing
 	 * @throws DAOException
 	 *             Exception type for dao layer
 	 */

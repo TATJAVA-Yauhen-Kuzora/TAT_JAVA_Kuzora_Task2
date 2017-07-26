@@ -9,8 +9,8 @@
  * 5) {@link com.epam.library.dao.DAOFactory}; - singleton Class for management
  * dao layer.
  * <p>
- * <i>Management for dao layer leads from {@link com.epam.library.services.impl}
- * different implementations of {@link com.epam.library.services.interfaces}
+ * <i>Management for dao layer leads from {@link com.epam.library.service.impl}
+ * different implementations of {@link com.epam.library.service.interfaces}
  * interfaces.</i>
  */
 package com.epam.library.dao;
